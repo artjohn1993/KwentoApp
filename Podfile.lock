@@ -1,0 +1,142 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AppCenter (2.5.0):
+    - AppCenter/Analytics (= 2.5.0)
+    - AppCenter/Crashes (= 2.5.0)
+  - AppCenter/Analytics (2.5.0):
+    - AppCenter/Core
+  - AppCenter/Core (2.5.0)
+  - AppCenter/Crashes (2.5.0):
+    - AppCenter/Core
+  - AudioIndicatorBars (0.0.2)
+  - IQKeyboardManagerSwift (6.5.1)
+  - KYDrawerController (2.1.0)
+  - MaterialComponents/AnimationTiming (92.4.0)
+  - MaterialComponents/Buttons (92.4.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Cards (92.4.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+  - MaterialComponents/Elevation (92.4.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (92.4.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/OverlayWindow (92.4.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/Palettes (92.4.0)
+  - MaterialComponents/private/Application (92.4.0)
+  - MaterialComponents/private/Color (92.4.0)
+  - MaterialComponents/private/Icons/Base (92.4.0)
+  - MaterialComponents/private/Icons/ic_check_circle (92.4.0):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/KeyboardWatcher (92.4.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Math (92.4.0)
+  - MaterialComponents/private/Overlay (92.4.0)
+  - MaterialComponents/Ripple (92.4.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (92.4.0)
+  - MaterialComponents/ShadowLayer (92.4.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Shapes (92.4.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Snackbar (92.4.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/Elevation
+    - MaterialComponents/OverlayWindow
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Overlay
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+  - MaterialComponents/Tabs (92.4.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/TextFields (92.4.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Elevation
+    - MaterialComponents/Palettes
+    - MaterialComponents/private/Math
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Typography (92.4.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
+  - Pulsator (0.6.0)
+  - SwiftyJSON (4.3.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AppCenter
+  - AudioIndicatorBars (~> 0.0.2)
+  - IQKeyboardManagerSwift
+  - KYDrawerController
+  - MaterialComponents/Buttons
+  - MaterialComponents/Cards
+  - MaterialComponents/Snackbar
+  - MaterialComponents/Tabs
+  - MaterialComponents/TextFields
+  - Pulsator
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AppCenter
+    - AudioIndicatorBars
+    - IQKeyboardManagerSwift
+    - KYDrawerController
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
+    - Pulsator
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AppCenter: 637f180deefc61e8ab3f94223869ee50f61dabea
+  AudioIndicatorBars: 10bf47c8422578dab5046e795a85a0f9b292d57d
+  IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
+  KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
+  MaterialComponents: b584175e16dc0bff91ca4c867c64f381f89511ae
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+
+PODFILE CHECKSUM: 14206ae0f88b8a4a483241a265787a2ee6a9b34c
+
+COCOAPODS: 1.8.4

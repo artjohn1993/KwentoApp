@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RZ9-4a-mzS">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--How It Works Controller-->
+        <scene sceneID="02c-87-1dO">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="RZ9-4a-mzS" customClass="HowItWorksController" customModule="Kwento" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y5Y-b2-Cpp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How it works" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WZ-Dq-S0Q">
+                                <rect key="frame" x="109.33333333333333" y="80" width="156.66666666666669" height="33"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="24"/>
+                                <color key="textColor" red="0.27058823529411763" green="0.30980392156862746" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the Kwento logo in the main menu to start the QR reader" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kq-RK-avi">
+                                <rect key="frame" x="64" y="121.00000000000001" width="247" height="43.666666666666671"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                <color key="textColor" red="0.47058823529411764" green="0.51764705882352935" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3p-XZ-Cm4">
+                                <rect key="frame" x="0.0" y="221.66666666666663" width="375" height="463"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="463" id="iWx-KI-BuD"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAS-qY-zAC">
+                                <rect key="frame" x="174" y="766.66666666666663" width="27.333333333333343" height="19.333333333333371"/>
+                                <gestureRecognizers/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Skip">
+                                        <attributes>
+                                            <color key="NSColor" red="0.47058823529411764" green="0.51764705882352935" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="14" name="OpenSans"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="tsE-Es-Cba" appends="YES" id="GRj-13-Q2I"/>
+                                </connections>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="cZD-ck-daT">
+                                <rect key="frame" x="171" y="706.66666666666663" width="33" height="44"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Kx-iF-ByJ" customClass="MDCFlatButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>
+                                        <state key="normal" title="BACK"/>
+                                        <connections>
+                                            <action selector="back:" destination="RZ9-4a-mzS" eventType="touchUpInside" id="wD1-MY-gGz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26B-qa-BEw" customClass="MDCFlatButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="44"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>
+                                        <state key="normal" title="NEXT"/>
+                                        <connections>
+                                            <action selector="next:" destination="RZ9-4a-mzS" eventType="touchUpInside" id="cdW-kq-Qn0"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARd-Ui-8lV" customClass="MDCFlatButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>
+                                        <state key="normal" title="FINISH"/>
+                                        <connections>
+                                            <action selector="finish:" destination="RZ9-4a-mzS" eventType="touchUpInside" id="8g1-L6-dnk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="oZw-Pr-pwd"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333333333335" green="1" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="cZD-ck-daT" firstAttribute="top" secondItem="G3p-XZ-Cm4" secondAttribute="bottom" constant="22" id="2qE-tr-x1R"/>
+                            <constraint firstItem="G3p-XZ-Cm4" firstAttribute="trailing" secondItem="54N-g2-EGd" secondAttribute="trailing" id="7N3-2Q-jcI"/>
+                            <constraint firstItem="PAS-qY-zAC" firstAttribute="centerX" secondItem="y5Y-b2-Cpp" secondAttribute="centerX" id="8rq-Zd-Ojp"/>
+                            <constraint firstItem="7kq-RK-avi" firstAttribute="top" secondItem="6WZ-Dq-S0Q" secondAttribute="bottom" constant="8" id="CUP-VB-BAg"/>
+                            <constraint firstItem="54N-g2-EGd" firstAttribute="trailing" secondItem="7kq-RK-avi" secondAttribute="trailing" constant="64" id="F8F-yb-MJP"/>
+                            <constraint firstItem="6WZ-Dq-S0Q" firstAttribute="centerX" secondItem="y5Y-b2-Cpp" secondAttribute="centerX" id="PaV-cv-nNz"/>
+                            <constraint firstItem="7kq-RK-avi" firstAttribute="leading" secondItem="54N-g2-EGd" secondAttribute="leading" constant="64" id="VHX-wo-9od"/>
+                            <constraint firstItem="PAS-qY-zAC" firstAttribute="top" secondItem="cZD-ck-daT" secondAttribute="bottom" constant="16" id="cs1-Lc-91H"/>
+                            <constraint firstItem="G3p-XZ-Cm4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7kq-RK-avi" secondAttribute="bottom" constant="8" id="i2U-U8-v6J"/>
+                            <constraint firstItem="cZD-ck-daT" firstAttribute="centerX" secondItem="y5Y-b2-Cpp" secondAttribute="centerX" id="nkc-3P-uXI"/>
+                            <constraint firstItem="PAS-qY-zAC" firstAttribute="bottom" secondItem="54N-g2-EGd" secondAttribute="bottom" constant="8" id="qiH-kc-oSw"/>
+                            <constraint firstItem="G3p-XZ-Cm4" firstAttribute="leading" secondItem="54N-g2-EGd" secondAttribute="leading" id="wou-RP-oIr"/>
+                            <constraint firstItem="6WZ-Dq-S0Q" firstAttribute="top" secondItem="54N-g2-EGd" secondAttribute="top" constant="36" id="zsc-1H-72B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="54N-g2-EGd"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="4Kx-iF-ByJ" id="23k-a1-Bxb"/>
+                        <outlet property="contentView" destination="G3p-XZ-Cm4" id="dXf-p0-oTa"/>
+                        <outlet property="finishButton" destination="ARd-Ui-8lV" id="4o1-mk-pMh"/>
+                        <outlet property="nextButton" destination="26B-qa-BEw" id="k59-2q-SaG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWV-0W-5OO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="tsE-Es-Cba">
+                    <connections>
+                        <action selector="skip:" destination="RZ9-4a-mzS" id="dv1-tz-XlB"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-298.39999999999998" y="-104.92610837438424"/>
+        </scene>
+        <!--How It Works Page Controller-->
+        <scene sceneID="VuR-96-BdA">
+            <objects>
+                <pageViewController storyboardIdentifier="HowItWorksPageController" autoresizesArchivedViewToFullSize="NO" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="IMF-ks-Ith" customClass="HowItWorksPageController" customModule="Kwento" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yRl-Z1-MNG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="583" y="-100"/>
+        </scene>
+        <!--Page Image Controller-->
+        <scene sceneID="Asv-Kx-A60">
+            <objects>
+                <viewController storyboardIdentifier="PageImageController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i00-bi-LS2" customClass="PageImageController" customModule="Kwento" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MQG-jS-8R8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-Qj-uUM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uAc-Qj-uUM" firstAttribute="top" secondItem="MQG-jS-8R8" secondAttribute="top" id="JPg-eN-LIT"/>
+                            <constraint firstItem="uAc-Qj-uUM" firstAttribute="trailing" secondItem="MQG-jS-8R8" secondAttribute="trailing" id="Rc5-1R-vUW"/>
+                            <constraint firstAttribute="bottom" secondItem="uAc-Qj-uUM" secondAttribute="bottom" id="gKj-R8-tST"/>
+                            <constraint firstItem="uAc-Qj-uUM" firstAttribute="leading" secondItem="MQG-jS-8R8" secondAttribute="leading" id="xFK-sW-Heq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tdW-ls-nqH"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="uAc-Qj-uUM" id="NTY-jJ-OAH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m4Z-Kt-Q3Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1473.913043478261" y="-104.46428571428571"/>
+        </scene>
+    </scenes>
+</document>

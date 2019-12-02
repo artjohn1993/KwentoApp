@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AllAttraction" representedClassName="AllAttraction" syncable="YES">
+        <attribute name="attraction_type_id" optional="YES" attributeType="String"/>
+        <attribute name="audio_filename" optional="YES" attributeType="String"/>
+        <attribute name="city_id" optional="YES" attributeType="String"/>
+        <attribute name="descriptions" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image_filename" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="String"/>
+        <attribute name="location_info" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="sub_attractions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="AttractionByCity" representedClassName="AttractionByCity" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="AttractionByType" representedClassName="AttractionByType" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="DownloadedAttractionDetails" representedClassName="DownloadedAttractionDetails" syncable="YES">
+        <attribute name="attractionDescription" optional="YES" attributeType="String"/>
+        <attribute name="attractionTypeId" optional="YES" attributeType="String"/>
+        <attribute name="audioFilename" optional="YES" attributeType="String"/>
+        <attribute name="cityId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imageFilename" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="locationInfo" optional="YES" attributeType="String"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="qrCodeFilename" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="DownloadedFiles" representedClassName="DownloadedFiles" syncable="YES">
+        <attribute name="audio" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
+        <attribute name="access_token" optional="YES" attributeType="String"/>
+        <attribute name="client_id" optional="YES" attributeType="String"/>
+        <attribute name="expires" optional="YES" attributeType="String"/>
+        <attribute name="expires_in" optional="YES" attributeType="String"/>
+        <attribute name="issued" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="refresh_token" optional="YES" attributeType="String"/>
+        <attribute name="token_type" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="AttractionByCity" positionX="9" positionY="108" width="128" height="88"/>
+        <element name="AttractionByType" positionX="-9" positionY="99" width="128" height="88"/>
+        <element name="DownloadedAttractionDetails" positionX="-36" positionY="81" width="128" height="28"/>
+        <element name="DownloadedFiles" positionX="-27" positionY="90" width="128" height="73"/>
+        <element name="UserInfo" positionX="-36" positionY="9" width="128" height="178"/>
+        <element name="AllAttraction" positionX="27" positionY="117" width="128" height="208"/>
+    </elements>
+</model>
