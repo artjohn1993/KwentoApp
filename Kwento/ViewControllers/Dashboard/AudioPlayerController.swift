@@ -22,24 +22,37 @@ class AudioPlayerController: UIViewController {
     var mainNavigationController: MainNavigationController!
     
     var audioPlayer = AVAudioPlayer()
+    var id = ""
     
     var currentTime: TimeInterval!
     var downloadedAttraction = [DownloadedAttractionDetails]()
     let dataServices = CoreDataServices()
+    var audioFilename = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("audio player2:\(id)")
         
-        dataServices.getDownloadedAttraction(completion: { result in
-                   self.downloadedAttraction = result ?? []
-        })
-        let audioFilename = "\(self.downloadedAttraction[0].audioFilename!).mp3"
-//        let range = audioFilename.range(of: ".mp3")!
-//        let title = audioFilename[audioFilename.startIndex..<range.lowerBound]
-//        print("checking the title-------------------------------")
-//        print(title)
+        if id != "" {
+            dataServices.getAllAttraction(completion: { response in
+                response?.forEach({ item in
+                    if item.id == self.id {
+                        self.audioFilename = "\(item.audio_filename!).mp3"
+                        print(self.audioFilename)
+                    }
+                })
+            })
+        }
+        else {
+            dataServices.getDownloadedAttraction(completion: { result in
+                       self.downloadedAttraction = result ?? []
+            })
+            audioFilename = "\(self.downloadedAttraction[0].audioFilename).mp3"
+        }
+        
+
         var stringURL = getSavedMp3(named: String(audioFilename))
-        print(stringURL)
+        print(stringURL!)
         let url = (stringURL != nil) ? URL(string: stringURL!) : nil
         print("url:\(url!)")
         let audio = Bundle.main.path(forResource: "Moon River", ofType: "mp3")

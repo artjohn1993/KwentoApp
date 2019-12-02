@@ -516,7 +516,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dE-4b-Ysm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2321" y="144"/>
+            <point key="canvasLocation" x="2321" y="84"/>
         </scene>
         <!--Start Tour Controller-->
         <scene sceneID="2c9-k8-xwJ">
@@ -535,7 +535,8 @@
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                                 <state key="normal" title="LET'S START!"/>
                                 <connections>
-                                    <segue destination="Szb-Dh-zn1" kind="show" id="OZy-lH-rac"/>
+                                    <action selector="start:" destination="rMP-3q-41g" eventType="touchUpInside" id="SgD-bk-Ezi"/>
+                                    <segue destination="Szb-Dh-zn1" kind="show" identifier="startToPlayer" id="OZy-lH-rac"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Weg-51-2iO">
@@ -641,7 +642,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g45-ko-Syh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3078" y="-443"/>
+            <point key="canvasLocation" x="3077.5999999999999" y="-443.3497536945813"/>
         </scene>
         <!--Audio Player Controller-->
         <scene sceneID="Nnj-nP-eej">
@@ -946,7 +947,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TyY-s9-qtj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2321" y="640"/>
+            <point key="canvasLocation" x="2321" y="883"/>
         </scene>
         <!--No Connection Dialog Controller-->
         <scene sceneID="DNv-eX-T0L">
@@ -1021,6 +1022,6 @@
         <image name="scan_top_right" width="10.666666984558105" height="10.333333015441895"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZLg-RR-dUM"/>
+        <segue reference="hlh-4A-hEZ"/>
     </inferredMetricsTieBreakers>
 </document>

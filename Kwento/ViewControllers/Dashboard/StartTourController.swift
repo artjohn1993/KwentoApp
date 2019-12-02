@@ -54,6 +54,15 @@ class StartTourController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "startToPlayer" {
+            if let destinationVC = segue.destination as? AudioPlayerController {
+                destinationVC.id = self.id
+            }
+        }
+    }
+    
     func setDataWithSub() {
         print("SET setDataWithSub")
         if self.downloadedAttraction.count > 0 {
@@ -79,6 +88,11 @@ class StartTourController: UIViewController {
     func initViews() {
         startButton.initialize(backgroundColor: .main, titleColor: .white, cornerRadius: 4)
         self.background.contentMode = .scaleAspectFill
+    }
+    
+    @IBAction func start(_ sender: Any) {
+        print("hey yow!!!")
+        //performSegue(withIdentifier: "startToPlayer", sender: nil)
     }
     
     @IBAction func didTapNavButton(_ sender: UIButton) {
