@@ -18,7 +18,7 @@ class ProfileServices {
     var tokenServices = TokenServices()
     
     func getCurrentUser(completion: @escaping ([String:Any]?)->()) {
-       
+        print("getCurrentUser")
         dataServices.getUserInfo(completion: { result in
             self.userInfo = result!
         })
@@ -28,23 +28,36 @@ class ProfileServices {
         let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
         let header : HTTPHeaders =  ["Authorization" : token]
         
-        tokenServices.checkExpirationDate(completion: {
-            Alamofire.request(url,
-            method: .get,
-            headers: header).responseJSON(completionHandler: { response in
-                let data = response.result.value as? [String:Any]
-                if response.response?.statusCode == 200 {
-                    print("success")
-                    completion(data)
+        
+        Alamofire.request(url,
+                          method: .get,
+                          headers: header).responseJSON(completionHandler: { response in
+            let data = response.result.value as? [String:Any]
+            print(response.result.value)
+            print(response.response?.statusCode)
+            if response.response?.statusCode == 200 {
+                print("success")
+                completion(data)
+            }
+            else if response.response?.statusCode == 401 {
+               let msg = response.result.value as? [String:Any]
+                print(msg?["Message"] as? String)
+                if msg?["Message"] as? String == "Authorization has been denied for this request." {
+                    self.tokenServices.refreshToken {
+                        self.getCurrentUser(completion: { result in
+                            completion(result)
+                        })
+                    }
                 }
-                else {
-                    print("failed")
-                    print(response.error)
-                    print(response.data)
-                    completion(nil)
-                }
-            })
+            }
+            else {
+                print("failed")
+                print(response.error)
+                print(response.data)
+               completion(data)
+            }
         })
+        
         
         
     }// end of get current user function
@@ -67,27 +80,43 @@ class ProfileServices {
             Alamofire.request(url,
                           method: .put,
                           parameters: [
-                            "Id": userId,
-                            "FullName": fullname,
-                            "Birthday": birthdate,
-                            "Gender": true,
-                            "MobileNumber": mobile,
-                            "EmailAddress": email
+                            "id": userId,
+                            "full_name": fullname,
+                            "birthday": birthdate,
+                            "gender": true,
+                            "phone_number": mobile,
+                            "email_address": email
                           ],
                           encoding: JSONEncoding.default ,
                           headers: header).responseJSON(completionHandler: { response in
-                
+                            print(response.response?.statusCode)
+                            print(response.result.value)
                             if response.response?.statusCode == 200 {
                                 completion(true)
                             }
                             else {
                                 completion(false)
                             }
-                           
             })
         })
-        
-        
+    }
+    
+    func logout(completion: @escaping ()->()) {
+        dataServices.deleteData(entity: "SessionData", completion: {
+            self.dataServices.deleteData(entity: "AllAttraction", completion: {
+                self.dataServices.deleteData(entity: "AttractionByCity", completion: {
+                    self.dataServices.deleteData(entity: "AttractionByType", completion: {
+                        self.dataServices.deleteData(entity: "DownloadedFiles", completion: {
+                            self.dataServices.deleteData(entity: "DownloadedAttractionDetails", completion: {
+                                self.dataServices.deleteData(entity: "UserInfo", completion: {
+                                    completion()
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
     }
 }
 

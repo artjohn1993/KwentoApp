@@ -17,6 +17,7 @@ class CategoriesController: UIViewController {
     var service = AttractionServices()
     let dataServices = CoreDataServices()
     var arrayAttractionByType = [AttractionByType]()
+    var id = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,16 @@ class CategoriesController: UIViewController {
         checkAttraction(completion: { result in
             result ? self.loadLocalData(isFirstTime : false) : self.getAttraction()
         })
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "locationToMuseum" {
+            if let destinationVC = segue.destination as? MuseumController {
+                destinationVC.id = self.id
+                destinationVC.type = "queryParams.attraction_type_id"
+            }
+        }
         
     }
     
@@ -47,6 +58,7 @@ class CategoriesController: UIViewController {
             attractionData.title = data[index]!["group"].string
             attractionData.total = String(data[index]!["number_of_items"].int ?? 0)
             attractionData.image = data[index]!["image_filename"].string
+            attractionData.id = String(data[index]!["group_id"].int ?? 0)
             
             
             if data[index]!["image_filename"].string != nil {
@@ -127,9 +139,9 @@ extension CategoriesController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.table.dequeueReusableCell(withIdentifier: "attractionCell") as! AttractionViewCell
         cell.title.text = self.arrayAttractionByType[indexPath.row].title
+        print(self.arrayAttractionByType[indexPath.row])
         var total = self.arrayAttractionByType[indexPath.row].total
         cell.attraction.text = "\(total!) Location"
-        
         if self.arrayAttractionByType[indexPath.row].image != nil {
             cell.background.image = PublicData.getSavedImage(named: self.arrayAttractionByType[indexPath.row].image!)
         }
@@ -137,7 +149,17 @@ extension CategoriesController: UITableViewDelegate, UITableViewDataSource {
         cell.backgroundColor = UIColor.clear
         cell.selectionStyle = .none
         cell.layoutSubviews()
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.id = Int(self.arrayAttractionByType[indexPath.row].id ?? "0")!
+        print(self.id)
+        //print(self.arrayAttractionByType[indexPath.row]itle)
+        if self.arrayAttractionByType[indexPath.row].total != "0" {
+            self.performSegue(withIdentifier: "locationToMuseum", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -145,8 +167,5 @@ extension CategoriesController: UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = UIColor.clear
         return view
     }
-    
-  
-    
-    
 }
+

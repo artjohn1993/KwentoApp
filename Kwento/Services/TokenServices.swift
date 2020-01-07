@@ -27,15 +27,17 @@ class TokenServices {
             "client_id" : PublicData.clientId,
             "client_secret" : PublicData.client_secret,
             "grant_type" : "refresh_token",
-            "username" : userInfo[0].userName,
-            "password" : userInfo[0].password,
+            "username" : userInfo[0].userName!,
+            "password" : userInfo[0].password!,
             "provider" : "local",
-            "refresh_token" : userInfo[0].refresh_token
+            "refresh_token" : userInfo[0].refresh_token!
         ]
         
-        print(userInfo[0].userName)
-        print(userInfo[0].password)
-        print(userInfo[0].refresh_token)
+        print(userInfo[0].userName!)
+        print(userInfo[0].password!)
+        print(userInfo[0].refresh_token!)
+        print(PublicData.clientId)
+        print(PublicData.client_secret)
         
         //- send login request
         Alamofire.request(url,

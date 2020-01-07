@@ -10,8 +10,16 @@ import UIKit
 import MaterialComponents
 import KYDrawerController
 import CoreData
+import Network
+import FBSDKCoreKit
+import FBSDKLoginKit
+import GoogleSignIn
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, GIDSignInDelegate {
+    
+    
+
+    
 
     @IBOutlet weak var headerView: UIView!
     
@@ -32,12 +40,50 @@ class LoginController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    var connectionService = ConnectionService()
+    var isConnected = false
+    var accessToken = ""
+    
+    var fullname = ""
+    var email = ""
+    var provider = ""
+    var externalId = ""
+    var token = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
         emailField.text = "test2@gmail.com"
         passwordField.text = "password1234"
+        
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        
+        
+        connectionService.checkConnection(completion: { connection in
+            self.isConnected = connection
+        })
+        
+        if let accessToken = AccessToken.current {
+            print("user is already login")
+            print(AccessToken.current!.tokenString)
+            print(AccessToken.current?.appID)
+        }
+        else {
+            print("user need to login")
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "loginToSignUp" {
+            if let destinationVC = segue.destination as? SignUpController {
+                destinationVC.fullname = self.fullname
+                destinationVC.email = self.email
+                destinationVC.provider = self.provider
+                destinationVC.externalId = self.externalId
+                 destinationVC.token = self.token
+            }
+        }
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -60,19 +106,13 @@ class LoginController: UIViewController {
     
       @IBAction func login(_ sender: Any) {
         if emailField.text != "" && passwordField.text != "" {
-            PublicData().showSpinner(onView: self.view)
-            self.loginService.login(username: emailField.text ?? "", password: passwordField.text ?? "" , completion: { result in
-                    if result {
-                        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                        let homeController = storyboard.instantiateInitialViewController() as! KYDrawerController
-                        self.present(homeController, animated: true)
-
-                    }
-                    else {
-                        print("Login failed")
-                    }
-                    PublicData().removeSpinner()
-                })
+            login(uname: emailField.text ?? "", pass: passwordField.text ?? "", dataProvider: "local")
+//            if isConnected {
+//                login(uname: emailField.text ?? "", pass: passwordField.text ?? "", dataProvider: "local")
+//            }
+//            else {
+//                PublicData.showSnackBar(message: "Not Connected")
+//            }
         }
         else {
             if emailField.text == "" {
@@ -91,10 +131,138 @@ class LoginController: UIViewController {
         }
         
         @IBAction func signUp() {
+            self.provider = "local"
             performSegue(withIdentifier: "loginToSignUp", sender: nil)
         }
+    
+        @IBAction func loginWithFB(_ sender: Any) {
+            let fbLoginManager : LoginManager = LoginManager()
+            
+            fbLoginManager.logIn(permissions: ["email"], from: self) { (result, error) -> Void in
+              if (error == nil){
+                let fbloginresult : LoginManagerLoginResult = result!
+                // if user cancel the login
+                if (result?.isCancelled)!{
+                        return
+                }
+                if(fbloginresult.grantedPermissions.contains("email"))
+                {
+                  self.getFBUserData()
+                }
+              }
+            }
+        }
+    
+        @IBAction func loginWithGmail(_ sender: Any) {
+            print("login gmail")
+            GIDSignIn.sharedInstance().delegate = self
+            GIDSignIn.sharedInstance().signIn()
+        }
+     
+        //MARK:- Google Delegate
+        func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
 
-    }
+        }
+
+        func sign(_ signIn: GIDSignIn!,
+                  present viewController: UIViewController!) {
+            self.present(viewController, animated: true, completion: nil)
+        }
+    
+        public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+                           withError error: Error!) {
+            if (error == nil) {
+                // Perform any operations on signed in user here.
+                let userId = user.userID                  // For client-side use only!
+                let idToken = user.authentication.idToken // Safe to send to the server
+                let fullName = user.profile.name
+                let givenName = user.profile.givenName
+                let familyName = user.profile.familyName
+                let email = user.profile.email
+                
+                print(userId!)
+                print(idToken!)
+                print(fullName!)
+                print(email!)
+                print("====================DATA FROM GMAIL=====================")
+                self.fullname = fullName!
+                self.email = email!
+                self.provider = "Google"
+                self.externalId = userId!
+                self.token = idToken!
+                
+                self.loginService.checkExternalId(id: self.externalId, completion: { result in
+                    if result == 1 {
+                        self.login(uname: self.externalId, pass: self.token, dataProvider: "Google")
+                    }
+                    else {
+                        self.performSegue(withIdentifier: "loginToSignUp", sender: nil)
+                    }
+                })
+                // ...
+            } else {
+                print("\(error)")
+            }
+        }
+              
+
+    
+        @objc private func presentExampleController() {
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+            let homeController = storyboard.instantiateInitialViewController() as! KYDrawerController
+            self.present(homeController, animated: true)
+        }
+    
+        func login(uname: String, pass :String, dataProvider: String) {
+            print("login function")
+            print(uname)
+            print(pass)
+            print(dataProvider)
+            PublicData.spinnerAlert(controller: self)
+            self.loginService.login(username: uname, password: pass ,provider : dataProvider, completion: { result in
+                   print(result)
+                    if result {
+                        self.perform(#selector(self.presentExampleController), with: nil, afterDelay: 0)
+                    }
+                    else {
+                        print("Login failed")
+                    }
+                    PublicData.removeSpinnerAlert(controller: self)
+                })
+        }
+    
+        func getFBUserData() {
+            if((AccessToken.current) != nil){
+                GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+              if (error == nil){
+                //everything works print the user data
+                print(result)
+                let data = result as? [String:Any]
+                print(data)
+                print(data?["email"] as! String)
+                print(data?["id"] as! String)
+                self.fullname = data?["name"] as! String
+                self.email = data?["email"] as! String
+                self.provider = "Facebook"
+                self.externalId = data?["id"] as! String
+                self.token = AccessToken.current!.tokenString
+                
+                self.loginService.checkExternalId(id: self.externalId, completion: { result in
+                    if result == 1 {
+                        self.login(uname: self.externalId, pass: AccessToken.current!.tokenString, dataProvider: "Facebook")
+                    }
+                    else {
+                        self.performSegue(withIdentifier: "loginToSignUp", sender: nil)
+                    }
+                })
+                print(AccessToken.current!.tokenString)
+                
+                //self.login(uname: self.externalId, pass: AccessToken.current!.tokenString, dataProvider: "Facebook")
+              }
+            })
+          }
+        }
+}
 
     extension LoginController: UITextFieldDelegate {
         

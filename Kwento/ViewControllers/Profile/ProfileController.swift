@@ -40,26 +40,31 @@ class ProfileController: UIViewController {
     }
     
     @IBAction func saveUpdate(_ sender: Any) {
+        print("password:\(self.passwordField.text ?? "")")
+        print("confirm:\(self.confirmField.text ?? "")")
+        print(self.confirmField.text ?? "")
         service.getCurrentUser(completion: { result in
             print(result)
+            PublicData.spinnerAlert(controller: self)
             self.service.updateInfo(mobile: self.mobileField.text ?? "",
-                               birthdate: result?["Birthday"] as! String,
-                               fullname: result?["FullName"] as! String,
+                               birthdate: result?["birthday"] as! String,
+                               fullname: result?["full_name"] as! String,
                                email: self.emailField.text ?? "",
                                pasword: self.passwordField.text ?? "",
                                confirm: self.confirmField.text ?? "",
-                               userId: result?["Id"] as! Int,
+                               userId: result?["id"] as! Int,
                                completion: { result in
-                                
+                                PublicData.removeSpinnerAlert(controller: self)
                                 if result {
-                                    self.message.text = "Information were successfully updated"
-                                    MDCSnackbarManager.show(self.message)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
+                                        PublicData.showSnackBar(message: "Information were successfully updated")
+                                    })
                                 }
                                 else {
                                     self.message.text = "Invalid update"
                                     MDCSnackbarManager.show(self.message)
                                 }
-                                
+
             })
         })
     }
@@ -69,6 +74,13 @@ class ProfileController: UIViewController {
     
     @IBAction func closeProfile(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
+    }
+    @IBAction func logout(_ sender: Any) {
+        service.logout(completion: {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeController = storyboard.instantiateInitialViewController() as! LoginController
+            self.present(homeController, animated: true)
+        })
     }
     
     func getCurrentUser() {
@@ -83,6 +95,7 @@ class ProfileController: UIViewController {
                 self.userFullname.text = result?["full_name"] as! String
                 self.emailField.text = result?["email_address"] as! String
                 self.passwordField.text = self.userInfo[0].password
+                
                 //self.passwordField.text =
             }
         })

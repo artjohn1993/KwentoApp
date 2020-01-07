@@ -16,6 +16,7 @@ class LocationsController: UIViewController {
     var totalLocationType: [JSON?] = []
     let dataServices = CoreDataServices()
     var arrayAttractionByCity = [AttractionByCity]()
+    var id = 0
     @IBOutlet weak var table: UITableView!
     
     
@@ -25,6 +26,15 @@ class LocationsController: UIViewController {
         checkAttraction(completion: { result in
             result ? self.loadLocalData(isFirstTime : false) : self.getAttraction()
         })
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "locationToMuseum" {
+            if let destinationVC = segue.destination as? MuseumController {
+                destinationVC.id = self.id
+                destinationVC.type = "queryParams.city_id"
+            }
+        }
+        
     }
     
     func getAttraction() {
@@ -42,6 +52,7 @@ class LocationsController: UIViewController {
             print(result)
             attractionData.title = data[index]!["group"].string
             attractionData.total = String(data[index]!["number_of_items"].int ?? 0)
+            attractionData.id = String(data[index]!["group_id"].int ?? 0)
             attractionData.image = data[index]!["image_filename"].string
             
             
@@ -138,6 +149,14 @@ extension LocationsController: UITableViewDelegate, UITableViewDataSource {
           cell.selectionStyle = .none
 //        cell.layoutSubviews()
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+         self.id = Int(self.arrayAttractionByCity[indexPath.row].id ?? "0")!
+        if self.arrayAttractionByCity[indexPath.row].total != "0" {
+            self.performSegue(withIdentifier: "locationToMuseum", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

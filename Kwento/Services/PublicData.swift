@@ -22,6 +22,7 @@ class PublicData {
     }
     
     func showSpinner(onView : UIView) {
+        print("showSpinner")
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(style: .whiteLarge)
@@ -36,7 +37,24 @@ class PublicData {
         self.vSpinner = spinnerView
     }
     
+    static func spinnerAlert(controller : UIViewController) {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+        loadingIndicator.startAnimating();
+
+        alert.view.addSubview(loadingIndicator)
+        controller.present(alert, animated: true, completion: nil)
+    }
+    
+    static func removeSpinnerAlert(controller : UIViewController) {
+        controller.dismiss(animated: false, completion: nil)
+    }
+    
     func removeSpinner() {
+        print("removeSpinner")
         DispatchQueue.main.async {
             self.vSpinner?.removeFromSuperview()
             self.vSpinner = nil

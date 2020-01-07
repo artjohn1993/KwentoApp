@@ -12,9 +12,22 @@ import Alamofire
 
 class LoginServices {
     
+    func checkExternalId(id: String, completion : @escaping (Int)->()) {
+        let url = "\(PublicData.baseUrl)/api/accounts/externalid/\(id)/exists"
+        Alamofire.request(url,
+                          method: .get).responseJSON(completionHandler: { (response) in
+                            
+                            print(response.result.value!)
+                            print(response.response?.statusCode)
+                            completion(response.result.value as! Int)
+                          })
+    }
 
-    func login(username : String,password : String, completion: @escaping (Bool)->()) {
-
+    func login(username : String,password : String,provider : String, completion: @escaping (Bool)->()) {
+        print("login")
+        print(username)
+        print(password)
+        print(provider)
         let url = "\(PublicData.baseUrl)/api/account/login"
            
         let parameters: Parameters = [
@@ -23,14 +36,15 @@ class LoginServices {
                "grant_type" : "password",
                "username" : username,
                "password" : password,
-               "provider" : "local"
+               "provider" : provider
            ]
         
            //- send login request
            Alamofire.request(url,
                              method: .post,
                              parameters: parameters).responseJSON(completionHandler: { (response) in
-                               
+                                print(response.response?.statusCode)
+                                print(response.result.value)
                                 let data = response.result.value as? [String:Any]
                                 if response.response?.statusCode == 200 {
                                     if ((data?["access_token"]! as? String) != nil){
@@ -49,6 +63,16 @@ class LoginServices {
                                     }
                                     completion(true)
                                 }
+                                else if response.response?.statusCode == 400 {
+                                    print(response.result.value)
+                                    completion(false)
+                                    let message = response.result.value as? [String:Any]
+                                    if message?["error_description"] as? String != nil {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
+                                            PublicData.showSnackBar(message: message?["error_description"] as! String)
+                                        })
+                                    }
+                                }
                                 else {
                                     print(response.result.value)
                                     completion(false)
@@ -64,29 +88,44 @@ class LoginServices {
                 confirmPassword: String,
                 phoneNumber: String,
                 email: String,
+                provider :String,
+                externalId : String,
+                token : String,
                 completion : @escaping (Bool, String)->()
                 ) {
+        
+        let userGender = gender == "Male" ? true : false
         
         let url = "\(PublicData.baseUrl)/api/accounts/register"
         let parameters: Parameters = [
         "FullName": fullname,
         "Birthday": birthday,
-        "Gender": true,
+        "Gender": userGender,
         "Password": password,
         "ConfirmPassword": confirmPassword,
         "PhoneNumber": phoneNumber,
         "Email": email,
-        "Provider": "local",
-        "ExternalId": "1234"]
+        "Provider": provider,
+        "ExternalId": externalId]
         
         Alamofire.request(url,
                           method: .post,
                           parameters: parameters).responseJSON(completionHandler: { response in
                             let data = response.result.value as? [String:Any]
                             if response.response?.statusCode == 200 {
-                                self.login(username: email, password: password, completion: { isLoginSuccess in
-                                    isLoginSuccess ? completion(true, "success") : completion(false,"")
-                                })
+                                print("Registered Successfully")
+                                
+                                if provider == "local" {
+                                    self.login(username: email, password: password,provider: provider, completion: { isLoginSuccess in
+                                        isLoginSuccess ? completion(true, "success") : completion(false,"")
+                                    })
+                                }
+                                else if provider == "Facebook" || provider == "Google" {
+                                    self.login(username: externalId, password: token,provider: provider, completion: { isLoginSuccess in
+                                        isLoginSuccess ? completion(true, "success") : completion(false,"")
+                                    })
+                                }
+                                
                             }
                             else {
                                 print("failed signup service")

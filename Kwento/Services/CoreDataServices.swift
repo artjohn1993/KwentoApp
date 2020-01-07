@@ -89,24 +89,30 @@ class CoreDataServices {
         }
     }
     
-    func deleteData(entity : String, completion: @escaping ()->()) {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let managedContext = PersistenceService.context
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-        fetchRequest.returnsObjectsAsFaults = false
-
-        do
-        {
-            let results = try managedContext.fetch(fetchRequest)
-            for managedObject in results
-            {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                managedContext.delete(managedObjectData)
-            }
-            completion()
-        } catch let error as NSError {
-            print("Delete all data in \(entity) error : \(error) \(error.userInfo)")
+    func getSession(completion: @escaping ([SessionData]?)->()) {
+        print("fetching data from getAllAttraction")
+        var data: [SessionData] = [SessionData]()
+        let fetch: NSFetchRequest<SessionData> = SessionData.fetchRequest()
+        do {
+            let info = try PersistenceService.context.fetch(fetch)
+            data = info
+            completion(data)
+        }catch {
+            completion(nil)
         }
     }
+    
+    func deleteData(entity : String, completion: @escaping ()->()) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: entity))
+        do {
+            try managedContext.execute(DelAllReqVar)
+            completion()
+        }
+        catch {
+            print(error)
+        }
+    }
+    
 }

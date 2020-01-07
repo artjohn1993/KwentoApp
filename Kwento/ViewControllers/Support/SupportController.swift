@@ -15,7 +15,8 @@ class SupportController: UIViewController {
     @IBOutlet weak var navButton: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var submitButton: MDCFlatButton!
-    
+    let profileService = ProfileServices()
+    let suggestionService = SuggestionServices()
     var mainNavigationController: MainNavigationController!
     
     override func viewDidLoad() {
@@ -29,6 +30,20 @@ class SupportController: UIViewController {
     }
     
     @IBAction func submit(_ sender: Any) {
+        PublicData.spinnerAlert(controller: self)
+        profileService.getCurrentUser(completion: { result in
+            let id = result?["id"] as! Int
+            self.suggestionService.suggest(userid: id, message: self.textView.text, completion: { result in
+                if result {
+                    PublicData.removeSpinnerAlert(controller: self)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
+                        self.textView.text = ""
+                        PublicData.showSnackBar(message: "Thank you for your suggestion")
+                    })
+                }
+            })
+        })
+        
         
     }
     

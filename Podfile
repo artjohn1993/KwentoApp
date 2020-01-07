@@ -18,6 +18,12 @@ target 'Kwento' do
   
   pod 'AppCenter'
 
+  pod 'GoogleSignIn'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FBSDKLoginKit'
+  pod 'Cosmos', '~> 20.0'
+
   pod 'Alamofire'
   pod 'MaterialComponents/Snackbar'
   pod 'SwiftyJSON', '~> 4.0'

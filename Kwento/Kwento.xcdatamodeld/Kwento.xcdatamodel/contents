@@ -14,11 +14,13 @@
         <attribute name="sub_attractions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="AttractionByCity" representedClassName="AttractionByCity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="total" optional="YES" attributeType="String"/>
     </entity>
     <entity name="AttractionByType" representedClassName="AttractionByType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="total" optional="YES" attributeType="String"/>
@@ -40,6 +42,15 @@
         <attribute name="audio" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
+    <entity name="SessionData" representedClassName="SessionData" syncable="YES">
+        <attribute name="attraction" optional="YES" attributeType="String"/>
+        <attribute name="attraction_id" optional="YES" attributeType="String"/>
+        <attribute name="end_date" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="start_date" optional="YES" attributeType="String"/>
+        <attribute name="user_id" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
         <attribute name="access_token" optional="YES" attributeType="String"/>
         <attribute name="client_id" optional="YES" attributeType="String"/>
@@ -52,11 +63,13 @@
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="AttractionByCity" positionX="9" positionY="108" width="128" height="88"/>
-        <element name="AttractionByType" positionX="-9" positionY="99" width="128" height="88"/>
+        <element name="AllAttraction" positionX="27" positionY="117" width="128" height="208"/>
+        <element name="AttractionByCity" positionX="9" positionY="108" width="128" height="103"/>
+        <element name="AttractionByType" positionX="-9" positionY="99" width="128" height="103"/>
         <element name="DownloadedAttractionDetails" positionX="-36" positionY="81" width="128" height="28"/>
         <element name="DownloadedFiles" positionX="-27" positionY="90" width="128" height="73"/>
+        <element name="Entity" positionX="63" positionY="198" width="128" height="43"/>
+        <element name="SessionData" positionX="45" positionY="189" width="128" height="133"/>
         <element name="UserInfo" positionX="-36" positionY="9" width="128" height="178"/>
-        <element name="AllAttraction" positionX="27" positionY="117" width="128" height="208"/>
     </elements>
 </model>

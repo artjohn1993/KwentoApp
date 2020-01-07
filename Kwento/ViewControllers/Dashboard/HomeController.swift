@@ -8,6 +8,7 @@
 
 import UIKit
 import Pulsator
+import Network
 
 class HomeController: UIViewController {
     
@@ -16,6 +17,13 @@ class HomeController: UIViewController {
     
     let pulsator = Pulsator()
     var mainNavigationController: MainNavigationController!
+    let connectionService = ConnectionService()
+    let sessionService = SessionServices()
+    var id = ""
+    var name = ""
+    var imageName = ""
+    var audioName = ""
+    var sessionId = ""
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,8 +31,30 @@ class HomeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Home COntroller")
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapToDownload(sender:)))
+        self.outerCircle.addGestureRecognizer(gesture)
+        
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
+        
+        connectionService.checkConnection(completion: { connection in
+            if !connection {
+                
+                DispatchQueue.main.async {
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "noConnectionID") as! NoConnectionDialogController
+                    self.present(newViewController, animated: true, completion: nil)
+                }
+
+            }
+            else {
+                print("connection is back")
+//                DispatchQueue.main.async {
+//                    self.dismiss(animated: true)
+//                }
+            }
+        })
     }
     
     override func viewDidLayoutSubviews() {
@@ -32,6 +62,28 @@ class HomeController: UIViewController {
         view.layer.layoutIfNeeded()
         pulsator.position = outerCircle.layer.position
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "homeToMultiple" {
+            if let destinationVC = segue.destination as? StartTourController {
+                destinationVC.id = self.id
+                destinationVC.name = self.name
+                destinationVC.imageName = self.imageName
+                destinationVC.sessionId = self.sessionId
+            }
+        }
+        if segue.identifier == "homeToSingle" {
+            if let destinationVC = segue.destination as? SingleTourController {
+                destinationVC.id = self.id
+                destinationVC.name = self.name
+                destinationVC.imageName = self.imageName
+                destinationVC.audioName = self.audioName
+                destinationVC.sessionId = self.sessionId
+            }
+        }
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         pulsator.start()
@@ -44,6 +96,8 @@ class HomeController: UIViewController {
     @IBAction func didTapNavButton(_ sender: UITapGestureRecognizer) {
         mainNavigationController.setDrawerState()
     }
+    
+    
     
     private func initViews() {
         navButton.image = #imageLiteral(resourceName: "nav_button").withRenderingMode(.alwaysTemplate)
@@ -61,4 +115,31 @@ class HomeController: UIViewController {
     
     }
 
+    
+    @objc func tapToDownload(sender: UITapGestureRecognizer) {
+        print("tapToDownload")
+        sessionService.getActiveSession(completion: { result in
+            let attraction = result?["attraction"] as? [String:Any]
+            let subAttraction = attraction?["sub_attractions"] as? [[String:Any]]
+            self.id = result?["attraction_id"] as? Int != nil ? String(result?["attraction_id"] as! Int) : ""
+            self.audioName = attraction?["audio_filename"] as? String ?? ""
+            self.name = attraction?["name"] as? String ?? ""
+            self.imageName = attraction?["image_filename"] as? String ?? ""
+            self.sessionId = result?["id"] as? Int != nil ? String(result?["id"] as! Int) : ""
+            print(self.sessionId)
+            print(result?["id"] as? Int)
+            if result != nil {
+                if subAttraction?.count ?? 0 > 0 {
+                    self.performSegue(withIdentifier: "homeToMultiple", sender: nil)
+                }
+                else {
+                    self.performSegue(withIdentifier: "homeToSingle", sender: nil)
+                }
+            }
+            else {
+                self.performSegue(withIdentifier: "homeToQr", sender: nil)
+            }
+        })
+    }
+    
 }

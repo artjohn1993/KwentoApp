@@ -16,7 +16,7 @@ class AttractionServices {
     let dataServices = CoreDataServices()
     var userInfo = [UserInfo]()
     var tokenServices = TokenServices()
-    
+    var request: Alamofire.Request?
     
     func getAllAttraction() {
         print("PROCESS getAllAttraction...")
@@ -27,11 +27,12 @@ class AttractionServices {
         let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
         let header : HTTPHeaders =  ["Authorization" : token]
         
-        Alamofire.request(url,
+        self.request = Alamofire.request(url,
                           method: .get,
                           headers: header).responseJSON(completionHandler: { result in
                             print("Success")
-                            var response = result.result.value as? [[String:Any]]
+                            let row = result.result.value as? [String:Any]
+                            var response = row?["rows"] as? [[String:Any]]
                             response?.forEach({ item in
                                 var item2 = item as? [String:Any]
                                 var allAttraction = AllAttraction(context: PersistenceService.context)
@@ -62,7 +63,7 @@ class AttractionServices {
             })
     }
     
-    func getTotalLocationByType(type: String, completion: @escaping ([JSON?])->()) {
+    func getTotalLocationByType(type: String, completion: @escaping ([JSON?])->()) {    
         var url = "\(PublicData.baseUrl)/api/attractions/\(type)/summary"
         dataServices.getUserInfo(completion: { result in
             self.userInfo = result!
@@ -71,12 +72,13 @@ class AttractionServices {
         let header : HTTPHeaders =  ["Authorization" : token]
         
         tokenServices.checkExpirationDate(completion: {
-            Alamofire.request(url,
+            self.request = Alamofire.request(url,
                               method: .get,
                               headers: header).responseJSON(completionHandler: { response in
               print(response.result.value)
               print(response.response?.statusCode)
-              guard let object = response.result.value else {
+              let row = response.result.value as? [String:Any]
+              guard let object = row?["rows"] else {
                   print("Error in getAttraction response")
                   return
               }
@@ -85,9 +87,29 @@ class AttractionServices {
               completion(jsonArray ?? [])
             })
         })
-        
-        
     }// end of getTotalLocationByType
+    
+    func getAttractions(type :String, id : Int, completion : @escaping ([String:Any]?)->()) {
+         var url = "\(PublicData.baseUrl)/api/attractions?\(type)=\(id)"
+        dataServices.getUserInfo(completion: { result in
+            self.userInfo = result!
+        })
+        let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
+        let header : HTTPHeaders =  ["Authorization" : token]
+        
+        Alamofire.request(url,
+                          method: .get,
+                          headers: header).responseJSON(completionHandler: { response in
+                          
+                            if response.response?.statusCode == 200 {
+                                let result = response.result.value as? [String:Any]
+                                completion(result)
+                            }
+                            else {
+                                completion(nil)
+                            }
+            })
+    }
     
     func getAttraction(completion: @escaping ([JSON?])->()) {
         print("getAttraction")
@@ -99,14 +121,15 @@ class AttractionServices {
         let header : HTTPHeaders =  ["Authorization" : token]
         
         tokenServices.checkExpirationDate(completion: {
-            Alamofire.request(url,
+            self.request = Alamofire.request(url,
                               method: .get,
                               headers: header
             ).responseJSON(completionHandler: { response in
                 if response.response?.statusCode == 200 {
                     print(response.result.value)
                     print("checking getAttraction status:\(response.response?.statusCode)")
-                    guard let object = response.result.value else {
+                    let row = response.result.value as? [String:Any]
+                    guard let object = row?["row"] else {
                         print("Error in getAttraction response")
                         return
                     }
@@ -131,7 +154,7 @@ class AttractionServices {
         
     }// end of getAttraction
     
-    func getAttractionById(id: String, completion: @escaping (Float)->()) {
+    func getAttractionById(id: String, completion: @escaping ([String:Any]?)->()) {
         print("PROCESS getAttractionById....")
         var url = "\(PublicData.baseUrl)/api/attractions/\(id)"
         dataServices.getUserInfo(completion: { result in
@@ -140,102 +163,33 @@ class AttractionServices {
         let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
         let header : HTTPHeaders =  ["Authorization" : token]
         
-        tokenServices.checkExpirationDate(completion: {
-            Alamofire.request(url,
-                                     method: .get,
-                       headers: header).responseJSON(completionHandler: { response in
-                           print(response.result.value)
-                           let data = response.result.value as? [String:Any]
-                           if response.response?.statusCode == 200 {
-                               
-                               
-                               var attractionData = DownloadedAttractionDetails(context: PersistenceService.context)
-                               
-                               attractionData.attractionDescription = data?["description"] as? String
-                               attractionData.attractionTypeId = data?["attraction_type_id"] as? String
-                               attractionData.audioFilename = data?["audio_filename"] as? String
-                               print(attractionData.audioFilename)
-                               attractionData.cityId = data?["city_id"] as? Int16 ?? 0
-                               attractionData.id = data?["id"] as? String
-                               attractionData.imageFilename = data?["image_filename"] as? String
-                               attractionData.latitude = data?["latitude"] as? Float ?? 0.0
-                               attractionData.locationInfo = data?["location_info"] as? String
-                               attractionData.longitude = data?["longitude"] as? Float ?? 0.0
-                               attractionData.name = data?["name"] as? String
-                               attractionData.qrCodeFilename = data?["qr_code_filename"] as? String
-
-                               PersistenceService.saveContext()
-                               completion(0.1)
-                               downloadAudio(idAudio: attractionData.audioFilename!, idImage: attractionData.imageFilename!)
-                           }
+        
+        self.request = Alamofire.request(url,
+                              method: .get,
+                              headers: header).responseJSON(completionHandler: { response in
+                                print(response.result.value)
+                                let data = response.result.value as? [String:Any]
+                                if response.response?.statusCode == 200 {
+                                    completion(data ?? nil)
+                                }
+                                else if response.response?.statusCode == 401 {
+                                    self.tokenServices.refreshToken {
+                                        self.getAttractionById(id: id, completion: { response in
+                                            completion(data ?? nil)
+                                            print("getAttractionById second call after refresh")
+                                        })
+                                    }
+                                }
+                                else {
+                                    var error = response.result.value as? [String:Any]
+                                    
+                                    print(error?["Message"] as? String)
+                                    print(response.response?.statusCode)
+                                    
+                                }
                            
                        })
-        })
-        
-        func downloadAudio(idAudio : String, idImage: String) {
-            print("DOWNLOADING....")
-            
-            var url = "\(PublicData.baseUrl)/api/files/Audio/\(idAudio)/download"
-            print(url)
-            let fileUrl = getSaveFileUrl(fileName: "\(idAudio).mp3")
-            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                return (fileUrl, [.removePreviousFile, .createIntermediateDirectories])
-            }
-            
-            tokenServices.checkExpirationDate(completion: {
-                Alamofire.download(url,
-                                   method: .get,
-                                   headers: header,
-                                   to: destination).downloadProgress { (progress) in
-                                    print(progress.fractionCompleted)
-                                    completion(Float(progress.fractionCompleted * 0.8) + 0.1)
-                }.responseData { (response) in
-                    if response.response?.statusCode == 200 {
-                        print("complete download Audio")
-                        print("filename:\(idAudio)")
-                        
-                        let filesURL = response.destinationURL?.absoluteString
-                        print("localpath: \(filesURL)")
-                        downloadPicture(idImage: idImage, audioLink: filesURL!)
-                    }
-                    else {
-                        print(response.response?.statusCode)
-                    }
-                }
-            })
-        }
-        
-        func downloadPicture(idImage: String, audioLink: String) {
-            print("Downloading Image..")
-            var url = "\(PublicData.baseUrl)/api/files/CoverImage/\(idImage)/download"
-            let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-                var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                documentsURL.appendPathComponent("\(idImage).png")
-                return (documentsURL, [.removePreviousFile])
-            }
-            
-            tokenServices.checkExpirationDate(completion: {
-                Alamofire.download(url,
-                                   method: .get,
-                                   headers: header,
-                                   to: destination).downloadProgress { (progress) in
-                                    print("image download:\(progress.fractionCompleted)")
-                                    completion(Float((progress.fractionCompleted * 0.1) + 0.89))
-                }.responseData(completionHandler: { (response) in
-                    if response.destinationURL != nil {
-                        print("complete download Image")
-                        print(response.destinationURL ?? "")
-                        let files = DownloadedFiles(context: PersistenceService.context)
 
-                        files.image = response.destinationURL?.absoluteString
-                        files.audio = audioLink
-                        PersistenceService.saveContext()
-                        completion(1)
-                    }
-                })
-            })
-            
-        }
         
     }// end of getAttractionById
     
@@ -255,13 +209,14 @@ class AttractionServices {
         }
         
 
-        Alamofire.download(url,
+        self.request = Alamofire.download(url,
                            method: .get,
                            headers: header,
                            to: destination).downloadProgress { (progress) in
                             print("image download:\(progress.fractionCompleted)")
                             completion(Float(progress.fractionCompleted))
         }.responseData(completionHandler: { (response) in
+            print(response.response?.statusCode)
             if response.destinationURL != nil {
                 print("complete download Image")
                 print(response.destinationURL ?? "")
@@ -285,7 +240,7 @@ class AttractionServices {
         }
         
         
-            Alamofire.download(url,
+        self.request = Alamofire.download(url,
                                method: .get,
                                headers: header,
                                to: destination).downloadProgress { (progress) in
@@ -299,6 +254,27 @@ class AttractionServices {
                     print(response.response?.statusCode)
                 }
             }
+    }
+    
+    func stream(id : String, completion: @escaping (Data)->()) {
+        print("Streaming Audio..")
+        dataServices.getUserInfo(completion: { result in
+            self.userInfo = result!
+        })
+        let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
+        let header : HTTPHeaders =  ["Authorization" : token]
+        
+        var url = "\(PublicData.baseUrl)/api/files/audio/\(id)/stream"
+        print(url)
+        Alamofire.request(url).stream(closure: { (data) in
+                
+                print("result in streaming")
+                print(data)
+                completion(data)
+            }).responseJSON(completionHandler: { response in
+                print(response.response?.statusCode)
+                print(response.result.value)
+            })
     }
     
     func getSaveFileUrl(fileName: String) -> URL {

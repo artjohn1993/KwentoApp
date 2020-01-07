@@ -20,8 +20,11 @@ class StartTourController: UIViewController {
     var downloadedFiles = [DownloadedFiles]()
     var downloadedAttraction = [DownloadedAttractionDetails]()
     let dataServices = CoreDataServices()
+    var sessionService = SessionServices()
     var id = ""
-    
+    var name = ""
+    var imageName = ""
+    var sessionId = ""
     
     var mainNavigationController: MainNavigationController!
     
@@ -31,27 +34,13 @@ class StartTourController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("id:\(id)")
+        print("start id:\(id)")
+        print("start sessionId:\(sessionId)")
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapYes), name: NSNotification.Name("didTapYes"), object: nil)
         
-        if id != "" {
-            self.setDataWithoutSub()
-        }
-        else {
-            dataServices.getDownloadedFiles(completion: { result in
-                self.downloadedFiles = result ?? []
-                print(self.downloadedFiles)
-                
-                
-                self.dataServices.getDownloadedAttraction(completion: { result in
-                    self.downloadedAttraction = result ?? []
-                    print(self.downloadedAttraction)
-                    self.setDataWithSub()
-                })
-            })
-        }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(didTapYes), name: NSNotification.Name("endTour"), object: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,43 +52,48 @@ class StartTourController: UIViewController {
         }
     }
     
-    func setDataWithSub() {
-        print("SET setDataWithSub")
-        if self.downloadedAttraction.count > 0 {
-            self.attractionName.text = self.downloadedAttraction[0].name
-            print("\(self.downloadedAttraction[0].imageFilename!).png")
-            self.background.image = PublicData.getSavedImage(named: "\(self.downloadedAttraction[0].imageFilename!).png")
-        }
-    }
-    
-    func setDataWithoutSub() {
-        print("SET setDataWithoutSub")
-        dataServices.getAllAttraction(completion: { response in
-            response?.forEach({ item in
-                print("\(item.name!) : \(item.id!) == \(self.id)")
-                if item.id! == self.id {
-                    self.attractionName.text = item.name
-                    self.background.image = PublicData.getSavedImage(named: "\(item.image_filename!).png")
-                }
-            })
-        })
-    }
-    
     func initViews() {
         startButton.initialize(backgroundColor: .main, titleColor: .white, cornerRadius: 4)
+        self.background.image = PublicData.getSavedImage(named: "\(imageName).png")
+        self.attractionName.text = self.name
         self.background.contentMode = .scaleAspectFill
     }
     
     @IBAction func start(_ sender: Any) {
-        print("hey yow!!!")
-        //performSegue(withIdentifier: "startToPlayer", sender: nil)
+        if self.sessionId == "" {
+           sessionService.startSession(id: self.id, completion: {})
+        }
+        else {
+            print("no need to start session again")
+        }
+        
     }
     
     @IBAction func didTapNavButton(_ sender: UIButton) {
         mainNavigationController.setDrawerState()
     }
     
-    @IBAction func closeTour(_ sender: Any) {
+    @objc func didTapYes() {
         mainNavigationController.popToRootViewController(animated: true)
+    }
+    
+    @objc func endTour() {
+        self.sessionService.endSession()
+        self.mainNavigationController.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func closeTour(_ sender: Any) {
+        //mainNavigationController.popToRootViewController(animated: true)
+        
+        dataServices.getSession(completion: { response in
+            if response?.count ?? 0 > 0 {
+                print("endTour")
+                self.performSegue(withIdentifier: "endTour", sender: nil)
+            }
+            else {
+                print("cancelTour")
+                self.performSegue(withIdentifier: "cancelTour", sender: nil)
+            }
+        })
     }
 }

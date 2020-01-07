@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Network
 
 class QRReaderController: UIViewController {
     
     @IBOutlet weak var navButton: UIImageView!
     @IBOutlet weak var scannerView: QRScannerView!
     var id = ""
+    var attractionName = ""
+    var imageName = ""
+    var audioName = ""
     let dataService = CoreDataServices()
+    let service = AttractionServices()
     var mainNavigationController: MainNavigationController!
+    var connectionService = ConnectionService()
+    var isConnected = false
     //var context : QRReaderController
     
     
@@ -25,9 +32,18 @@ class QRReaderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //context = self
+        print("something in qr viewcontroller")
         NotificationCenter.default.addObserver(self, selector: #selector(proceed), name: NSNotification.Name("proceed"), object: nil)
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
+        
+        connectionService.checkConnection(completion: { connection in
+            self.isConnected = connection
+        })
+        
+        
+        
+        
     }
     
     @objc private func proceed() {
@@ -35,7 +51,8 @@ class QRReaderController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //performSegue(withIdentifier: "qrToDownload", sender: nil)
+          self.afterScan(str: "17")
+        //performSegue(withIdentifier: "qrToStart", sender: nil)
 //        performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
     }
     
@@ -46,8 +63,11 @@ class QRReaderController: UIViewController {
             }
         }
         if segue.identifier == "qrToStart" {
-            if let destinationVC = segue.destination as? StartTourController {
+            if let destinationVC = segue.destination as? SingleTourController {
                 destinationVC.id = self.id
+                destinationVC.name = self.attractionName
+                destinationVC.imageName = self.imageName
+                destinationVC.audioName = self.audioName
             }
         }
     }
@@ -64,6 +84,29 @@ class QRReaderController: UIViewController {
         scannerView.layer.cornerRadius = 16
     }
     
+    func afterScan(str : String) {
+        self.id = str
+        
+        service.getAttractionById(id: str, completion: { result in
+            print("request getAttractionById is done")
+            self.attractionName = result?["name"] as? String ?? ""
+            self.imageName = result?["image_filename"] as? String ?? ""
+            self.audioName = result?["audio_filename"] as? String ?? ""
+            var subAttraction = result?["sub_attractions"] as? [[String:Any]]
+            
+            if subAttraction?.count ?? 0 > 0 {
+                self.performSegue(withIdentifier: "qrToDownload", sender: nil)
+            }
+            else {
+                self.service.downloadImage(idImage: self.imageName, completion: { percentage in
+                    if percentage == 1 {
+                        self.performSegue(withIdentifier: "qrToStart", sender: nil)
+                    }
+                })
+            }
+        })
+    }
+    
 }
 
 extension QRReaderController: QRScannerViewDelegate {
@@ -78,42 +121,12 @@ extension QRReaderController: QRScannerViewDelegate {
     
     func qrScanningSucceededWithCode(_ str: String?) {
         
-        let allAttraction = dataService.getAllAttraction(completion: { response in
-            
-            response?.forEach({ item in
-                
-                if item.id == str {
-                    if item.sub_attractions {
-                        self.id = str ?? ""
-                        self.performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
-                    }
-                    else {
-                         self.id = str ?? ""
-                         self.performSegue(withIdentifier: "qrToStart", sender: nil)
-//                        print("wala siyay sub attraction")
-//                        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-//                        let vc = storyboard.instantiateViewController(withIdentifier: "startTourController") as! StartTourController
-//                        vc.id = str ?? ""
-//                        self.present(vc, animated: true, completion: nil)
-                    }
-                }
-            })
-            
-        })
-        
-//        let alert = UIAlertController(title: "Code", message: str, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action) in
-//            alert.dismiss(animated: true)
-//            print(str)
-//            self.id = str ?? ""
-//
-//
-//            self.performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
-//
-//
-//            self.scannerView.startScanning()
-//        }))
-//        present(alert, animated: true)
+        if isConnected {
+            self.afterScan(str: str!)
+        }
+        else {
+            PublicData.showSnackBar(message: "Not Connected")
+        }
         
     }
     

@@ -12,14 +12,22 @@ import IQKeyboardManagerSwift
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+import FacebookCore
+import FBSDKCoreKit
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         setupAppearance()
         MSAppCenter.start("cc3c42a3-360c-4f7d-8a11-82df9053980a", withServices:[
           MSAnalytics.self,
@@ -46,8 +54,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
 
         }
+         
+        GIDSignIn.sharedInstance()?.clientID = "705534798950-gq6b3n68aavh8d6bhhqk803qk0pf7rnf.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.delegate = self
         
         return true
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
+              withError error: Error!) {
+      if let error = error {
+        if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+          print("The user has not signed in before or they have since signed out.")
+        } else {
+          print("\(error.localizedDescription)")
+        }
+        return
+      }
+      // Perform any operations on signed in user here.
+      let userId = user.userID                  // For client-side use only!
+      let idToken = user.authentication.idToken // Safe to send to the server
+      let fullName = user.profile.name
+      let givenName = user.profile.givenName
+      let familyName = user.profile.familyName
+      let email = user.profile.email
+        
+//        print(email)
+//        print(fullName)
+//        print(userId)
+//        print(idToken)
+      // ...
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let facebook = ApplicationDelegate.shared.application(app, open: url, options: options)
+        
+        let google = GIDSignIn.sharedInstance().handle(url)
+        
+        return facebook || google
+    }
+    
+    func application(_ application: UIApplication,
+                     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+      return GIDSignIn.sharedInstance().handle(url)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

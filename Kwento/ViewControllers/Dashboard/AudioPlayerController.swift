@@ -11,7 +11,7 @@ import AVFoundation
 import AudioIndicatorBars
 import CoreData
 
-class AudioPlayerController: UIViewController {
+class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var indicator: AudioIndicatorBarsView!
     @IBOutlet weak var audioSlider: UISlider!
@@ -23,59 +23,70 @@ class AudioPlayerController: UIViewController {
     
     var audioPlayer = AVAudioPlayer()
     var id = ""
-    
+    var service = AttractionServices()
     var currentTime: TimeInterval!
     var downloadedAttraction = [DownloadedAttractionDetails]()
-    let dataServices = CoreDataServices()
-    var audioFilename = ""
+    var audioId : [String] = []
+    var musicIndex = 0
+    var sessionService = SessionServices()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("audio player2:\(id)")
-        
-        if id != "" {
-            dataServices.getAllAttraction(completion: { response in
-                response?.forEach({ item in
-                    if item.id == self.id {
-                        self.audioFilename = "\(item.audio_filename!).mp3"
-                        print(self.audioFilename)
-                    }
-                })
+        print("audio player:\(id)")
+            
+        service.getAttractionById(id: id, completion: { result in
+            var subAttraction = result?["sub_attractions"] as? [[String:Any]]
+            
+            subAttraction?.forEach({ item in
+                var currentItem = item as? [String:Any]
+                var filename = currentItem?["audio_filename"] as? String
+                print("filename:\(filename)")
+                self.audioId.append("\(filename!).mp3")
             })
+            print("play:\(self.audioId[self.musicIndex])")
+            self.playMusic(audioFilename: self.audioId[self.musicIndex])
+            
+            self.setInit()
+            
+        })
+   
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if musicIndex >= 0 && musicIndex < audioId.count {
+            musicIndex += 1
+            print("if")
+            print(musicIndex)
+            playMusic(audioFilename: audioId[musicIndex])
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
         }
         else {
-            dataServices.getDownloadedAttraction(completion: { result in
-                       self.downloadedAttraction = result ?? []
-            })
-            audioFilename = "\(self.downloadedAttraction[0].audioFilename).mp3"
+            musicIndex = 0
+            print("else")
+            print(musicIndex)
+            playMusic(audioFilename: audioId[musicIndex])
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
         }
-        
-
-        var stringURL = getSavedMp3(named: String(audioFilename))
-        print(stringURL!)
-        let url = (stringURL != nil) ? URL(string: stringURL!) : nil
-        print("url:\(url!)")
-        let audio = Bundle.main.path(forResource: "Moon River", ofType: "mp3")
-        
-        do {
-            if url != nil {
-                print("if")
-                audioPlayer = try AVAudioPlayer(contentsOf: url!)
-            }
-            else {
-                print("else")
-                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: audio!))
-            }
-            
-        }
-        catch {
-            print(error)
-        }
-        
+    }
+    
+    func setInit() {
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
-        
-        
+    }
+    func playMusic(audioFilename : String) {
+            var stringURL = getSavedMp3(named: String(audioFilename))
+            print(stringURL)
+            let url = URL(string: stringURL!)
+            let audio = Bundle.main.path(forResource: "Moon River", ofType: "mp3")
+    
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            }
+            catch {
+                print(error)
+            }
     }
     
     func getSavedMp3(named: String) -> String? {
@@ -86,6 +97,7 @@ class AudioPlayerController: UIViewController {
     }
     
     func initViews() {
+        audioPlayer.delegate = self as! AVAudioPlayerDelegate
         playButton.fillIcon()
         skipPreviousButton.fillIcon()
         skipNextButton.fillIcon()
@@ -107,10 +119,19 @@ class AudioPlayerController: UIViewController {
     }
     
     @IBAction func sliderValueDidChanged(_ sender: UISlider) {
-        audioPlayer.stop()
-        audioPlayer.currentTime = TimeInterval(exactly: sender.value)!
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+        if audioPlayer.isPlaying {
+            audioPlayer.stop()
+            playButton.setImage(#imageLiteral(resourceName: "round_pause_circle_outline_white_48pt"), for: .normal)
+            audioPlayer.currentTime = TimeInterval(exactly: sender.value)!
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        else {
+            audioPlayer.stop()
+            audioPlayer.currentTime = TimeInterval(exactly: sender.value)!
+            playButton.setImage(#imageLiteral(resourceName: "round_play_circle_outline_white_48pt"), for: .normal)
+        }
+        
     }
 
     @IBAction func playPause(_ sender: Any) {
@@ -131,9 +152,41 @@ class AudioPlayerController: UIViewController {
     
     @IBAction func skipPrevious(_ sender: Any) {
         
+        if musicIndex > 0 {
+            musicIndex -= 1
+            print("if")
+            print(musicIndex)
+            playMusic(audioFilename: audioId[musicIndex])
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        else {
+            musicIndex = audioId.count - 1
+            print("else")
+            print(musicIndex)
+            playMusic(audioFilename: audioId[musicIndex])
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
     }
     
     @IBAction func skipNext(_ sender: Any) {
-        
+        if musicIndex >= 0 && musicIndex < audioId.count - 1 {
+            musicIndex += 1
+            print("if")
+            print(musicIndex)
+            playMusic(audioFilename: audioId[musicIndex])
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+
+        }
+        else {
+            musicIndex = 0
+            print("else")
+            print(musicIndex)
+            playMusic(audioFilename: audioId[musicIndex])
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
     }
 }

@@ -9,9 +9,24 @@
 import UIKit
 import MaterialComponents
 import MaterialComponents.MaterialSnackbar
+import Network
+import MaterialComponents.MaterialTextFields
 
-class SignUpController: UIViewController {
+class SignUpController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    
     let service = LoginServices()
+    let connectionService = ConnectionService()
+    var isConnected = false
+    
+    let pickerView = UIPickerView()
+    let gender = ["Male", "Female"]
+    
+    var fullname = ""
+    var email = ""
+    var provider = ""
+    var externalId = ""
+    var token = ""
     
     @IBOutlet weak var fullNameField: UITextField!
     @IBOutlet weak var birthDateField: UITextField!
@@ -19,7 +34,11 @@ class SignUpController: UIViewController {
     @IBOutlet weak var mobileField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet var passwordText: UILabel!
+    @IBOutlet var passwordLine: UIView!
     @IBOutlet weak var confirmField: UITextField!
+    @IBOutlet var confirmLine: UIView!
+    @IBOutlet var confirmText: UILabel!
     
     @IBOutlet weak var signUpButton: MDCFlatButton!
     
@@ -37,7 +56,35 @@ class SignUpController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        self.genderField.inputView = pickerView
+        
+        checkProvider(provider: provider)
         initViews()
+        connectionService.checkConnection(completion: { connection in
+            self.isConnected = connection
+        })
+        
+        if provider != "local" {
+            self.passwordField.isEnabled = false
+            self.confirmField.isEnabled = false
+            self.passwordText.textColor = UIColor.lightGray
+            self.confirmText.textColor = UIColor.lightGray
+            self.confirmLine.backgroundColor = UIColor.lightGray
+            self.passwordLine.backgroundColor = UIColor.lightGray
+        }
+        else {
+            self.passwordField.isEnabled = true
+            self.confirmField.isEnabled = true
+        }
+    }
+
+    func checkProvider(provider : String) {
+        if provider != "local" {
+            fullNameField.text = fullname
+            emailField.text = email   
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,11 +126,30 @@ class SignUpController: UIViewController {
     }
     
     @IBAction func didTapPasswordView(_ sender: Any) {
-        passwordField.becomeFirstResponder()
+        print("didTapPasswordView")
+        self.passwordField.becomeFirstResponder()
     }
     
     @IBAction func didTapConfirmView(_ sender: Any) {
-        confirmField.becomeFirstResponder()
+        print("didTapConfirmView")
+        self.confirmField.becomeFirstResponder()
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        genderField.text = gender[row]
+        genderField.resignFirstResponder()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return gender.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return gender[row]
     }
     
     @IBAction func signUp(_ sender: MDCFlatButton) {
@@ -103,17 +169,24 @@ class SignUpController: UIViewController {
         let phoneNumber: String = String(mobileField.text ?? "")
         let email: String = String(emailField.text ?? "")
         
-        self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email, completion: { (isSuccess,message) in
-            if isSuccess {
-                self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
-            }
-            else {
-                if message != nil || message != ""{
-                    PublicData.showSnackBar(message: message)
-                }
-                print(message)
-            }
-        })
+        if isConnected {
+            print(provider)
+            self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email,provider : provider,externalId : externalId,  token : token, completion: { (isSuccess,message) in
+                       if isSuccess {
+                           self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
+                       }
+                       else {
+                           if message != nil || message != ""{
+                               PublicData.showSnackBar(message: message)
+                           }
+                           print(message)
+                       }
+                   })
+        }
+        else {
+            PublicData.showSnackBar(message: "Not Connected")
+        }
+       
 //        performSegue(withIdentifier: "signUpToVerification", sender: nil)
     }
     

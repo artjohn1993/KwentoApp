@@ -67,11 +67,13 @@ class AttractionViewCell : UITableViewCell {
         background.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         background.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         background.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        background.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        background.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
         background.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
        
         
-        transView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height:  150.0)
+        transView.frame = CGRect(x: 0, y: 0, width: 500, height:  150.0)
+        
+        
         
         attraction.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         attraction.leftAnchor.constraint(equalTo: background.leftAnchor, constant: 20).isActive = true

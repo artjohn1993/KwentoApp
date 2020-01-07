@@ -10,8 +10,8 @@ import UIKit
 import KYDrawerController
 
 class DashboardController: KYDrawerController {
-    let service = AttractionServices()
-    let dataService = CoreDataServices()
+//    let service = AttractionServices()
+//    let dataService = CoreDataServices()
     override var childForStatusBarStyle: UIViewController? {
         return mainViewController
     }
@@ -20,12 +20,12 @@ class DashboardController: KYDrawerController {
         super.viewDidLoad()
         drawerWidth = 281
         
-        dataService.getAllAttraction(completion: { result in
-            print(result?.count)
-            if result?.count ?? 0 == 0 {
-                self.service.getAllAttraction()
-            }
-        })
+//        dataService.getAllAttraction(completion: { result in
+//            print(result?.count)
+//            if result?.count ?? 0 == 0 {
+//                self.service.getAllAttraction()
+//            }
+//        })
         
     }
 
