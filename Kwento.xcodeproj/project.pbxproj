@@ -19,16 +19,29 @@
 		470BACD52390E4CA00CEA1FB /* TokenServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACD42390E4CA00CEA1FB /* TokenServices.swift */; };
 		470BACD82393BEA800CEA1FB /* AllAttraction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACD62393BEA800CEA1FB /* AllAttraction+CoreDataClass.swift */; };
 		470BACD92393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACD72393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift */; };
+		470BACDB2394DEB700CEA1FB /* SessionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACDA2394DEB700CEA1FB /* SessionServices.swift */; };
+		470BACDE2394E68200CEA1FB /* SessionData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACDC2394E68200CEA1FB /* SessionData+CoreDataClass.swift */; };
+		470BACDF2394E68200CEA1FB /* SessionData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACDD2394E68200CEA1FB /* SessionData+CoreDataProperties.swift */; };
+		470D319723BF1667003862A3 /* EndTourController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470D319623BF1667003862A3 /* EndTourController.swift */; };
+		4728123C239626BB006EA09C /* SingleTourController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4728123B239626BB006EA09C /* SingleTourController.swift */; };
+		4728123E239DD2EC006EA09C /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4728123D239DD2EC006EA09C /* ConnectionService.swift */; };
+		4745761B23A235B7003C1CC4 /* SuggestionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4745761A23A235B7003C1CC4 /* SuggestionServices.swift */; };
 		474BD44F237E766200164F4D /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474BD44E237E766200164F4D /* PersistenceService.swift */; };
 		474BD457237E7ADC00164F4D /* UserInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */; };
 		474BD458237E7ADC00164F4D /* UserInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474BD455237E7ADB00164F4D /* UserInfo+CoreDataProperties.swift */; };
+		474DDE3023A780E500072138 /* VisitServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DDE2F23A780E500072138 /* VisitServices.swift */; };
+		474DDE3423A7B09A00072138 /* MuseumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DDE3323A7B09A00072138 /* MuseumController.swift */; };
+		474DDE3623A7CBBD00072138 /* MuseumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DDE3523A7CBBD00072138 /* MuseumViewCell.swift */; };
 		4769170623866AC000ED93FD /* AttractionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769170523866AC000ED93FD /* AttractionViewCell.swift */; };
 		476917092386980400ED93FD /* AttractionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476917082386980400ED93FD /* AttractionServices.swift */; };
 		4769170B2387747800ED93FD /* PublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769170A2387747800ED93FD /* PublicData.swift */; };
+		4769EC3923BDD94600A5E635 /* CancelTourController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769EC3823BDD94600A5E635 /* CancelTourController.swift */; };
 		476BFEF1238395D900CE064C /* ProfileServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF0238395D900CE064C /* ProfileServices.swift */; };
 		476BFEF3238396E800CE064C /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF2238396E800CE064C /* LoginServices.swift */; };
 		476BFEF52383B6E200CE064C /* LauncherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF42383B6E200CE064C /* LauncherController.swift */; };
 		476BFEF82383BCDD00CE064C /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF72383BCDC00CE064C /* CoreDataServices.swift */; };
+		47D3AB1B23A71F86002052C9 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3AB1A23A71F86002052C9 /* RatingController.swift */; };
+		47EBAF4723BD8CB2007AA9A3 /* CancelDownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */; };
 		B4BF431155D8012B5D261656 /* Pods_KwentoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B09AE45405D33B937252F634 /* Pods_KwentoTests.framework */; };
 		D4E8BE62F23258BD27B4F2AC /* Pods_KwentoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3512B545DF5DDDAD2003E0C /* Pods_KwentoUITests.framework */; };
 		E308D1D2231E197B00570350 /* PrivacyPolicyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308D1D1231E197B00570350 /* PrivacyPolicyController.swift */; };
@@ -129,16 +142,29 @@
 		470BACD42390E4CA00CEA1FB /* TokenServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServices.swift; sourceTree = "<group>"; };
 		470BACD62393BEA800CEA1FB /* AllAttraction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllAttraction+CoreDataClass.swift"; sourceTree = "<group>"; };
 		470BACD72393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllAttraction+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		470BACDA2394DEB700CEA1FB /* SessionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServices.swift; sourceTree = "<group>"; };
+		470BACDC2394E68200CEA1FB /* SessionData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		470BACDD2394E68200CEA1FB /* SessionData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SessionData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		470D319623BF1667003862A3 /* EndTourController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTourController.swift; sourceTree = "<group>"; };
+		4728123B239626BB006EA09C /* SingleTourController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTourController.swift; sourceTree = "<group>"; };
+		4728123D239DD2EC006EA09C /* ConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
+		4745761A23A235B7003C1CC4 /* SuggestionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionServices.swift; sourceTree = "<group>"; };
 		474BD44E237E766200164F4D /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		474BD455237E7ADB00164F4D /* UserInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserInfo+CoreDataProperties.swift"; path = "/Users/artjohn/Downloads/Kwento/Kwento/Properties/UserInfo+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserInfo+CoreDataClass.swift"; path = "/Users/artjohn/Downloads/Kwento/Kwento/Properties/UserInfo+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		474DDE2F23A780E500072138 /* VisitServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitServices.swift; sourceTree = "<group>"; };
+		474DDE3323A7B09A00072138 /* MuseumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumController.swift; sourceTree = "<group>"; };
+		474DDE3523A7CBBD00072138 /* MuseumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumViewCell.swift; sourceTree = "<group>"; };
 		4769170523866AC000ED93FD /* AttractionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionViewCell.swift; sourceTree = "<group>"; };
 		476917082386980400ED93FD /* AttractionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionServices.swift; sourceTree = "<group>"; };
 		4769170A2387747800ED93FD /* PublicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicData.swift; sourceTree = "<group>"; };
+		4769EC3823BDD94600A5E635 /* CancelTourController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTourController.swift; sourceTree = "<group>"; };
 		476BFEF0238395D900CE064C /* ProfileServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServices.swift; sourceTree = "<group>"; };
 		476BFEF2238396E800CE064C /* LoginServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginServices.swift; path = Login/LoginServices.swift; sourceTree = "<group>"; };
 		476BFEF42383B6E200CE064C /* LauncherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherController.swift; sourceTree = "<group>"; };
 		476BFEF72383BCDC00CE064C /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
+		47D3AB1A23A71F86002052C9 /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
+		47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDownloadController.swift; sourceTree = "<group>"; };
 		952E7C3F5ABBC62577E39368 /* Pods-Kwento.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kwento.release.xcconfig"; path = "Target Support Files/Pods-Kwento/Pods-Kwento.release.xcconfig"; sourceTree = "<group>"; };
 		964907B85AC9009A213539BE /* Pods-Kwento.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kwento.debug.xcconfig"; path = "Target Support Files/Pods-Kwento/Pods-Kwento.debug.xcconfig"; sourceTree = "<group>"; };
 		B09AE45405D33B937252F634 /* Pods_KwentoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KwentoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +299,10 @@
 				474BD44E237E766200164F4D /* PersistenceService.swift */,
 				4769170A2387747800ED93FD /* PublicData.swift */,
 				470BACD42390E4CA00CEA1FB /* TokenServices.swift */,
+				470BACDA2394DEB700CEA1FB /* SessionServices.swift */,
+				4728123D239DD2EC006EA09C /* ConnectionService.swift */,
+				4745761A23A235B7003C1CC4 /* SuggestionServices.swift */,
+				474DDE2F23A780E500072138 /* VisitServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -280,6 +310,8 @@
 		474BD450237E7AA600164F4D /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				470BACDC2394E68200CEA1FB /* SessionData+CoreDataClass.swift */,
+				470BACDD2394E68200CEA1FB /* SessionData+CoreDataProperties.swift */,
 				470BACD62393BEA800CEA1FB /* AllAttraction+CoreDataClass.swift */,
 				470BACD72393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift */,
 				470BACD0238FAFB800CEA1FB /* AttractionByCity+CoreDataClass.swift */,
@@ -413,6 +445,10 @@
 				E35C8D41232F79D3002BEC66 /* QRReaderController.swift */,
 				E3B038F52370154F002B7BAA /* StartTourController.swift */,
 				E3F840742372FD3D00A3CFB6 /* AudioPlayerController.swift */,
+				4728123B239626BB006EA09C /* SingleTourController.swift */,
+				47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */,
+				4769EC3823BDD94600A5E635 /* CancelTourController.swift */,
+				470D319623BF1667003862A3 /* EndTourController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -447,7 +483,6 @@
 				E3D1D23D2361831A003B11D1 /* VIWaveformView */,
 				E3992A5E2330C87B00FD4A64 /* QRScannerView.swift */,
 				E3881465233896BC0014CE63 /* KGRadioButton.swift */,
-				4769170523866AC000ED93FD /* AttractionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -472,7 +507,9 @@
 		E3C212CF234F1FB2003AEA6A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				4769170523866AC000ED93FD /* AttractionViewCell.swift */,
 				E3C212D3234F205A003AEA6A /* VisitCell.swift */,
+				474DDE3523A7CBBD00072138 /* MuseumViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -481,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				E3C212D1234F2001003AEA6A /* VisitsController.swift */,
+				47D3AB1A23A71F86002052C9 /* RatingController.swift */,
 			);
 			path = Visits;
 			sourceTree = "<group>";
@@ -557,6 +595,7 @@
 				E3544893235D84D00047B0EA /* CategoriesController.swift */,
 				E3544895235D84F80047B0EA /* LocationsController.swift */,
 				E3EBE28B235EE70800BB9455 /* AttractionsPageController.swift */,
+				474DDE3323A7B09A00072138 /* MuseumController.swift */,
 			);
 			path = Locations;
 			sourceTree = "<group>";
@@ -573,6 +612,7 @@
 				E30D721A22F7BAD30099B6A4 /* Frameworks */,
 				E30D721B22F7BAD30099B6A4 /* Resources */,
 				0920C2DB464AA0DD1D731596 /* [CP] Embed Pods Frameworks */,
+				12F0BF4746DD61DED4EB36F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -748,6 +788,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		12F0BF4746DD61DED4EB36F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8D62226DC6093C1BA2C7A040 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -801,7 +858,10 @@
 			files = (
 				474BD458237E7ADC00164F4D /* UserInfo+CoreDataProperties.swift in Sources */,
 				E3478CFE232B652000CBD0BC /* MainNavigationController.swift in Sources */,
+				47D3AB1B23A71F86002052C9 /* RatingController.swift in Sources */,
+				474DDE3623A7CBBD00072138 /* MuseumViewCell.swift in Sources */,
 				E35C8D42232F79D3002BEC66 /* QRReaderController.swift in Sources */,
+				470BACDE2394E68200CEA1FB /* SessionData+CoreDataClass.swift in Sources */,
 				470BACC6238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift in Sources */,
 				470BACD3238FAFB800CEA1FB /* AttractionByCity+CoreDataProperties.swift in Sources */,
 				E36ACE3C230FC3EF00C870BC /* UIView+Extensions.swift in Sources */,
@@ -819,13 +879,18 @@
 				E3C752ED230E83AA00615C6B /* UIColor+Extensions.swift in Sources */,
 				E32B181E237966CD00FF60B2 /* UIButton+Extensions.swift in Sources */,
 				E3F5EE8223507F3000187C23 /* AttractionsController.swift in Sources */,
+				4745761B23A235B7003C1CC4 /* SuggestionServices.swift in Sources */,
+				474DDE3023A780E500072138 /* VisitServices.swift in Sources */,
+				4728123E239DD2EC006EA09C /* ConnectionService.swift in Sources */,
 				470BACCA238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift in Sources */,
+				470D319723BF1667003862A3 /* EndTourController.swift in Sources */,
 				E3B9122C234343B500640793 /* ProfileController.swift in Sources */,
 				E36ACE3E230FD7F500C870BC /* SignUpController.swift in Sources */,
 				474BD44F237E766200164F4D /* PersistenceService.swift in Sources */,
 				E31C2E1A23617FFE00318109 /* DownloadStoriesController.swift in Sources */,
 				E36ACE3A230FA34800C870BC /* MDCButton+Extensions.swift in Sources */,
 				E3C9F5A02341AD3300A2FA17 /* PulseAnimation.swift in Sources */,
+				470BACDF2394E68200CEA1FB /* SessionData+CoreDataProperties.swift in Sources */,
 				E30D722922F7BAD30099B6A4 /* Kwento.xcdatamodeld in Sources */,
 				E360CBF623166A2C00E411C8 /* TestController.swift in Sources */,
 				E37528F7234C7F0D0081BB28 /* LogoutDialogController.swift in Sources */,
@@ -839,6 +904,7 @@
 				E3478D02232B695800CBD0BC /* DashboardController.swift in Sources */,
 				476BFEF3238396E800CE064C /* LoginServices.swift in Sources */,
 				470BACCF238FAF6B00CEA1FB /* AttractionByType+CoreDataProperties.swift in Sources */,
+				4728123C239626BB006EA09C /* SingleTourController.swift in Sources */,
 				E3992A5F2330C87B00FD4A64 /* QRScannerView.swift in Sources */,
 				E37C472D23388BF700D33165 /* LanguageSettingController.swift in Sources */,
 				E30D722122F7BAD30099B6A4 /* AppDelegate.swift in Sources */,
@@ -847,6 +913,7 @@
 				E388146F2338BEB40014CE63 /* HowItWorksPageController.swift in Sources */,
 				E3B553A1231F86E600E2AAF7 /* VerificationController.swift in Sources */,
 				E3C212D4234F205A003AEA6A /* VisitCell.swift in Sources */,
+				470BACDB2394DEB700CEA1FB /* SessionServices.swift in Sources */,
 				E388146B2338A9FB0014CE63 /* HowItWorksController.swift in Sources */,
 				E3544896235D84F80047B0EA /* LocationsController.swift in Sources */,
 				E388146D2338BDBD0014CE63 /* PageImageController.swift in Sources */,
@@ -860,10 +927,13 @@
 				E3BE0027233B4E8F00D6AC69 /* UIPageViewController+Extensions.swift in Sources */,
 				E3C212D2234F2001003AEA6A /* VisitsController.swift in Sources */,
 				E3D1D244236183A3003B11D1 /* WaveformNodeProvider.swift in Sources */,
+				474DDE3423A7B09A00072138 /* MuseumController.swift in Sources */,
 				470BACD52390E4CA00CEA1FB /* TokenServices.swift in Sources */,
+				4769EC3923BDD94600A5E635 /* CancelTourController.swift in Sources */,
 				E3D1D242236183A3003B11D1 /* VIWaveformNodeView.swift in Sources */,
 				E3EBE28C235EE70800BB9455 /* AttractionsPageController.swift in Sources */,
 				4769170623866AC000ED93FD /* AttractionViewCell.swift in Sources */,
+				47EBAF4723BD8CB2007AA9A3 /* CancelDownloadController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1118,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.artjohn.tadashi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwento.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1069,7 +1139,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.artjohn.tadashi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwento.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
