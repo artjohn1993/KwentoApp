@@ -108,4 +108,5 @@ class AttractionViewCell : UITableViewCell {
         }
     }
     //sample
+    //hello
 }
