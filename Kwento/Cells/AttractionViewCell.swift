@@ -107,5 +107,5 @@ class AttractionViewCell : UITableViewCell {
             self.attraction.text = attraction
         }
     }
-    
+    //sample
 }
