@@ -293,15 +293,15 @@
 			isa = PBXGroup;
 			children = (
 				476BFEF2238396E800CE064C /* LoginServices.swift */,
-				476BFEF0238395D900CE064C /* ProfileServices.swift */,
-				476BFEF72383BCDC00CE064C /* CoreDataServices.swift */,
 				476917082386980400ED93FD /* AttractionServices.swift */,
-				474BD44E237E766200164F4D /* PersistenceService.swift */,
 				4769170A2387747800ED93FD /* PublicData.swift */,
-				470BACD42390E4CA00CEA1FB /* TokenServices.swift */,
-				470BACDA2394DEB700CEA1FB /* SessionServices.swift */,
 				4728123D239DD2EC006EA09C /* ConnectionService.swift */,
 				4745761A23A235B7003C1CC4 /* SuggestionServices.swift */,
+				470BACD42390E4CA00CEA1FB /* TokenServices.swift */,
+				470BACDA2394DEB700CEA1FB /* SessionServices.swift */,
+				474BD44E237E766200164F4D /* PersistenceService.swift */,
+				476BFEF0238395D900CE064C /* ProfileServices.swift */,
+				476BFEF72383BCDC00CE064C /* CoreDataServices.swift */,
 				474DDE2F23A780E500072138 /* VisitServices.swift */,
 			);
 			path = Services;
@@ -312,18 +312,18 @@
 			children = (
 				470BACDC2394E68200CEA1FB /* SessionData+CoreDataClass.swift */,
 				470BACDD2394E68200CEA1FB /* SessionData+CoreDataProperties.swift */,
-				470BACD62393BEA800CEA1FB /* AllAttraction+CoreDataClass.swift */,
-				470BACD72393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift */,
 				470BACD0238FAFB800CEA1FB /* AttractionByCity+CoreDataClass.swift */,
 				470BACD1238FAFB800CEA1FB /* AttractionByCity+CoreDataProperties.swift */,
+				470BACD72393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift */,
+				470BACD62393BEA800CEA1FB /* AllAttraction+CoreDataClass.swift */,
 				470BACCC238FAF6B00CEA1FB /* AttractionByType+CoreDataClass.swift */,
-				470BACCD238FAF6B00CEA1FB /* AttractionByType+CoreDataProperties.swift */,
-				470BACC8238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift */,
-				470BACC9238D6E4E00CEA1FB /* DownloadedFiles+CoreDataProperties.swift */,
-				470BACC4238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift */,
 				470BACC5238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataProperties.swift */,
-				474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */,
+				470BACC8238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift */,
+				470BACCD238FAF6B00CEA1FB /* AttractionByType+CoreDataProperties.swift */,
+				470BACC9238D6E4E00CEA1FB /* DownloadedFiles+CoreDataProperties.swift */,
 				474BD455237E7ADB00164F4D /* UserInfo+CoreDataProperties.swift */,
+				470BACC4238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift */,
+				474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -1142,6 +1142,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kwento.iosapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_COMPILATION_MODE = None;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
