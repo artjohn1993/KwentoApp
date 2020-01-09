@@ -58,6 +58,8 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
         else {
             setMp3Player()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(endTour), name: NSNotification.Name("endTour"), object: nil)
     }
     
     func downloadAudio() {
@@ -157,8 +159,11 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func closePlayer(_ sender: Any) {
        self.performSegue(withIdentifier: "endTour", sender: nil)
-       audioPlayer.stop()
-       mainNavigationController.popToRootViewController(animated: true)
-       sessionService.endSession()
+    }
+    
+    @objc func endTour() {
+        audioPlayer.stop()
+        mainNavigationController.popToRootViewController(animated: true)
+        sessionService.endSession()
     }
 }
