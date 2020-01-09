@@ -40,7 +40,7 @@ class StartTourController: UIViewController {
         mainNavigationController = navigationController as? MainNavigationController
         NotificationCenter.default.addObserver(self, selector: #selector(didTapYes), name: NSNotification.Name("didTapYes"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(didTapYes), name: NSNotification.Name("endTour"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(endTour), name: NSNotification.Name("endTour"), object: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
