@@ -13,6 +13,7 @@ class MuseumViewCell: UITableViewCell {
     @IBOutlet var attractionImage: UIImageView!
     @IBOutlet var attractionTitle: UILabel!
     @IBOutlet var attractionDescription: UILabel!
+    @IBOutlet var indicator: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

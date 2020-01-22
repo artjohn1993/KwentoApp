@@ -39,11 +39,7 @@ class QRReaderController: UIViewController {
         
         connectionService.checkConnection(completion: { connection in
             self.isConnected = connection
-        })
-        
-        
-        
-        
+        }) 
     }
     
     @objc private func proceed() {
@@ -51,7 +47,7 @@ class QRReaderController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-          self.afterScan(str: "17")
+          self.afterScan(str: "13")
         //performSegue(withIdentifier: "qrToStart", sender: nil)
 //        performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
     }

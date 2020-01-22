@@ -75,16 +75,18 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     }
     
     func setMp3Player() {
+        print("setMp3Player")
         var stringURL = self.getSavedMp3(named: "\(self.audioName).mp3")
-        print(stringURL)
         let url = URL(string: stringURL!)
-        print(url)
-//                let audio = Bundle.main.path(forResource: "Moon River", ofType: "mp3")
-//                print(audio)
+        print(url!)
+                let audio = Bundle.main.path(forResource: "Moon River", ofType: "mp3")
+
         do {
             if url != nil {
                 print("url has data")
                 self.audioPlayer = try AVAudioPlayer(contentsOf: url!)
+                self.initViews()
+                self.mainNavigationController = self.navigationController as? MainNavigationController
             }
             else {
                 print("url is nil")
@@ -92,9 +94,9 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
         }
         catch {
             print(error)
+            PublicData.spinnerAlert(controller: self)
+            downloadAudio()
         }
-        self.initViews()
-        self.mainNavigationController = self.navigationController as? MainNavigationController
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {

@@ -170,18 +170,47 @@ class SignUpController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
         let email: String = String(emailField.text ?? "")
         
         if isConnected {
-            print(provider)
-            self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email,provider : provider,externalId : externalId,  token : token, completion: { (isSuccess,message) in
-                       if isSuccess {
-                           self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
-                       }
-                       else {
-                           if message != nil || message != ""{
-                               PublicData.showSnackBar(message: message)
-                           }
-                           print(message)
-                       }
-                   })
+            if fullname != "" && iBirthdate != "" && gender != "" && phoneNumber != "" && email != "" {
+                if provider == "local" {
+                    if password != "" && confirmPassword != "" {
+                        if password == confirmPassword {
+                            self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email,provider : provider,externalId : externalId,  token : token, completion: { (isSuccess,message) in
+                                if isSuccess {
+                                    self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
+                                }
+                                else {
+                                    if message != nil || message != ""{
+                                        PublicData.showSnackBar(message: message)
+                                    }
+                                    print(message)
+                                }
+                            })
+                        }
+                        else {
+                            PublicData.showSnackBar(message: "Invalid confirm password")
+                        }
+                    }
+                    else {
+                        PublicData.showSnackBar(message: "Please complete all required fields")
+                    }
+                }
+                else {
+                    self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email,provider : provider,externalId : externalId,  token : token, completion: { (isSuccess,message) in
+                        if isSuccess {
+                            self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
+                        }
+                        else {
+                            if message != nil || message != ""{
+                                PublicData.showSnackBar(message: message)
+                            }
+                            print(message)
+                        }
+                    })
+                }
+            }
+            else  {
+                PublicData.showSnackBar(message: "Please complete all required fields")
+            }
         }
         else {
             PublicData.showSnackBar(message: "Not Connected")

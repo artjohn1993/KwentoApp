@@ -196,17 +196,34 @@
                                                     <color key="textColor" red="0.0" green="0.76159747950000001" blue="0.81491909900000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NO6-O1-bu4">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NO6-O1-bu4">
                                                     <rect key="frame" x="20" y="11" width="123" height="111"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.76759117840000002" green="0.76760929820000001" blue="0.76759958269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Kvu-0p-mgA">
+                                                    <rect key="frame" x="20" y="11" width="123" height="111"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NO6-O1-bu4" firstAttribute="leading" secondItem="6Ja-ll-hlT" secondAttribute="leading" constant="20" id="4Cm-Qa-r12"/>
+                                                <constraint firstItem="Kvu-0p-mgA" firstAttribute="trailing" secondItem="NO6-O1-bu4" secondAttribute="trailing" id="98e-WQ-q5c"/>
+                                                <constraint firstItem="Kvu-0p-mgA" firstAttribute="top" secondItem="NO6-O1-bu4" secondAttribute="top" id="BYz-S7-RwR"/>
+                                                <constraint firstItem="Kvu-0p-mgA" firstAttribute="leading" secondItem="NO6-O1-bu4" secondAttribute="leading" id="P36-II-11M"/>
+                                                <constraint firstItem="Kvu-0p-mgA" firstAttribute="centerY" secondItem="NO6-O1-bu4" secondAttribute="centerY" id="PdO-Bq-P8K"/>
+                                                <constraint firstItem="NO6-O1-bu4" firstAttribute="height" secondItem="6Ja-ll-hlT" secondAttribute="height" multiplier="0.787234" id="SBe-m6-jcT"/>
+                                                <constraint firstItem="NO6-O1-bu4" firstAttribute="width" secondItem="6Ja-ll-hlT" secondAttribute="width" multiplier="0.32199" id="aOm-Uw-iSI"/>
+                                                <constraint firstItem="NO6-O1-bu4" firstAttribute="top" secondItem="6Ja-ll-hlT" secondAttribute="top" constant="11" id="jaB-4N-Cg6"/>
+                                                <constraint firstItem="Kvu-0p-mgA" firstAttribute="centerX" secondItem="NO6-O1-bu4" secondAttribute="centerX" id="o7W-Yf-V4Y"/>
+                                                <constraint firstAttribute="bottom" secondItem="NO6-O1-bu4" secondAttribute="bottom" constant="19" id="tU4-S0-sdA"/>
+                                                <constraint firstItem="Kvu-0p-mgA" firstAttribute="bottom" secondItem="NO6-O1-bu4" secondAttribute="bottom" id="yed-SX-80n"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="attractionDescription" destination="4Dc-VD-vVw" id="uVu-IJ-T5M"/>
                                             <outlet property="attractionImage" destination="NO6-O1-bu4" id="KLT-D7-MxX"/>
                                             <outlet property="attractionTitle" destination="AdK-BG-luV" id="Aas-Jd-kbN"/>
+                                            <outlet property="indicator" destination="Kvu-0p-mgA" id="3kG-VS-JoE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

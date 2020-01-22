@@ -53,8 +53,8 @@ class LoginController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
-        emailField.text = "test2@gmail.com"
-        passwordField.text = "password1234"
+        emailField.text = "hghh@gmail.com"
+        passwordField.text = "hhhhhhhh"
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
         

@@ -93,24 +93,26 @@ class LoginServices {
                 token : String,
                 completion : @escaping (Bool, String)->()
                 ) {
-        
+        print(gender)
         let userGender = gender == "Male" ? true : false
         
         let url = "\(PublicData.baseUrl)/api/accounts/register"
         let parameters: Parameters = [
-        "FullName": fullname,
-        "Birthday": birthday,
-        "Gender": userGender,
-        "Password": password,
-        "ConfirmPassword": confirmPassword,
-        "PhoneNumber": phoneNumber,
-        "Email": email,
-        "Provider": provider,
-        "ExternalId": externalId]
-        
+        "full_name": fullname,
+        "birthday": birthday,
+        "gender": userGender,
+        "password": password,
+        "confirm_password": confirmPassword,
+        "phone_number": phoneNumber,
+        "email": email,
+        "provider": provider,
+        "external_id": externalId]
+        print(userGender)
+        print(parameters)
         Alamofire.request(url,
                           method: .post,
-                          parameters: parameters).responseJSON(completionHandler: { response in
+                          parameters: parameters,
+                          encoding: JSONEncoding.default).responseJSON(completionHandler: { response in
                             let data = response.result.value as? [String:Any]
                             if response.response?.statusCode == 200 {
                                 print("Registered Successfully")
