@@ -38,7 +38,8 @@ class LoginServices {
                "password" : password,
                "provider" : provider
            ]
-        
+        print("parameter")
+        print(parameters)
            //- send login request
            Alamofire.request(url,
                              method: .post,
@@ -107,8 +108,7 @@ class LoginServices {
         "email": email,
         "provider": provider,
         "external_id": externalId]
-        print(userGender)
-        print(parameters)
+
         Alamofire.request(url,
                           method: .post,
                           parameters: parameters,
@@ -139,4 +139,32 @@ class LoginServices {
                             }
                           })
     }//end of signUp function
+    
+    
+    func forgetPassword(email : String,
+                        completion : @escaping (Bool)->()){
+        let url = "\(PublicData.baseUrl)/api/accounts/forgotPassword"
+        let parameters: Parameters = ["email_address": email]
+        
+        Alamofire.request(url,
+                          method: .get,
+            parameters: parameters).responseJSON(completionHandler: { response in
+                print(response.response?.statusCode)
+
+                if response.response?.statusCode == 200 {
+                    completion(true)
+                }
+                    
+                else {
+                    let data = response.result.value as? [String:Any]
+                    let message = data?["Message"] as? String
+                    print(message)
+                    if message != nil {
+                        PublicData.showSnackBar(message: message!)
+                    }
+                    
+                    completion(false)
+                }
+            })
+    }
 }

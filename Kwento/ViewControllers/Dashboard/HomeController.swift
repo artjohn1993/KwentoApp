@@ -19,6 +19,7 @@ class HomeController: UIViewController {
     var mainNavigationController: MainNavigationController!
     let connectionService = ConnectionService()
     let sessionService = SessionServices()
+    let dataService = CoreDataServices()
     var id = ""
     var name = ""
     var imageName = ""
@@ -128,13 +129,28 @@ class HomeController: UIViewController {
             self.sessionId = result?["id"] as? Int != nil ? String(result?["id"] as! Int) : ""
             print(self.sessionId)
             print(result?["id"] as? Int)
+            
+            self.dataService.getActiveSession(completion: { result in
+
+                print(result!.count)
+            })
+            
             if result != nil {
-                if subAttraction?.count ?? 0 > 0 {
-                    self.performSegue(withIdentifier: "homeToMultiple", sender: nil)
-                }
-                else {
-                    self.performSegue(withIdentifier: "homeToSingle", sender: nil)
-                }
+                self.dataService.getActiveSession(completion: { result in
+                    if result!.count == 0 {
+                        self.sessionService.endSession(sessionId: self.sessionId)
+                        self.performSegue(withIdentifier: "homeToQr", sender: nil)
+                    }
+                    else {
+                        if subAttraction?.count ?? 0 > 0 {
+                            self.performSegue(withIdentifier: "homeToMultiple", sender: nil)
+                        }
+                        else {
+                            self.performSegue(withIdentifier: "homeToSingle", sender: nil)
+                        }
+                    }
+                })
+                
             }
             else {
                 self.performSegue(withIdentifier: "homeToQr", sender: nil)

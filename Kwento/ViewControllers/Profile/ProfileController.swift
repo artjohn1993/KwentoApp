@@ -16,6 +16,7 @@ class ProfileController: UIViewController {
     var userInfo = [UserInfo]()
     let dataServices = CoreDataServices()
     let message = MDCSnackbarMessage()
+    var isLocal = false
     @IBOutlet weak var navButton: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userFullname: UILabel!
@@ -28,6 +29,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var confirmField: UITextField!
     @IBOutlet weak var saveButton: MDCFlatButton!
     @IBOutlet weak var logoutButton: MDCFlatButton!
+    @IBOutlet var changePassword: UILabel!
     
     
     var mainNavigationController: MainNavigationController!
@@ -75,6 +77,7 @@ class ProfileController: UIViewController {
     @IBAction func closeProfile(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
     }
+    
     @IBAction func logout(_ sender: Any) {
         service.logout(completion: {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -90,21 +93,36 @@ class ProfileController: UIViewController {
         
         service.getCurrentUser(completion: { result in
             print(result)
+            let provider = result?["providers"] as? [String]
+            provider?.forEach({ item in
+                if item == "Local" {
+                    self.isLocal =  true
+                    self.changePassword.setVisibility(true)
+                }
+            })
+            
             if result != nil {
                 self.mobileField.text = result?["phone_number"] as! String
                 self.userFullname.text = result?["full_name"] as! String
                 self.emailField.text = result?["email_address"] as! String
-                self.passwordField.text = self.userInfo[0].password
-                
-                //self.passwordField.text =
             }
         })
+    }
+    
+    @objc
+    func changePasswordEvent(sender:UITapGestureRecognizer) {
+        self.performSegue(withIdentifier: "changePassword", sender: nil)
     }
     
     private func initViews() {
         navButton.image = #imageLiteral(resourceName: "nav_button")
         
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        changePassword.setVisibility(false)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(changePasswordEvent))
+        changePassword.isUserInteractionEnabled = true
+        changePassword.addGestureRecognizer(tap)
         
         saveButton.initialize(backgroundColor: UIColor(rgb: 0xC5C5C5), titleColor: .white, cornerRadius: 4)
         logoutButton.initialize(backgroundColor: UIColor(red: 216/255, green: 154/255, blue: 135/255, alpha: 1), titleColor: .white, cornerRadius: 4)

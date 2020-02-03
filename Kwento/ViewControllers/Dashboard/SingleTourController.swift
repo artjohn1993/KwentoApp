@@ -41,13 +41,13 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
         self.background.image = PublicData.getSavedImage(named: self.imageName)
         self.background.contentMode = .scaleAspectFill
         self.attractionName.text = self.name
-        print("id from single \(id)")
+
         self.dataService.getSession(completion: { result in
             print("session total:\(result?.count)")
         })
-        print("sessionId:\(sessionId)")
-        print(audioName)
+
         if sessionId == "" {
+            dataService.saveActiveSession(id: id)
             sessionService.startSession(id: id, completion: {
 
             })
@@ -100,7 +100,7 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        sessionService.endSession()
+        sessionService.endSession(sessionId : sessionId)
     }
     
     func getSavedMp3(named: String) -> String? {
@@ -166,6 +166,6 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     @objc func endTour() {
         audioPlayer.stop()
         mainNavigationController.popToRootViewController(animated: true)
-        sessionService.endSession()
+        sessionService.endSession(sessionId : sessionId)
     }
 }

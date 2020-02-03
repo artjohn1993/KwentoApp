@@ -34,7 +34,7 @@
                                     <constraint firstAttribute="height" constant="32" id="MrB-OB-tg8"/>
                                 </constraints>
                                 <color key="tintColor" red="0.047058823530000002" green="0.61176470589999998" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button" image="round_search_black_36pt"/>
+                                <state key="normal" title="Button" image="baseline_close_black_36pt"/>
                                 <connections>
                                     <action selector="didTapSeach:" destination="rrP-pE-N5O" eventType="touchUpInside" id="EPm-lF-NxW"/>
                                 </connections>
@@ -303,9 +303,8 @@
     <resources>
         <image name="baseline_close_black_36pt" width="36" height="36"/>
         <image name="nav_button" width="17.5" height="17.5"/>
-        <image name="round_search_black_36pt" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Peq-wt-17l"/>
+        <segue reference="IeH-2K-5lZ"/>
     </inferredMetricsTieBreakers>
 </document>

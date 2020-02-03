@@ -48,7 +48,7 @@ class AttractionsController: UIViewController {
     }
     
     @IBAction func didTapSeach(_ sender: Any) {
-        
+        mainNavigationController.popViewController(animated: true)
     }
     
     func initViews() {

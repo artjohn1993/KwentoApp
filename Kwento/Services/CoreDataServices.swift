@@ -102,6 +102,24 @@ class CoreDataServices {
         }
     }
     
+    func getActiveSession(completion: @escaping ([ActiveSession]?)->()) {
+        var data: [ActiveSession] = [ActiveSession]()
+        let fetch: NSFetchRequest<ActiveSession> = ActiveSession.fetchRequest()
+        do {
+            let info = try PersistenceService.context.fetch(fetch)
+            data = info
+            completion(data)
+        }catch {
+            completion(nil)
+        }
+    }
+    
+    func saveActiveSession(id: String) {
+        var session = ActiveSession(context: PersistenceService.context)
+        session.id = id
+        PersistenceService.saveContext()
+    }
+    
     func deleteData(entity : String, completion: @escaping ()->()) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext

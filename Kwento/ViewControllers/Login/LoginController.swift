@@ -54,7 +54,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
         super.viewDidLoad()
         initViews()
         emailField.text = "hghh@gmail.com"
-        passwordField.text = "hhhhhhhh"
+        passwordField.text = "1111111"
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
@@ -107,12 +107,6 @@ class LoginController: UIViewController, GIDSignInDelegate {
       @IBAction func login(_ sender: Any) {
         if emailField.text != "" && passwordField.text != "" {
             login(uname: emailField.text ?? "", pass: passwordField.text ?? "", dataProvider: "local")
-//            if isConnected {
-//                login(uname: emailField.text ?? "", pass: passwordField.text ?? "", dataProvider: "local")
-//            }
-//            else {
-//                PublicData.showSnackBar(message: "Not Connected")
-//            }
         }
         else {
             if emailField.text == "" {
@@ -127,7 +121,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
         }
 
         @IBAction func forgotPassword() {
-    //        performSegue(withIdentifier: "loginToForgotPassword", sender: nil)
+            performSegue(withIdentifier: "forgetPassword", sender: nil)
         }
         
         @IBAction func signUp() {

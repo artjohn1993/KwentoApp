@@ -70,6 +70,10 @@ class ProfileServices {
                     confirm: String,
                     userId: Int,
                     completion: @escaping (Bool)->()) {
+        self.dataServices.getUserInfo(completion: { result in
+            self.userInfo = result!
+        })
+        
          let id = userInfo[0].client_id!
          let url = "\(PublicData.baseUrl)/api/accounts/\(userId)"
          let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
@@ -101,6 +105,43 @@ class ProfileServices {
         })
     }
     
+    func changePassword(newpass: String,
+                        oldpass: String,
+                        confirmpass: String,
+                        completion: @escaping (Bool)->()) {
+        print("changePassword")
+        self.dataServices.getUserInfo(completion: { result in
+            self.userInfo = result!
+        })
+        let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
+        let header : HTTPHeaders =  ["Authorization" : token]
+        let url = "\(PublicData.baseUrl)/api/accounts/changePassword"
+        print(url)
+        tokenServices.checkExpirationDate(completion: {
+            Alamofire.request(url,
+                              method: .post,
+                              parameters: [
+                                "old_password": oldpass,
+                                "password": newpass,
+                                "confirm_password": confirmpass],
+                               encoding: JSONEncoding.default,
+                               headers: header).responseJSON(completionHandler: { response in
+                                
+                                if response.response?.statusCode == 200 {
+                                    completion(true)
+                                }
+                                else {
+                                    completion(false)
+                                    print(response.response)
+                                    print(response.result.description)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
+                                       PublicData.showSnackBar(message: "Invalid Password")
+                                   })
+                                }
+                               })
+        })
+    }
+    
     func logout(completion: @escaping ()->()) {
         dataServices.deleteData(entity: "SessionData", completion: {
             self.dataServices.deleteData(entity: "AllAttraction", completion: {
@@ -109,7 +150,9 @@ class ProfileServices {
                         self.dataServices.deleteData(entity: "DownloadedFiles", completion: {
                             self.dataServices.deleteData(entity: "DownloadedAttractionDetails", completion: {
                                 self.dataServices.deleteData(entity: "UserInfo", completion: {
-                                    completion()
+                                    self.dataServices.deleteData(entity: "ActiveSession", completion: {
+                                        completion()
+                                    })
                                 })
                             })
                         })

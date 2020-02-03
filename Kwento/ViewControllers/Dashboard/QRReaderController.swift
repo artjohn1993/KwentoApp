@@ -47,7 +47,7 @@ class QRReaderController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-          self.afterScan(str: "13")
+         // self.afterScan(str: "12")
         //performSegue(withIdentifier: "qrToStart", sender: nil)
 //        performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
     }

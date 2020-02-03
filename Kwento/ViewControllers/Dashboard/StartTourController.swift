@@ -18,6 +18,7 @@ class StartTourController: UIViewController {
     @IBOutlet weak var startButton: MDCFlatButton!
     
     var downloadedFiles = [DownloadedFiles]()
+    let dataService = CoreDataServices()
     var downloadedAttraction = [DownloadedAttractionDetails]()
     let dataServices = CoreDataServices()
     var sessionService = SessionServices()
@@ -61,6 +62,7 @@ class StartTourController: UIViewController {
     
     @IBAction func start(_ sender: Any) {
         if self.sessionId == "" {
+           dataService.saveActiveSession(id: self.id)
            sessionService.startSession(id: self.id, completion: {})
         }
         else {
@@ -78,7 +80,8 @@ class StartTourController: UIViewController {
     }
     
     @objc func endTour() {
-        self.sessionService.endSession()
+        print("@objc func endTour()'")
+        self.sessionService.endSession(sessionId : sessionId)
         self.mainNavigationController.popToRootViewController(animated: true)
     }
     

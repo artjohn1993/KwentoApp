@@ -45,54 +45,48 @@ class SessionServices {
             }) 
     }
     
-    func endSession() {
+    func endSession(sessionId : String) {
         print("endSession")
-        var sessionId = ""
+            
+        print("session id from endSession: \(sessionId)")
         
-        dataServices.getSession(completion: { response in
-            let data = response?.first
-            sessionId = data?.id ?? ""
-            
-            print("session id from endSession: \(sessionId)")
-            
-            var url = "\(PublicData.baseUrl)/api/sessions/\(sessionId)/end"
-            print(url)
-            self.dataServices.getUserInfo(completion: { result in
-                self.userInfo = result!
-            })
-            let token = "\(self.userInfo[0].token_type!) \(self.userInfo[0].access_token!)"
-            let header : HTTPHeaders =  ["Authorization" : token]
-            
-            Alamofire.request(url,
-                              method: .post,
-                              headers: header).responseJSON(completionHandler: { response in
-                                
-                                print(response.result.value)
-                                print(response.response?.statusCode)
-                                if response.response?.statusCode == 200 {
-                                    print("success end")
-                                    self.dataServices.getSession(completion: { response in
-                                        var data = response?.first
-                                        
-                                        if data?.attraction_id != nil {
-                                            self.getAttraction(id: (data?.attraction_id!)!)
-                                        }
-                                        
-                                        self.dataServices.deleteData(entity: "SessionData", completion: {})
-                                            
-                                        
-                                    })
-                                }
-                              })
-            
+        var url = "\(PublicData.baseUrl)/api/sessions/\(sessionId)/end"
+        print(url)
+        self.dataServices.getUserInfo(completion: { result in
+            self.userInfo = result!
         })
+        let token = "\(self.userInfo[0].token_type!) \(self.userInfo[0].access_token!)"
+        let header : HTTPHeaders =  ["Authorization" : token]
         
-        
-        
+        Alamofire.request(url,
+                          method: .post,
+                          headers: header).responseJSON(completionHandler: { response in
+                            
+                            print(response.result.value)
+                            print(response.response?.statusCode)
+                            if response.response?.statusCode == 200 {
+                                print("success end")
+                                
+                                self.dataServices.deleteData(entity: "ActiveSession", completion: {})
+                                
+                                self.dataServices.getSession(completion: { response in
+                                    var data = response?.first
+                                    
+                                    if data?.attraction_id != nil {
+                                        self.getAttraction(id: (data?.attraction_id!)!)
+                                    }
+                                    
+                                    self.dataServices.deleteData(entity: "SessionData", completion: {})
+                                        
+                                    
+                                })
+                            }
+                          })
+       
     }
     
     func getActiveSession(completion: @escaping ([String:Any]?)->()) {
-        
+        print("getActiveSession")
         var url = "\(PublicData.baseUrl)/api/sessions/user/active"
         self.dataServices.getUserInfo(completion: { result in
             self.userInfo = result!
@@ -105,6 +99,7 @@ class SessionServices {
                           headers: header).responseJSON(completionHandler: { response in
                             if response.response?.statusCode == 200 {
                                 let data = response.result.value as? [String:Any]
+                                print(data)
                                 completion(data)
                             }
                             else if response.response?.statusCode == 401 {
@@ -173,6 +168,7 @@ class SessionServices {
     }
     
     func getUserSession(completion : @escaping ([String:Any]?)->()) {
+        print("getUserSession")
         var url = "\(PublicData.baseUrl)/api/sessions/user?completed_only=true"
         print(url)
         dataServices.getUserInfo(completion: { result in
@@ -189,6 +185,7 @@ class SessionServices {
                             
                             if response.response?.statusCode == 200 {
                                 let result = response.result.value as? [String:Any]
+                                print(result)
                                 completion(result)
                             }
                             else if response.response?.statusCode == 401 {

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ActiveSession" representedClassName="ActiveSession" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="AllAttraction" representedClassName="AllAttraction" syncable="YES">
         <attribute name="attraction_type_id" optional="YES" attributeType="String"/>
         <attribute name="audio_filename" optional="YES" attributeType="String"/>
@@ -39,6 +42,7 @@
         <attribute name="qrCodeFilename" optional="YES" attributeType="String"/>
     </entity>
     <entity name="DownloadedFiles" representedClassName="DownloadedFiles" syncable="YES">
+        <attribute name="attribute" optional="YES" attributeType="String"/>
         <attribute name="audio" optional="YES" attributeType="String"/>
         <attribute name="image" optional="YES" attributeType="String"/>
     </entity>
@@ -67,9 +71,10 @@
         <element name="AttractionByCity" positionX="9" positionY="108" width="128" height="103"/>
         <element name="AttractionByType" positionX="-9" positionY="99" width="128" height="103"/>
         <element name="DownloadedAttractionDetails" positionX="-36" positionY="81" width="128" height="28"/>
-        <element name="DownloadedFiles" positionX="-27" positionY="90" width="128" height="73"/>
-        <element name="Entity" positionX="63" positionY="198" width="128" height="43"/>
+        <element name="DownloadedFiles" positionX="-27" positionY="90" width="128" height="88"/>
+        <element name="ActiveSession" positionX="63" positionY="198" width="128" height="58"/>
         <element name="SessionData" positionX="45" positionY="189" width="128" height="133"/>
         <element name="UserInfo" positionX="-36" positionY="9" width="128" height="178"/>
+        <element name="Entity" positionX="18" positionY="144" width="128" height="43"/>
     </elements>
 </model>
