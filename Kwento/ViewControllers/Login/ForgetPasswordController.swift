@@ -16,22 +16,23 @@ class ForgetPasswordController: UIViewController {
     let loginService = LoginServices()
     
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ForgetPasswordController")
         initViews()
-        setStatusBarBackgroundColor(color: UIColor.main)
+        //setStatusBarBackgroundColor(color: UIColor.main)
     }
     
-    func setStatusBarBackgroundColor(color: UIColor) {
-
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-
-        statusBar.backgroundColor = color
-    }
+//    func setStatusBarBackgroundColor(color: UIColor) {
+//
+//        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+//
+//        statusBar.backgroundColor = color
+//    }
     
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true)

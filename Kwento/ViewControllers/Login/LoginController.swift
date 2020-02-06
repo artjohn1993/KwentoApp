@@ -34,7 +34,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
     @IBOutlet weak var facebookButton: MDCFlatButton!
     @IBOutlet weak var googleButton: MDCFlatButton!
     
-    @IBOutlet weak var forgotPasswordLabel: UILabel!
+    @IBOutlet var forgetPassword: UILabel!
     @IBOutlet weak var signUpLabel: UILabel!
      var loginService = LoginServices()
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -53,8 +53,8 @@ class LoginController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
-        emailField.text = "hghh@gmail.com"
-        passwordField.text = "1111111"
+        emailField.text = ""
+        passwordField.text = ""
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
@@ -101,6 +101,10 @@ class LoginController: UIViewController, GIDSignInDelegate {
         facebookButton.initialize(backgroundColor: .facebook, titleColor: .white, cornerRadius: 4)
         googleButton.initialize(backgroundColor: .google, titleColor: .white, cornerRadius: 4)
         
+        let forgetPasswordGesture = UITapGestureRecognizer(target: self, action: #selector(forgetPasswordEvent))
+        forgetPassword.isUserInteractionEnabled = true
+        forgetPassword.addGestureRecognizer(forgetPasswordGesture)
+        
         headerView.addWave()
     }
     
@@ -120,7 +124,8 @@ class LoginController: UIViewController, GIDSignInDelegate {
 
         }
 
-        @IBAction func forgotPassword() {
+        @objc
+        func forgetPasswordEvent(sender:UITapGestureRecognizer) {
             performSegue(withIdentifier: "forgetPassword", sender: nil)
         }
         

@@ -67,14 +67,14 @@
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="ActiveSession" positionX="63" positionY="198" width="128" height="58"/>
         <element name="AllAttraction" positionX="27" positionY="117" width="128" height="208"/>
         <element name="AttractionByCity" positionX="9" positionY="108" width="128" height="103"/>
         <element name="AttractionByType" positionX="-9" positionY="99" width="128" height="103"/>
         <element name="DownloadedAttractionDetails" positionX="-36" positionY="81" width="128" height="28"/>
         <element name="DownloadedFiles" positionX="-27" positionY="90" width="128" height="88"/>
-        <element name="ActiveSession" positionX="63" positionY="198" width="128" height="58"/>
+        <element name="Entity" positionX="18" positionY="144" width="128" height="43"/>
         <element name="SessionData" positionX="45" positionY="189" width="128" height="133"/>
         <element name="UserInfo" positionX="-36" positionY="9" width="128" height="178"/>
-        <element name="Entity" positionX="18" positionY="144" width="128" height="43"/>
     </elements>
 </model>

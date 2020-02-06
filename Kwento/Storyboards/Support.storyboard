@@ -89,6 +89,15 @@ E-mail : wehearyou@kwentoapp.com</string>
                                     <action selector="submit:" destination="nuE-Yd-gnV" eventType="touchUpInside" id="R9T-PM-MaN"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baseline_close_black_36pt" translatesAutoresizingMaskIntoConstraints="NO" id="kcs-d9-IQU">
+                                <rect key="frame" x="307" y="76" width="32" height="32"/>
+                                <color key="tintColor" red="0.0017094854265451431" green="0.7023501992225647" blue="0.69509094953536987" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="IOu-Cu-4wu"/>
+                                    <constraint firstAttribute="height" constant="32" id="UuU-Z0-eEU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="1" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -100,8 +109,10 @@ E-mail : wehearyou@kwentoapp.com</string>
                             <constraint firstItem="46c-VM-Nh3" firstAttribute="top" secondItem="AOo-eR-wuy" secondAttribute="bottom" constant="43" id="JFx-tP-wpI"/>
                             <constraint firstItem="Gqe-GS-0Vn" firstAttribute="leading" secondItem="umk-GY-fv4" secondAttribute="leading" constant="36" id="Maj-VL-xLg"/>
                             <constraint firstItem="AOo-eR-wuy" firstAttribute="centerY" secondItem="zVR-cy-Jzo" secondAttribute="centerY" id="OE6-9Q-iFy"/>
+                            <constraint firstItem="umk-GY-fv4" firstAttribute="trailing" secondItem="kcs-d9-IQU" secondAttribute="trailing" constant="36" id="Q4p-eW-Svx"/>
                             <constraint firstItem="rEC-of-2Br" firstAttribute="leading" secondItem="umk-GY-fv4" secondAttribute="leading" constant="36" id="SAf-fD-HV9"/>
                             <constraint firstItem="umk-GY-fv4" firstAttribute="trailing" secondItem="46c-VM-Nh3" secondAttribute="trailing" constant="36" id="g1p-2r-9QA"/>
+                            <constraint firstItem="kcs-d9-IQU" firstAttribute="top" secondItem="umk-GY-fv4" secondAttribute="top" constant="32" id="hUN-0h-PEW"/>
                             <constraint firstItem="AOo-eR-wuy" firstAttribute="centerX" secondItem="reA-dT-d6p" secondAttribute="centerX" id="jW8-NW-nIR"/>
                             <constraint firstItem="rQu-Mj-3Mv" firstAttribute="top" secondItem="rEC-of-2Br" secondAttribute="bottom" constant="32" id="joF-26-WSc"/>
                             <constraint firstItem="rQu-Mj-3Mv" firstAttribute="leading" secondItem="umk-GY-fv4" secondAttribute="leading" constant="36" id="nSa-Jy-NiO"/>
@@ -112,6 +123,7 @@ E-mail : wehearyou@kwentoapp.com</string>
                         <viewLayoutGuide key="safeArea" id="umk-GY-fv4"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="kcs-d9-IQU" id="MKf-xj-nCD"/>
                         <outlet property="navButton" destination="zVR-cy-Jzo" id="1vI-TU-st0"/>
                         <outlet property="submitButton" destination="Gqe-GS-0Vn" id="dux-4t-p6r"/>
                         <outlet property="textView" destination="rEC-of-2Br" id="DHa-cR-OtF"/>
@@ -127,4 +139,7 @@ E-mail : wehearyou@kwentoapp.com</string>
             <point key="canvasLocation" x="13.043478260869566" y="130.58035714285714"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="baseline_close_black_36pt" width="36" height="36"/>
+    </resources>
 </document>

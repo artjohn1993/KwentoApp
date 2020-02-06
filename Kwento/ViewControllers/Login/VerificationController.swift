@@ -17,6 +17,7 @@ class VerificationController: UIViewController {
     @IBOutlet weak var submitButton: MDCFlatButton!
     var userInfo = [UserInfo]()
     private var digitCount = 0
+    let loginService = LoginServices()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -54,7 +55,21 @@ class VerificationController: UIViewController {
     }
     
     @IBAction func didTapSubmit(_ sender: Any) {
-        performSegue(withIdentifier: "verificationToTerms", sender: nil)
+        var code = ""
+        digits.forEach({ item in
+            print(item.text!)
+            if item.text! != "" {
+                code = "\(code)\(item.text!)"
+            }
+        })
+        
+        print(code)
+        loginService.verifyAccount(code: code, completion: { result in
+            print(result)
+            if result {
+                self.performSegue(withIdentifier: "verificationToTerms", sender: nil)
+            }
+        })
     }
     
     private func initViews() {

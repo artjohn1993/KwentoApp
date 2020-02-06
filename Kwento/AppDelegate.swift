@@ -29,7 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         setupAppearance()
-        MSAppCenter.start("cc3c42a3-360c-4f7d-8a11-82df9053980a", withServices:[
+//        MSAppCenter.start("cc3c42a3-360c-4f7d-8a11-82df9053980a", withServices:[
+//          MSAnalytics.self,
+//          MSCrashes.self
+//        ])
+        MSAppCenter.start("88f03a2a-eac8-470a-85a4-9857f49dc33e", withServices:[
           MSAnalytics.self,
           MSCrashes.self
         ])

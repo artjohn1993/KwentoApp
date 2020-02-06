@@ -46,9 +46,10 @@ class StartTourController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "startToPlayer" {
-            if let destinationVC = segue.destination as? AudioPlayerController {
+        if segue.identifier == "startToSelection" {
+            if let destinationVC = segue.destination as? SelectionController {
                 destinationVC.id = self.id
+                destinationVC.sessionId = self.sessionId
             }
         }
     }

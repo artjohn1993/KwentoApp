@@ -33,7 +33,7 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("audio player:\(id)")
-            
+         print("musicIndex:\(musicIndex)")
         service.getAttractionById(id: id, completion: { result in
             var subAttraction = result?["sub_attractions"] as? [[String:Any]]
             
@@ -47,28 +47,26 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
             self.playMusic(audioFilename: self.audioId[self.musicIndex])
             
             self.setInit()
-            
         })
-   
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        if musicIndex >= 0 && musicIndex < audioId.count {
-            musicIndex += 1
-            print("if")
-            print(musicIndex)
-            playMusic(audioFilename: audioId[musicIndex])
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
-        else {
-            musicIndex = 0
-            print("else")
-            print(musicIndex)
-            playMusic(audioFilename: audioId[musicIndex])
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
+//        if musicIndex >= 0 && musicIndex < audioId.count {
+//            musicIndex += 1
+//            print("if")
+//            print(musicIndex)
+//            playMusic(audioFilename: audioId[musicIndex])
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//        }
+//        else {
+//            musicIndex = 0
+//            print("else")
+//            print(musicIndex)
+//            playMusic(audioFilename: audioId[musicIndex])
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//        }
     }
     
     func setInit() {
@@ -152,41 +150,41 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func skipPrevious(_ sender: Any) {
         
-        if musicIndex > 0 {
-            musicIndex -= 1
-            print("if")
-            print(musicIndex)
-            playMusic(audioFilename: audioId[musicIndex])
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
-        else {
-            musicIndex = audioId.count - 1
-            print("else")
-            print(musicIndex)
-            playMusic(audioFilename: audioId[musicIndex])
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
+//        if musicIndex > 0 {
+//            musicIndex -= 1
+//            print("if")
+//            print(musicIndex)
+//            playMusic(audioFilename: audioId[musicIndex])
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//        }
+//        else {
+//            musicIndex = audioId.count - 1
+//            print("else")
+//            print(musicIndex)
+//            playMusic(audioFilename: audioId[musicIndex])
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//        }
     }
     
     @IBAction func skipNext(_ sender: Any) {
-        if musicIndex >= 0 && musicIndex < audioId.count - 1 {
-            musicIndex += 1
-            print("if")
-            print(musicIndex)
-            playMusic(audioFilename: audioId[musicIndex])
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-
-        }
-        else {
-            musicIndex = 0
-            print("else")
-            print(musicIndex)
-            playMusic(audioFilename: audioId[musicIndex])
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
+//        if musicIndex >= 0 && musicIndex < audioId.count - 1 {
+//            musicIndex += 1
+//            print("if")
+//            print(musicIndex)
+//            playMusic(audioFilename: audioId[musicIndex])
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//
+//        }
+//        else {
+//            musicIndex = 0
+//            print("else")
+//            print(musicIndex)
+//            playMusic(audioFilename: audioId[musicIndex])
+//            audioPlayer.prepareToPlay()
+//            audioPlayer.play()
+//        }
     }
 }

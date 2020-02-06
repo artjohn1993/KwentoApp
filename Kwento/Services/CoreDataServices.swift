@@ -115,6 +115,7 @@ class CoreDataServices {
     }
     
     func saveActiveSession(id: String) {
+        print("saveActiveSession")
         var session = ActiveSession(context: PersistenceService.context)
         session.id = id
         PersistenceService.saveContext()

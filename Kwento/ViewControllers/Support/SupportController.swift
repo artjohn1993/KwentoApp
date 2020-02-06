@@ -18,6 +18,7 @@ class SupportController: UIViewController {
     let profileService = ProfileServices()
     let suggestionService = SuggestionServices()
     var mainNavigationController: MainNavigationController!
+    @IBOutlet var closeButton: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +44,11 @@ class SupportController: UIViewController {
                 }
             })
         })
-        
-        
+    }
+    
+    @objc
+    func closeEvent(sender:UITapGestureRecognizer) {
+        mainNavigationController.popViewController(animated: true)
     }
     
     private func initViews() {
@@ -54,6 +58,12 @@ class SupportController: UIViewController {
         textView.layer.borderWidth = 1
         
         submitButton.initialize(backgroundColor: .main, titleColor: .white, cornerRadius: 4)
+        
+        let navGesture = UITapGestureRecognizer(target: self, action: #selector(closeEvent))
+        closeButton.isUserInteractionEnabled = true
+        closeButton.addGestureRecognizer(navGesture)
+        
+        closeButton.tintColor = UIColor.main
     }
     
 }

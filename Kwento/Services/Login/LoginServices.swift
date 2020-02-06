@@ -8,9 +8,12 @@
 
 import Foundation
 import Alamofire
-
+import CoreData
 
 class LoginServices {
+    
+    let dataServices = CoreDataServices()
+    var userInfo = [UserInfo]()
     
     func checkExternalId(id: String, completion : @escaping (Int)->()) {
         let url = "\(PublicData.baseUrl)/api/accounts/externalid/\(id)/exists"
@@ -140,6 +143,29 @@ class LoginServices {
                           })
     }//end of signUp function
     
+    func verifyAccount( code : String,
+                        completion : @escaping (Bool)->()) {
+        let url = "\(PublicData.baseUrl)/api/accounts/verify/\(code)"
+        dataServices.getUserInfo(completion: { result in
+            self.userInfo = result!
+        })
+        let token = "\(userInfo[0].token_type!) \(userInfo[0].access_token!)"
+        let header : HTTPHeaders =  ["Authorization" : token]
+        
+        Alamofire.request(url,
+                          method: .put,
+            headers: header).responseJSON(completionHandler: { response in
+                
+                if response.response?.statusCode == 200 {
+                    completion(true)
+                }
+                else {
+                    print("ERROR")
+                    print(response.result)
+                    completion(false)
+                }
+            })
+    }
     
     func forgetPassword(email : String,
                         completion : @escaping (Bool)->()){

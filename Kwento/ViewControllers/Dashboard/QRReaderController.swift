@@ -45,9 +45,12 @@ class QRReaderController: UIViewController {
     @objc private func proceed() {
         performSegue(withIdentifier: "qrToDownload", sender: nil)
     }
+    @IBAction func closeEvent(_ sender: Any) {
+        mainNavigationController.popViewController(animated: true)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
-         // self.afterScan(str: "12")
+        // self.afterScan(str: "17")
         //performSegue(withIdentifier: "qrToStart", sender: nil)
 //        performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
     }

@@ -97,6 +97,8 @@ class SessionServices {
         Alamofire.request(url,
                           method: .get,
                           headers: header).responseJSON(completionHandler: { response in
+                            print("response")
+                            print(response.response?.statusCode)
                             if response.response?.statusCode == 200 {
                                 let data = response.result.value as? [String:Any]
                                 print(data)
@@ -112,6 +114,11 @@ class SessionServices {
                                         })
                                     }
                                 }
+                            }
+                            else {
+                                print("else")
+                                print(response.result)
+                                completion(nil)
                             }
         })
     }

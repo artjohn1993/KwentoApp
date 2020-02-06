@@ -11,7 +11,7 @@ import MaterialComponents
 import MaterialComponents.MaterialSnackbar
 import Network
 import MaterialComponents.MaterialTextFields
-
+import KYDrawerController
 class SignUpController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
     
     
@@ -197,7 +197,9 @@ class SignUpController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                 else {
                     self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email,provider : provider,externalId : externalId,  token : token, completion: { (isSuccess,message) in
                         if isSuccess {
-                            self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
+                            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let homeController = storyboard.instantiateInitialViewController() as! KYDrawerController
+                            self.present(homeController, animated: true)
                         }
                         else {
                             if message != nil || message != ""{
