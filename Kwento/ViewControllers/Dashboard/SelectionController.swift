@@ -16,6 +16,8 @@ class SelectionController: UIViewController {
     @IBOutlet var container: UIView!
     var id = ""
     var sessionId = ""
+    var durationVal = ""
+    @IBOutlet var duration: UILabel!
     
     
     @IBOutlet var endButton: UILabel!
@@ -49,6 +51,26 @@ class SelectionController: UIViewController {
         endButton.addGestureRecognizer(conViewGesture)
         
         mainNavigationController = navigationController as? MainNavigationController
+        
+        getHoursOrMin()
+    }
+    
+    func getHoursOrMin() {
+        var arrayTime = durationVal.components(separatedBy: ":")
+        print(arrayTime[0])
+        print(arrayTime[1])
+        
+        if arrayTime[0] == "00" {
+            duration.text = "Tour ends in \(arrayTime[1]) minutes"
+        }
+        else {
+            if arrayTime[0] != "01" {
+                duration.text = "Tour ends in \(arrayTime[0]) hour"
+            }
+            else {
+                duration.text = " Tour ends in \(arrayTime[0]) hours"
+            }
+        }
     }
     
     @objc

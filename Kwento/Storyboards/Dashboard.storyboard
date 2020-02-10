@@ -838,6 +838,7 @@
                         <outlet property="attractionName" destination="0rd-zW-59U" id="gQm-Tq-gmk"/>
                         <outlet property="background" destination="vly-cp-ZVl" id="kzY-GI-7ej"/>
                         <outlet property="closeButton" destination="Weg-51-2iO" id="w1E-TS-57x"/>
+                        <outlet property="duration" destination="yGO-Tr-bn8" id="Mhv-Sr-jPQ"/>
                         <outlet property="navButton" destination="30k-0I-ZHv" id="BYA-2A-TqE"/>
                         <outlet property="startButton" destination="wfa-LM-Sg2" id="H2d-bP-4qO"/>
                         <segue destination="NY7-Tb-Ozn" kind="presentation" identifier="endTour" id="UbF-jH-eCs"/>
@@ -1255,6 +1256,7 @@
                     <navigationItem key="navigationItem" id="Gbb-TF-xrv"/>
                     <connections>
                         <outlet property="container" destination="hpH-TK-eju" id="hbT-fe-HQJ"/>
+                        <outlet property="duration" destination="3rj-rL-PZX" id="z9C-N1-26a"/>
                         <outlet property="endButton" destination="ARX-67-57Q" id="Fgg-oe-BgU"/>
                         <outlet property="logo" destination="0GH-oZ-kCf" id="cMq-Xu-dn6"/>
                         <outlet property="numberField" destination="xFU-Sp-qdz" id="fgZ-Co-jFX"/>
@@ -1733,7 +1735,7 @@
         <image name="wifi.slash" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="soh-oq-2zY"/>
+        <segue reference="pZq-Oi-6dp"/>
         <segue reference="JCY-YF-juL"/>
         <segue reference="vG3-ad-blT"/>
     </inferredMetricsTieBreakers>

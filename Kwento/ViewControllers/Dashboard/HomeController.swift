@@ -25,6 +25,7 @@ class HomeController: UIViewController {
     var imageName = ""
     var audioName = ""
     var sessionId = ""
+    var duration = ""
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -72,6 +73,7 @@ class HomeController: UIViewController {
                 destinationVC.name = self.name
                 destinationVC.imageName = self.imageName
                 destinationVC.sessionId = self.sessionId
+                destinationVC.durationVal = self.duration
             }
         }
         if segue.identifier == "homeToSingle" {
@@ -123,12 +125,14 @@ class HomeController: UIViewController {
             let attraction = result?["attraction"] as? [String:Any]
             let subAttraction = attraction?["sub_attractions"] as? [[String:Any]]
             self.id = result?["attraction_id"] as? Int != nil ? String(result?["attraction_id"] as! Int) : ""
+            self.duration = attraction?["total_duration"] as? String ?? ""
             self.audioName = attraction?["audio_filename"] as? String ?? ""
             self.name = attraction?["name"] as? String ?? ""
             self.imageName = attraction?["image_filename"] as? String ?? ""
             self.sessionId = result?["id"] as? Int != nil ? String(result?["id"] as! Int) : ""
             print(self.sessionId)
             print(result?["id"] as? Int)
+            print("duration:\(self.duration)")
             
             self.dataService.getActiveSession(completion: { result in
 

@@ -16,6 +16,7 @@ class StartTourController: UIViewController {
     @IBOutlet weak var navButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var startButton: MDCFlatButton!
+    @IBOutlet var duration: UILabel!
     
     var downloadedFiles = [DownloadedFiles]()
     let dataService = CoreDataServices()
@@ -26,6 +27,7 @@ class StartTourController: UIViewController {
     var name = ""
     var imageName = ""
     var sessionId = ""
+    var durationVal = ""
     
     var mainNavigationController: MainNavigationController!
     
@@ -50,15 +52,37 @@ class StartTourController: UIViewController {
             if let destinationVC = segue.destination as? SelectionController {
                 destinationVC.id = self.id
                 destinationVC.sessionId = self.sessionId
+                destinationVC.durationVal = self.durationVal
             }
         }
     }
+    
+
     
     func initViews() {
         startButton.initialize(backgroundColor: .main, titleColor: .white, cornerRadius: 4)
         self.background.image = PublicData.getSavedImage(named: "\(imageName).png")
         self.attractionName.text = self.name
         self.background.contentMode = .scaleAspectFill
+        getHoursOrMin()
+    }
+    
+    func getHoursOrMin() {
+        var arrayTime = durationVal.components(separatedBy: ":")
+        print(arrayTime[0])
+        print(arrayTime[1])
+        
+        if arrayTime[0] == "00" {
+            duration.text = "\(arrayTime[1]) minutes"
+        }
+        else {
+            if arrayTime[0] != "01" {
+                duration.text = "\(arrayTime[0]) hour"
+            }
+            else {
+                duration.text = "\(arrayTime[0]) hours"
+            }
+        }
     }
     
     @IBAction func start(_ sender: Any) {
