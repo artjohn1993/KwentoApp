@@ -24,6 +24,7 @@ class DownloadStoriesController: UIViewController {
     var mainNavigationController: MainNavigationController!
     var connectionService = ConnectionService()
     var isConnected = false
+    var duration = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +67,7 @@ class DownloadStoriesController: UIViewController {
                 destinationVC.id = self.id
                 destinationVC.name = self.attractionName
                 destinationVC.imageName = self.imageName
+                destinationVC.durationVal = self.duration
             }
         }
     }
@@ -127,6 +129,7 @@ class DownloadStoriesController: UIViewController {
             let subAttraction = result?["sub_attractions"] as? [[String: Any]]
             self.totalItemToDownload = (subAttraction != nil) ? subAttraction!.count : 0
             let image = result?["image_filename"] as? String
+            self.duration = result?["total_duration"] as? String ?? ""
             self.imageName = image ?? ""
             self.attractionName = result?["name"] as? String ?? ""
             
