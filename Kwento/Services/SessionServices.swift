@@ -45,43 +45,48 @@ class SessionServices {
             }) 
     }
     
-    func endSession(sessionId : String) {
-        print("endSession")
+    func endSession() {
+        var sessionService = SessionServices()
+        
+        sessionService.getActiveSession(completion: { result in
+           var sessionId = result?["id"] as? Int != nil ? String(result?["id"] as! Int) : ""
             
-        print("session id from endSession: \(sessionId)")
-        
-        var url = "\(PublicData.baseUrl)/api/sessions/\(sessionId)/end"
-        print(url)
-        self.dataServices.getUserInfo(completion: { result in
-            self.userInfo = result!
+            var url = "\(PublicData.baseUrl)/api/sessions/\(sessionId)/end"
+            print(url)
+            self.dataServices.getUserInfo(completion: { result in
+                self.userInfo = result!
+            })
+            let token = "\(self.userInfo[0].token_type!) \(self.userInfo[0].access_token!)"
+            let header : HTTPHeaders =  ["Authorization" : token]
+
+            Alamofire.request(url,
+                              method: .post,
+                              headers: header).responseJSON(completionHandler: { response in
+
+                print(response.result.value)
+                print(response.response?.statusCode)
+                if response.response?.statusCode == 200 {
+                    print("success end")
+
+                    self.dataServices.deleteData(entity: "ActiveSession", completion: {})
+
+                    self.dataServices.getSession(completion: { response in
+                        var data = response?.first
+
+                        if data?.attraction_id != nil {
+                            self.getAttraction(id: (data?.attraction_id!)!)
+                        }
+
+                        self.dataServices.deleteData(entity: "SessionData", completion: {})
+
+
+                    })
+                }
+              })
         })
-        let token = "\(self.userInfo[0].token_type!) \(self.userInfo[0].access_token!)"
-        let header : HTTPHeaders =  ["Authorization" : token]
         
-        Alamofire.request(url,
-                          method: .post,
-                          headers: header).responseJSON(completionHandler: { response in
-                            
-                            print(response.result.value)
-                            print(response.response?.statusCode)
-                            if response.response?.statusCode == 200 {
-                                print("success end")
-                                
-                                self.dataServices.deleteData(entity: "ActiveSession", completion: {})
-                                
-                                self.dataServices.getSession(completion: { response in
-                                    var data = response?.first
-                                    
-                                    if data?.attraction_id != nil {
-                                        self.getAttraction(id: (data?.attraction_id!)!)
-                                    }
-                                    
-                                    self.dataServices.deleteData(entity: "SessionData", completion: {})
-                                        
-                                    
-                                })
-                            }
-                          })
+        
+        
        
     }
     
@@ -97,11 +102,9 @@ class SessionServices {
         Alamofire.request(url,
                           method: .get,
                           headers: header).responseJSON(completionHandler: { response in
-                            print("response")
                             print(response.response?.statusCode)
                             if response.response?.statusCode == 200 {
                                 let data = response.result.value as? [String:Any]
-                                print(data)
                                 completion(data)
                             }
                             else if response.response?.statusCode == 401 {

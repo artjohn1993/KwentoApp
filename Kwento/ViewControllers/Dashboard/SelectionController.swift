@@ -80,8 +80,9 @@ class SelectionController: UIViewController {
     
     @objc func endTour() {
         print("@objc func endTour()'")
-        self.sessionService.endSession(sessionId : sessionId)
+        self.sessionService.endSession()
         self.mainNavigationController.popToRootViewController(animated: true)
+
     }
     
     @IBAction func oneEvent(_ sender: Any) {

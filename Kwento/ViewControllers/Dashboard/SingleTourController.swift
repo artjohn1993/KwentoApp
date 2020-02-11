@@ -100,7 +100,7 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        sessionService.endSession(sessionId : sessionId)
+        sessionService.endSession()
     }
     
     func getSavedMp3(named: String) -> String? {
@@ -166,6 +166,6 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     @objc func endTour() {
         audioPlayer.stop()
         mainNavigationController.popToRootViewController(animated: true)
-        sessionService.endSession(sessionId : sessionId)
+        sessionService.endSession()
     }
 }
