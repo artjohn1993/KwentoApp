@@ -42,8 +42,6 @@
 		476BFEF52383B6E200CE064C /* LauncherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF42383B6E200CE064C /* LauncherController.swift */; };
 		476BFEF82383BCDD00CE064C /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF72383BCDC00CE064C /* CoreDataServices.swift */; };
 		47D3AB1B23A71F86002052C9 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3AB1A23A71F86002052C9 /* RatingController.swift */; };
-		47EAB30923D96C1B00A6821D /* ActiveSession+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAB30823D96C1B00A6821D /* ActiveSession+CoreDataClass.swift */; };
-		47EAB30A23D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAB30723D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift */; };
 		47EBAF4723BD8CB2007AA9A3 /* CancelDownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */; };
 		47FAFD1723DEA82200D2A12E /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAFD1623DEA82200D2A12E /* ChangePasswordController.swift */; };
 		47FAFD1923E178F100D2A12E /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAFD1823E178F100D2A12E /* ForgetPasswordController.swift */; };
@@ -174,8 +172,6 @@
 		476BFEF42383B6E200CE064C /* LauncherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherController.swift; sourceTree = "<group>"; };
 		476BFEF72383BCDC00CE064C /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
 		47D3AB1A23A71F86002052C9 /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
-		47EAB30723D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveSession+CoreDataProperties.swift"; path = "/Users/artjohn/Desktop/kwento4/Kwento/Properties/ActiveSession+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		47EAB30823D96C1B00A6821D /* ActiveSession+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveSession+CoreDataClass.swift"; path = "/Users/artjohn/Desktop/kwento4/Kwento/Properties/ActiveSession+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDownloadController.swift; sourceTree = "<group>"; };
 		47FAFD1623DEA82200D2A12E /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		47FAFD1823E178F100D2A12E /* ForgetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
@@ -324,8 +320,6 @@
 			children = (
 				4750313F23F24ACF00F4C93E /* UserInfo+CoreDataProperties.swift */,
 				4750314323F24C5700F4C93E /* UserInfo+CoreDataClass.swift */,
-				47EAB30823D96C1B00A6821D /* ActiveSession+CoreDataClass.swift */,
-				47EAB30723D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift */,
 				470BACDC2394E68200CEA1FB /* SessionData+CoreDataClass.swift */,
 				470BACDD2394E68200CEA1FB /* SessionData+CoreDataProperties.swift */,
 				470BACD0238FAFB800CEA1FB /* AttractionByCity+CoreDataClass.swift */,
@@ -900,9 +894,7 @@
 				4745761B23A235B7003C1CC4 /* SuggestionServices.swift in Sources */,
 				474DDE3023A780E500072138 /* VisitServices.swift in Sources */,
 				4728123E239DD2EC006EA09C /* ConnectionService.swift in Sources */,
-				47EAB30923D96C1B00A6821D /* ActiveSession+CoreDataClass.swift in Sources */,
 				470BACCA238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift in Sources */,
-				47EAB30A23D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift in Sources */,
 				470D319723BF1667003862A3 /* EndTourController.swift in Sources */,
 				E3B9122C234343B500640793 /* ProfileController.swift in Sources */,
 				E36ACE3E230FD7F500C870BC /* SignUpController.swift in Sources */,
