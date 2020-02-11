@@ -27,6 +27,8 @@ target 'Kwento' do
   pod 'Alamofire'
   pod 'MaterialComponents/Snackbar'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'MaterialComponents/ActivityIndicator'
+
   target 'KwentoTests' do
     inherit! :search_paths
     # Pods for testing

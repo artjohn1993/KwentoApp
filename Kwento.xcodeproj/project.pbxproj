@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19729250AD904659829F61BE /* Pods_KwentoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D89642EFD0CA5F288DDE396D /* Pods_KwentoUITests.framework */; };
 		470BACC6238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACC4238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift */; };
 		470BACC7238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACC5238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataProperties.swift */; };
 		470BACCA238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470BACC8238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift */; };
@@ -26,11 +27,12 @@
 		4728123E239DD2EC006EA09C /* ConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4728123D239DD2EC006EA09C /* ConnectionService.swift */; };
 		4745761B23A235B7003C1CC4 /* SuggestionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4745761A23A235B7003C1CC4 /* SuggestionServices.swift */; };
 		474BD44F237E766200164F4D /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474BD44E237E766200164F4D /* PersistenceService.swift */; };
-		474BD457237E7ADC00164F4D /* UserInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */; };
-		474BD458237E7ADC00164F4D /* UserInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474BD455237E7ADB00164F4D /* UserInfo+CoreDataProperties.swift */; };
 		474DDE3023A780E500072138 /* VisitServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DDE2F23A780E500072138 /* VisitServices.swift */; };
 		474DDE3423A7B09A00072138 /* MuseumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DDE3323A7B09A00072138 /* MuseumController.swift */; };
 		474DDE3623A7CBBD00072138 /* MuseumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DDE3523A7CBBD00072138 /* MuseumViewCell.swift */; };
+		474E269F23E8174E0039EDD7 /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474E269E23E8174E0039EDD7 /* SelectionController.swift */; };
+		4750314023F24ACF00F4C93E /* UserInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4750313F23F24ACF00F4C93E /* UserInfo+CoreDataProperties.swift */; };
+		4750314423F24C5700F4C93E /* UserInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4750314323F24C5700F4C93E /* UserInfo+CoreDataClass.swift */; };
 		4769170623866AC000ED93FD /* AttractionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769170523866AC000ED93FD /* AttractionViewCell.swift */; };
 		476917092386980400ED93FD /* AttractionServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476917082386980400ED93FD /* AttractionServices.swift */; };
 		4769170B2387747800ED93FD /* PublicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769170A2387747800ED93FD /* PublicData.swift */; };
@@ -40,7 +42,14 @@
 		476BFEF52383B6E200CE064C /* LauncherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF42383B6E200CE064C /* LauncherController.swift */; };
 		476BFEF82383BCDD00CE064C /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BFEF72383BCDC00CE064C /* CoreDataServices.swift */; };
 		47D3AB1B23A71F86002052C9 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3AB1A23A71F86002052C9 /* RatingController.swift */; };
+		47EAB30923D96C1B00A6821D /* ActiveSession+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAB30823D96C1B00A6821D /* ActiveSession+CoreDataClass.swift */; };
+		47EAB30A23D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAB30723D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift */; };
 		47EBAF4723BD8CB2007AA9A3 /* CancelDownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */; };
+		47FAFD1723DEA82200D2A12E /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAFD1623DEA82200D2A12E /* ChangePasswordController.swift */; };
+		47FAFD1923E178F100D2A12E /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAFD1823E178F100D2A12E /* ForgetPasswordController.swift */; };
+		47FAFD1B23E2AE2A00D2A12E /* CheckEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FAFD1A23E2AE2A00D2A12E /* CheckEmailController.swift */; };
+		622C8DB5747C5D0D5A9B84D0 /* Pods_Kwento.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3517D1A3EB98C5B55F826B3D /* Pods_Kwento.framework */; };
+		9F5BBD123C18D125A2F9815D /* Pods_KwentoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A742E8ADB8BC355D0F04E1F6 /* Pods_KwentoTests.framework */; };
 		E308D1D2231E197B00570350 /* PrivacyPolicyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E308D1D1231E197B00570350 /* PrivacyPolicyController.swift */; };
 		E30D722122F7BAD30099B6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30D722022F7BAD30099B6A4 /* AppDelegate.swift */; };
 		E30D722322F7BAD30099B6A4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30D722222F7BAD30099B6A4 /* LoginController.swift */; };
@@ -128,6 +137,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09FB09F4E56FE6CE5B460746 /* Pods-KwentoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KwentoUITests.debug.xcconfig"; path = "Target Support Files/Pods-KwentoUITests/Pods-KwentoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		1C867534FEC96FA9E44B92DD /* Pods-KwentoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KwentoUITests.release.xcconfig"; path = "Target Support Files/Pods-KwentoUITests/Pods-KwentoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3517D1A3EB98C5B55F826B3D /* Pods_Kwento.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kwento.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		470BACC4238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownloadedAttractionDetails+CoreDataClass.swift"; sourceTree = "<group>"; };
 		470BACC5238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownloadedAttractionDetails+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		470BACC8238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownloadedFiles+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -147,11 +159,12 @@
 		4728123D239DD2EC006EA09C /* ConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionService.swift; sourceTree = "<group>"; };
 		4745761A23A235B7003C1CC4 /* SuggestionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionServices.swift; sourceTree = "<group>"; };
 		474BD44E237E766200164F4D /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
-		474BD455237E7ADB00164F4D /* UserInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserInfo+CoreDataProperties.swift"; path = "/Users/artjohn/Downloads/Kwento/Kwento/Properties/UserInfo+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UserInfo+CoreDataClass.swift"; path = "/Users/artjohn/Downloads/Kwento/Kwento/Properties/UserInfo+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		474DDE2F23A780E500072138 /* VisitServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitServices.swift; sourceTree = "<group>"; };
 		474DDE3323A7B09A00072138 /* MuseumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumController.swift; sourceTree = "<group>"; };
 		474DDE3523A7CBBD00072138 /* MuseumViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumViewCell.swift; sourceTree = "<group>"; };
+		474E269E23E8174E0039EDD7 /* SelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionController.swift; sourceTree = "<group>"; };
+		4750313F23F24ACF00F4C93E /* UserInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4750314323F24C5700F4C93E /* UserInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4769170523866AC000ED93FD /* AttractionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionViewCell.swift; sourceTree = "<group>"; };
 		476917082386980400ED93FD /* AttractionServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractionServices.swift; sourceTree = "<group>"; };
 		4769170A2387747800ED93FD /* PublicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicData.swift; sourceTree = "<group>"; };
@@ -161,7 +174,18 @@
 		476BFEF42383B6E200CE064C /* LauncherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherController.swift; sourceTree = "<group>"; };
 		476BFEF72383BCDC00CE064C /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
 		47D3AB1A23A71F86002052C9 /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
+		47EAB30723D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveSession+CoreDataProperties.swift"; path = "/Users/artjohn/Desktop/kwento4/Kwento/Properties/ActiveSession+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		47EAB30823D96C1B00A6821D /* ActiveSession+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ActiveSession+CoreDataClass.swift"; path = "/Users/artjohn/Desktop/kwento4/Kwento/Properties/ActiveSession+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelDownloadController.swift; sourceTree = "<group>"; };
+		47FAFD1623DEA82200D2A12E /* ChangePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
+		47FAFD1823E178F100D2A12E /* ForgetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
+		47FAFD1A23E2AE2A00D2A12E /* CheckEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailController.swift; sourceTree = "<group>"; };
+		782EA4BAF42D4CCB590C1D2D /* Pods-KwentoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KwentoTests.debug.xcconfig"; path = "Target Support Files/Pods-KwentoTests/Pods-KwentoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9ECF332C452FAED6561EACDA /* Pods-Kwento.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kwento.release.xcconfig"; path = "Target Support Files/Pods-Kwento/Pods-Kwento.release.xcconfig"; sourceTree = "<group>"; };
+		A742E8ADB8BC355D0F04E1F6 /* Pods_KwentoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KwentoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0C91CB42AB128D9272B68FC /* Pods-KwentoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KwentoTests.release.xcconfig"; path = "Target Support Files/Pods-KwentoTests/Pods-KwentoTests.release.xcconfig"; sourceTree = "<group>"; };
+		D89642EFD0CA5F288DDE396D /* Pods_KwentoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KwentoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC41F958CAAAED78178E2F83 /* Pods-Kwento.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kwento.debug.xcconfig"; path = "Target Support Files/Pods-Kwento/Pods-Kwento.debug.xcconfig"; sourceTree = "<group>"; };
 		E308D1D1231E197B00570350 /* PrivacyPolicyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyController.swift; sourceTree = "<group>"; };
 		E30D721D22F7BAD30099B6A4 /* Kwento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kwento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E30D722022F7BAD30099B6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3E493BC2321EB0400ED63EA /* WebKit.framework in Frameworks */,
+				622C8DB5747C5D0D5A9B84D0 /* Pods_Kwento.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F5BBD123C18D125A2F9815D /* Pods_KwentoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19729250AD904659829F61BE /* Pods_KwentoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +294,9 @@
 			isa = PBXGroup;
 			children = (
 				E3E493BB2321EB0300ED63EA /* WebKit.framework */,
+				3517D1A3EB98C5B55F826B3D /* Pods_Kwento.framework */,
+				A742E8ADB8BC355D0F04E1F6 /* Pods_KwentoTests.framework */,
+				D89642EFD0CA5F288DDE396D /* Pods_KwentoUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -292,6 +322,10 @@
 		474BD450237E7AA600164F4D /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				4750313F23F24ACF00F4C93E /* UserInfo+CoreDataProperties.swift */,
+				4750314323F24C5700F4C93E /* UserInfo+CoreDataClass.swift */,
+				47EAB30823D96C1B00A6821D /* ActiveSession+CoreDataClass.swift */,
+				47EAB30723D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift */,
 				470BACDC2394E68200CEA1FB /* SessionData+CoreDataClass.swift */,
 				470BACDD2394E68200CEA1FB /* SessionData+CoreDataProperties.swift */,
 				470BACD0238FAFB800CEA1FB /* AttractionByCity+CoreDataClass.swift */,
@@ -303,9 +337,7 @@
 				470BACC8238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift */,
 				470BACCD238FAF6B00CEA1FB /* AttractionByType+CoreDataProperties.swift */,
 				470BACC9238D6E4E00CEA1FB /* DownloadedFiles+CoreDataProperties.swift */,
-				474BD455237E7ADB00164F4D /* UserInfo+CoreDataProperties.swift */,
 				470BACC4238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift */,
-				474BD456237E7ADB00164F4D /* UserInfo+CoreDataClass.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -313,6 +345,12 @@
 		CAFD485839C6B1FC022A4EF5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				DC41F958CAAAED78178E2F83 /* Pods-Kwento.debug.xcconfig */,
+				9ECF332C452FAED6561EACDA /* Pods-Kwento.release.xcconfig */,
+				782EA4BAF42D4CCB590C1D2D /* Pods-KwentoTests.debug.xcconfig */,
+				D0C91CB42AB128D9272B68FC /* Pods-KwentoTests.release.xcconfig */,
+				09FB09F4E56FE6CE5B460746 /* Pods-KwentoUITests.debug.xcconfig */,
+				1C867534FEC96FA9E44B92DD /* Pods-KwentoUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -389,6 +427,8 @@
 				E3B553A0231F86E600E2AAF7 /* VerificationController.swift */,
 				E3E493BD23220A3D00ED63EA /* TermsController.swift */,
 				476BFEF42383B6E200CE064C /* LauncherController.swift */,
+				47FAFD1823E178F100D2A12E /* ForgetPasswordController.swift */,
+				47FAFD1A23E2AE2A00D2A12E /* CheckEmailController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -425,6 +465,7 @@
 				47EBAF4623BD8CB2007AA9A3 /* CancelDownloadController.swift */,
 				4769EC3823BDD94600A5E635 /* CancelTourController.swift */,
 				470D319623BF1667003862A3 /* EndTourController.swift */,
+				474E269E23E8174E0039EDD7 /* SelectionController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -476,6 +517,7 @@
 			children = (
 				E3B9122B234343B500640793 /* ProfileController.swift */,
 				E37528F6234C7F0D0081BB28 /* LogoutDialogController.swift */,
+				47FAFD1623DEA82200D2A12E /* ChangePasswordController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -583,9 +625,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E30D724822F7BAD50099B6A4 /* Build configuration list for PBXNativeTarget "Kwento" */;
 			buildPhases = (
+				4AAAB38D6224B57020F6DA30 /* [CP] Check Pods Manifest.lock */,
 				E30D721922F7BAD30099B6A4 /* Sources */,
 				E30D721A22F7BAD30099B6A4 /* Frameworks */,
 				E30D721B22F7BAD30099B6A4 /* Resources */,
+				85A07FA19D9FFFDA021214BD /* [CP] Embed Pods Frameworks */,
+				E6352D1D5422F842B879CB03 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -600,6 +645,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E30D724B22F7BAD50099B6A4 /* Build configuration list for PBXNativeTarget "KwentoTests" */;
 			buildPhases = (
+				44EFFC668219DD9E767C683C /* [CP] Check Pods Manifest.lock */,
 				E30D723022F7BAD50099B6A4 /* Sources */,
 				E30D723122F7BAD50099B6A4 /* Frameworks */,
 				E30D723222F7BAD50099B6A4 /* Resources */,
@@ -618,6 +664,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E30D724E22F7BAD50099B6A4 /* Build configuration list for PBXNativeTarget "KwentoUITests" */;
 			buildPhases = (
+				F2E9C8CFA4A1B9822068E44B /* [CP] Check Pods Manifest.lock */,
 				E30D723B22F7BAD50099B6A4 /* Sources */,
 				E30D723C22F7BAD50099B6A4 /* Frameworks */,
 				E30D723D22F7BAD50099B6A4 /* Resources */,
@@ -719,13 +766,116 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		44EFFC668219DD9E767C683C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KwentoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AAAB38D6224B57020F6DA30 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kwento-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85A07FA19D9FFFDA021214BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6352D1D5422F842B879CB03 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kwento/Pods-Kwento-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2E9C8CFA4A1B9822068E44B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KwentoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E30D721922F7BAD30099B6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				474BD458237E7ADC00164F4D /* UserInfo+CoreDataProperties.swift in Sources */,
 				E3478CFE232B652000CBD0BC /* MainNavigationController.swift in Sources */,
+				47FAFD1B23E2AE2A00D2A12E /* CheckEmailController.swift in Sources */,
 				47D3AB1B23A71F86002052C9 /* RatingController.swift in Sources */,
 				474DDE3623A7CBBD00072138 /* MuseumViewCell.swift in Sources */,
 				E35C8D42232F79D3002BEC66 /* QRReaderController.swift in Sources */,
@@ -733,12 +883,12 @@
 				470BACC6238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataClass.swift in Sources */,
 				470BACD3238FAFB800CEA1FB /* AttractionByCity+CoreDataProperties.swift in Sources */,
 				E36ACE3C230FC3EF00C870BC /* UIView+Extensions.swift in Sources */,
-				474BD457237E7ADC00164F4D /* UserInfo+CoreDataClass.swift in Sources */,
 				E30D722322F7BAD30099B6A4 /* LoginController.swift in Sources */,
 				E3A97FA42327A502000D9D8D /* HomeController.swift in Sources */,
 				470BACCE238FAF6B00CEA1FB /* AttractionByType+CoreDataClass.swift in Sources */,
 				470BACCB238D6E4E00CEA1FB /* DownloadedFiles+CoreDataProperties.swift in Sources */,
 				E3D1D243236183A3003B11D1 /* VIWaveformView.swift in Sources */,
+				47FAFD1923E178F100D2A12E /* ForgetPasswordController.swift in Sources */,
 				E3544894235D84D00047B0EA /* CategoriesController.swift in Sources */,
 				470BACD92393BEA800CEA1FB /* AllAttraction+CoreDataProperties.swift in Sources */,
 				470BACC7238D276800CEA1FB /* DownloadedAttractionDetails+CoreDataProperties.swift in Sources */,
@@ -750,15 +900,19 @@
 				4745761B23A235B7003C1CC4 /* SuggestionServices.swift in Sources */,
 				474DDE3023A780E500072138 /* VisitServices.swift in Sources */,
 				4728123E239DD2EC006EA09C /* ConnectionService.swift in Sources */,
+				47EAB30923D96C1B00A6821D /* ActiveSession+CoreDataClass.swift in Sources */,
 				470BACCA238D6E4E00CEA1FB /* DownloadedFiles+CoreDataClass.swift in Sources */,
+				47EAB30A23D96C1B00A6821D /* ActiveSession+CoreDataProperties.swift in Sources */,
 				470D319723BF1667003862A3 /* EndTourController.swift in Sources */,
 				E3B9122C234343B500640793 /* ProfileController.swift in Sources */,
 				E36ACE3E230FD7F500C870BC /* SignUpController.swift in Sources */,
+				47FAFD1723DEA82200D2A12E /* ChangePasswordController.swift in Sources */,
 				474BD44F237E766200164F4D /* PersistenceService.swift in Sources */,
 				E31C2E1A23617FFE00318109 /* DownloadStoriesController.swift in Sources */,
 				E36ACE3A230FA34800C870BC /* MDCButton+Extensions.swift in Sources */,
 				E3C9F5A02341AD3300A2FA17 /* PulseAnimation.swift in Sources */,
 				470BACDF2394E68200CEA1FB /* SessionData+CoreDataProperties.swift in Sources */,
+				4750314423F24C5700F4C93E /* UserInfo+CoreDataClass.swift in Sources */,
 				E30D722922F7BAD30099B6A4 /* Kwento.xcdatamodeld in Sources */,
 				E360CBF623166A2C00E411C8 /* TestController.swift in Sources */,
 				E37528F7234C7F0D0081BB28 /* LogoutDialogController.swift in Sources */,
@@ -769,6 +923,7 @@
 				E308D1D2231E197B00570350 /* PrivacyPolicyController.swift in Sources */,
 				476917092386980400ED93FD /* AttractionServices.swift in Sources */,
 				E3A97FA22327A2DC000D9D8D /* Storyboardable.swift in Sources */,
+				474E269F23E8174E0039EDD7 /* SelectionController.swift in Sources */,
 				E3478D02232B695800CBD0BC /* DashboardController.swift in Sources */,
 				476BFEF3238396E800CE064C /* LoginServices.swift in Sources */,
 				470BACCF238FAF6B00CEA1FB /* AttractionByType+CoreDataProperties.swift in Sources */,
@@ -780,6 +935,7 @@
 				E3881466233896BC0014CE63 /* KGRadioButton.swift in Sources */,
 				E388146F2338BEB40014CE63 /* HowItWorksPageController.swift in Sources */,
 				E3B553A1231F86E600E2AAF7 /* VerificationController.swift in Sources */,
+				4750314023F24ACF00F4C93E /* UserInfo+CoreDataProperties.swift in Sources */,
 				E3C212D4234F205A003AEA6A /* VisitCell.swift in Sources */,
 				470BACDB2394DEB700CEA1FB /* SessionServices.swift in Sources */,
 				E388146B2338A9FB0014CE63 /* HowItWorksController.swift in Sources */,
@@ -974,6 +1130,7 @@
 		};
 		E30D724922F7BAD50099B6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC41F958CAAAED78178E2F83 /* Pods-Kwento.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -995,6 +1152,7 @@
 		};
 		E30D724A22F7BAD50099B6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9ECF332C452FAED6561EACDA /* Pods-Kwento.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1016,6 +1174,7 @@
 		};
 		E30D724C22F7BAD50099B6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 782EA4BAF42D4CCB590C1D2D /* Pods-KwentoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1036,6 +1195,7 @@
 		};
 		E30D724D22F7BAD50099B6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0C91CB42AB128D9272B68FC /* Pods-KwentoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1056,6 +1216,7 @@
 		};
 		E30D724F22F7BAD50099B6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09FB09F4E56FE6CE5B460746 /* Pods-KwentoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1075,6 +1236,7 @@
 		};
 		E30D725022F7BAD50099B6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C867534FEC96FA9E44B92DD /* Pods-KwentoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
