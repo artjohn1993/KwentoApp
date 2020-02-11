@@ -134,13 +134,13 @@ class HomeController: UIViewController {
             print(result?["id"] as? Int)
             print("duration:\(self.duration)")
             
-            self.dataService.getActiveSession(completion: { result in
-
-                print(result!.count)
-            })
+//            self.dataService.getActiveSession(completion: { result in
+//
+//                print(result!.count)
+//            })
             
             if result != nil {
-                self.dataService.getActiveSession(completion: { result in
+//                self.dataService.getActiveSession(completion: { result in
                     if result!.count == 0 {
                         self.sessionService.endSession(sessionId: self.sessionId)
                         self.performSegue(withIdentifier: "homeToQr", sender: nil)
@@ -153,7 +153,7 @@ class HomeController: UIViewController {
                             self.performSegue(withIdentifier: "homeToSingle", sender: nil)
                         }
                     }
-                })
+//                })
                 
             }
             else {

@@ -68,6 +68,8 @@ class StartTourController: UIViewController {
     }
     
     func getHoursOrMin() {
+        print("getHoursOrMin")
+        print(durationVal)
         var arrayTime = durationVal.components(separatedBy: ":")
         print(arrayTime[0])
         print(arrayTime[1])
@@ -87,7 +89,7 @@ class StartTourController: UIViewController {
     
     @IBAction func start(_ sender: Any) {
         if self.sessionId == "" {
-           dataService.saveActiveSession(id: self.id)
+           //dataService.saveActiveSession(id: self.id)
            sessionService.startSession(id: self.id, completion: {})
         }
         else {

@@ -47,7 +47,7 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
         })
 
         if sessionId == "" {
-            dataService.saveActiveSession(id: id)
+            //dataService.saveActiveSession(id: id)
             sessionService.startSession(id: id, completion: {
 
             })
