@@ -11,12 +11,14 @@ import UIKit
 class SelectionController: UIViewController {
     var mainNavigationController: MainNavigationController!
     var sessionService = SessionServices()
+    var service = AttractionServices()
     @IBOutlet var logo: UIImageView!
     @IBOutlet var numberField: UITextField!
     @IBOutlet var container: UIView!
     var id = ""
     var sessionId = ""
     var durationVal = ""
+    var audioId : [String] = []
     @IBOutlet var duration: UILabel!
     
     
@@ -53,6 +55,28 @@ class SelectionController: UIViewController {
         mainNavigationController = navigationController as? MainNavigationController
         
         getHoursOrMin()
+        getAttractionById()
+    }
+    
+    func getAttractionById() {
+        self.service.getAttractionById(id: self.id, completion: { result in
+            var subAttraction = result?["sub_attractions"] as? [[String:Any]]
+
+            subAttraction?.forEach({ item in
+                var currentItem = item as? [String:Any]
+                var filename = currentItem?["audio_filename"] as? String
+                self.audioId.append("\(filename!).mp3")
+            })
+        })
+    }
+    
+    func checkIndex(index: Int) -> Bool {
+        if audioId.get(at: index) != nil {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     func getHoursOrMin() {
@@ -123,8 +147,14 @@ class SelectionController: UIViewController {
     }
     
     @IBAction func playEvent(_ sender: Any) {
+        
         if numberField.text != "" {
-            self.performSegue(withIdentifier: "selectionToPlayer", sender: nil)
+            if checkIndex(index: Int(numberField.text!)!) {
+                self.performSegue(withIdentifier: "selectionToPlayer", sender: nil)
+            }
+            else {
+                PublicData.showSnackBar(message: "Invalid index")
+            }
         }
     }
     
@@ -136,5 +166,11 @@ class SelectionController: UIViewController {
     
     @IBAction func closeEvent(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
+    }
+}
+
+extension Collection {
+    func get(at index: Index) -> Iterator.Element? {
+        return self.indices.contains(index) ? self[index] : nil
     }
 }

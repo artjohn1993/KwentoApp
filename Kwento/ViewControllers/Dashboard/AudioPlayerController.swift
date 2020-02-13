@@ -29,6 +29,7 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     var audioId : [String] = []
     var musicIndex = 0
     var sessionService = SessionServices()
+    var isOutOfIndex = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +44,14 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
                 print("filename:\(filename)")
                 self.audioId.append("\(filename!).mp3")
             })
-            print("play:\(self.audioId[self.musicIndex])")
-            self.playMusic(audioFilename: self.audioId[self.musicIndex])
             
+            self.playMusic(audioFilename: self.audioId[self.musicIndex])
             self.setInit()
         })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.initialView()
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -73,7 +77,10 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
     }
+    
     func playMusic(audioFilename : String) {
+        print("playMusic")
+        print(audioFilename)
             var stringURL = getSavedMp3(named: String(audioFilename))
             print(stringURL)
             let url = URL(string: stringURL!)
@@ -94,11 +101,14 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
         return nil
     }
     
-    func initViews() {
-        audioPlayer.delegate = self as! AVAudioPlayerDelegate
+    func initialView() {
         playButton.fillIcon()
         skipPreviousButton.fillIcon()
         skipNextButton.fillIcon()
+    }
+    
+    func initViews() {
+        audioPlayer.delegate = self as! AVAudioPlayerDelegate
         
         audioSlider.maximumValue = Float(audioPlayer.duration)
         
@@ -133,18 +143,21 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     }
 
     @IBAction func playPause(_ sender: Any) {
-        if audioPlayer.isPlaying {
-            playButton.setImage(#imageLiteral(resourceName: "round_play_circle_outline_white_48pt"), for: .normal)
-            audioPlayer.pause()
-            indicator.stop()
-            currentTime = audioPlayer.currentTime
+        if !isOutOfIndex {
+            if audioPlayer.isPlaying {
+                playButton.setImage(#imageLiteral(resourceName: "round_play_circle_outline_white_48pt"), for: .normal)
+                audioPlayer.pause()
+                indicator.stop()
+                currentTime = audioPlayer.currentTime
+            }
+            else {
+                playButton.setImage(#imageLiteral(resourceName: "round_pause_circle_outline_white_48pt"), for: .normal)
+                audioPlayer.play()
+                indicator.start()
+            }
         }
         else {
-            playButton.setImage(#imageLiteral(resourceName: "round_pause_circle_outline_white_48pt"), for: .normal)
-//            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-            
-            indicator.start()
+            PublicData.showSnackBar(message: "Invalid  index")
         }
     }
     
@@ -188,3 +201,5 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
 //        }
     }
 }
+
+
