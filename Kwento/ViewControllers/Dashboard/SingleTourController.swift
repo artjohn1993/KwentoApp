@@ -20,8 +20,8 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var audioIndicator: AudioIndicatorBarsView!
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var prevButton: UIButton!
+   // @IBOutlet weak var nextButton: UIButton!
+   // @IBOutlet weak var prevButton: UIButton!
     
     let service = AttractionServices()
     let sessionService = SessionServices()
@@ -112,8 +112,8 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     
     func initViews() {
         playButton.fillIcon()
-        prevButton.fillIcon()
-        nextButton.fillIcon()
+//        prevButton.fillIcon()
+//        nextButton.fillIcon()
         audioPlayer.delegate = self as! AVAudioPlayerDelegate
         audioSlider.maximumValue = Float(audioPlayer.duration)
         

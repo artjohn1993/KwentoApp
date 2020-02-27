@@ -138,6 +138,10 @@ class LoginServices {
                                 let data = response.result.value as? [String:Any]
                                 let message = data?["Message"] as? String
                                 print(message)
+                                if message != nil {
+                                    PublicData.showSnackBar(message: message!)
+                                }
+                                
                                 completion(false,message ?? "")
                             }
                           })

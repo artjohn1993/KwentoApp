@@ -78,17 +78,6 @@ E-mail : wehearyou@kwentoapp.com</string>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqe-GS-0Vn" customClass="MDCFlatButton">
-                                <rect key="frame" x="36" y="525" width="303" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="SnU-JG-HGp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
-                                <state key="normal" title="SUBMIT"/>
-                                <connections>
-                                    <action selector="submit:" destination="nuE-Yd-gnV" eventType="touchUpInside" id="R9T-PM-MaN"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baseline_close_black_36pt" translatesAutoresizingMaskIntoConstraints="NO" id="kcs-d9-IQU">
                                 <rect key="frame" x="307" y="76" width="32" height="32"/>
                                 <color key="tintColor" red="0.0017094854265451431" green="0.7023501992225647" blue="0.69509094953536987" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -98,6 +87,17 @@ E-mail : wehearyou@kwentoapp.com</string>
                                     <constraint firstAttribute="height" constant="32" id="UuU-Z0-eEU"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqe-GS-0Vn" customClass="MDCFlatButton">
+                                <rect key="frame" x="36" y="524" width="303" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SnU-JG-HGp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
+                                <state key="normal" title="SUBMIT"/>
+                                <connections>
+                                    <action selector="submit:" destination="nuE-Yd-gnV" eventType="touchUpInside" id="R9T-PM-MaN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="1" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

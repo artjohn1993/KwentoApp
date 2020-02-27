@@ -17,6 +17,9 @@ class MuseumController : UIViewController {
     var data : [[String:Any]] = []
     let attractionService = AttractionServices()
     var mainNavigationController: MainNavigationController!
+    var titleSelected : String = ""
+    var imageSelected : String = ""
+    var descriptionSelected : String = ""
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +27,23 @@ class MuseumController : UIViewController {
         mainNavigationController = navigationController as? MainNavigationController
         table.backgroundColor = UIColor.clear
         attractionService.getAttractions(type: type, id: id, completion: { result in
-            self.data = (result?["rows"] as? [[String:Any]])!
-            self.table.reloadData()
+            print("getAttractions result")
+            if result != nil {
+                self.data = (result?["rows"] as? [[String:Any]])!
+                self.table.reloadData()
+            }
+            
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoView" {
+            if let destinationVC = segue.destination as? DetailsViewController {
+                destinationVC.titleVal = self.titleSelected
+                destinationVC.descriptionVal = self.descriptionSelected
+                destinationVC.imageVal = self.imageSelected
+            }
+        }
     }
     
     @IBAction func tapNav(_ sender: Any) {
@@ -84,6 +101,14 @@ extension MuseumController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.titleSelected = data[indexPath.row]["name"] as? String ?? ""
+        self.descriptionSelected = data[indexPath.row]["description"] as? String ?? ""
+        self.imageSelected = data[indexPath.row]["image_filename"] as? String ?? ""
+        
+        self.performSegue(withIdentifier: "gotoView", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

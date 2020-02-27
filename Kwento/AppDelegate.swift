@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        Thread.sleep(forTimeInterval: 1.5)
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         setupAppearance()
@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             serviceData.getUserInfo { (result) in
                 userInfo = result ?? []
                 if userInfo.count > 0 {
-                    print("App delegate if")
                     let storyboard = UIStoryboard.init(name: "Dashboard", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "DashBoardId") as! DashboardController
                     self.window?.rootViewController = viewController

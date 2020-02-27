@@ -161,7 +161,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="QZB-VC-dXh">
-                                <rect key="frame" x="36" y="535.66666666666663" width="303" height="102"/>
+                                <rect key="frame" x="36" y="640" width="303" height="102"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIt-5d-ZRf" customClass="MDCFlatButton">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="45"/>
@@ -194,39 +194,46 @@
                                 <color key="textColor" red="0.04995859414" green="0.61007624859999998" blue="0.59126573800000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="8zT-kK-b7d">
+                                <rect key="frame" x="177" y="123" width="20" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.94539397954940796" green="0.99892133474349976" blue="0.99698323011398315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JkI-Hq-fkx" firstAttribute="top" secondItem="0nG-wq-VRD" secondAttribute="top" constant="32" id="3Wi-ev-gAL"/>
                             <constraint firstItem="c0r-Ct-P1y" firstAttribute="top" secondItem="dxT-yh-sjJ" secondAttribute="bottom" constant="8" id="3xG-Fj-TC1"/>
-                            <constraint firstItem="QZB-VC-dXh" firstAttribute="leading" secondItem="0nG-wq-VRD" secondAttribute="leading" constant="36" id="4in-PW-5b8"/>
                             <constraint firstItem="YxI-lR-r4U" firstAttribute="top" secondItem="jgq-hT-6yP" secondAttribute="bottom" constant="62" id="8ra-J2-JzI"/>
                             <constraint firstItem="dxT-yh-sjJ" firstAttribute="top" secondItem="YxI-lR-r4U" secondAttribute="bottom" constant="12" id="BMx-kk-9Sv"/>
                             <constraint firstItem="jgq-hT-6yP" firstAttribute="centerY" secondItem="JkI-Hq-fkx" secondAttribute="centerY" id="Ca9-Sx-uSD"/>
-                            <constraint firstItem="QZB-VC-dXh" firstAttribute="top" secondItem="7t6-UZ-3Jn" secondAttribute="bottom" constant="120.67" id="I83-xP-lTv"/>
+                            <constraint firstItem="8zT-kK-b7d" firstAttribute="top" secondItem="jgq-hT-6yP" secondAttribute="bottom" constant="17.329999999999998" id="JAJ-eB-6vQ"/>
                             <constraint firstItem="0nG-wq-VRD" firstAttribute="trailing" secondItem="7t6-UZ-3Jn" secondAttribute="trailing" constant="231" id="KYo-1N-Q2D"/>
+                            <constraint firstItem="0nG-wq-VRD" firstAttribute="trailing" secondItem="8zT-kK-b7d" secondAttribute="trailing" constant="178" id="MQR-mB-2Tb"/>
                             <constraint firstItem="dxT-yh-sjJ" firstAttribute="centerX" secondItem="PwD-at-8sp" secondAttribute="centerX" id="MVg-WW-bzC"/>
                             <constraint firstItem="7t6-UZ-3Jn" firstAttribute="top" secondItem="Chl-uy-rbW" secondAttribute="bottom" constant="23.329999999999998" id="UmM-ep-DN6"/>
                             <constraint firstItem="syZ-H1-tO0" firstAttribute="top" secondItem="dxT-yh-sjJ" secondAttribute="bottom" constant="50" id="VRE-gU-Poy"/>
+                            <constraint firstItem="QZB-VC-dXh" firstAttribute="leading" secondItem="0nG-wq-VRD" secondAttribute="leading" constant="36" id="WUK-mr-hBM"/>
                             <constraint firstItem="Chl-uy-rbW" firstAttribute="leading" secondItem="0nG-wq-VRD" secondAttribute="leading" constant="36" id="X13-IP-MVg"/>
                             <constraint firstItem="jgq-hT-6yP" firstAttribute="centerX" secondItem="PwD-at-8sp" secondAttribute="centerX" id="a1k-MT-B5T"/>
+                            <constraint firstItem="8zT-kK-b7d" firstAttribute="leading" secondItem="0nG-wq-VRD" secondAttribute="leading" constant="177" id="bIp-1M-wqy"/>
                             <constraint firstItem="Chl-uy-rbW" firstAttribute="top" secondItem="syZ-H1-tO0" secondAttribute="bottom" constant="32" id="cRX-UQ-var"/>
                             <constraint firstItem="I3g-ZJ-dyg" firstAttribute="centerY" secondItem="JkI-Hq-fkx" secondAttribute="centerY" id="f8N-XV-8bY"/>
                             <constraint firstItem="0nG-wq-VRD" firstAttribute="trailing" secondItem="syZ-H1-tO0" secondAttribute="trailing" constant="36" id="goG-nF-S5T"/>
                             <constraint firstItem="c0r-Ct-P1y" firstAttribute="centerX" secondItem="PwD-at-8sp" secondAttribute="centerX" id="jMl-P4-lIG"/>
                             <constraint firstAttribute="trailing" secondItem="I3g-ZJ-dyg" secondAttribute="trailing" constant="36" id="kl5-Sq-vnn"/>
-                            <constraint firstItem="0nG-wq-VRD" firstAttribute="trailing" secondItem="QZB-VC-dXh" secondAttribute="trailing" constant="36" id="l92-ia-f52"/>
                             <constraint firstItem="syZ-H1-tO0" firstAttribute="leading" secondItem="0nG-wq-VRD" secondAttribute="leading" constant="36" id="nSd-Fq-4JK"/>
                             <constraint firstItem="YxI-lR-r4U" firstAttribute="centerX" secondItem="PwD-at-8sp" secondAttribute="centerX" id="nfY-SE-c3Z"/>
                             <constraint firstItem="0nG-wq-VRD" firstAttribute="trailing" secondItem="Chl-uy-rbW" secondAttribute="trailing" constant="36" id="nig-zS-Zk2"/>
                             <constraint firstItem="7t6-UZ-3Jn" firstAttribute="leading" secondItem="0nG-wq-VRD" secondAttribute="leading" constant="36" id="v7H-eE-luI"/>
+                            <constraint firstItem="0nG-wq-VRD" firstAttribute="bottom" secondItem="QZB-VC-dXh" secondAttribute="bottom" constant="36" id="y36-x7-ZUA"/>
                             <constraint firstItem="JkI-Hq-fkx" firstAttribute="leading" secondItem="PwD-at-8sp" secondAttribute="leading" constant="37" id="y87-pP-RUg"/>
+                            <constraint firstItem="0nG-wq-VRD" firstAttribute="trailing" secondItem="QZB-VC-dXh" secondAttribute="trailing" constant="36" id="zYe-MA-PLl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0nG-wq-VRD"/>
                     </view>
                     <connections>
                         <outlet property="changePassword" destination="7t6-UZ-3Jn" id="TMT-fG-b1d"/>
                         <outlet property="emailField" destination="Piq-3R-WIK" id="vSB-WU-kr3"/>
+                        <outlet property="indicator" destination="8zT-kK-b7d" id="mJa-Ds-mQ9"/>
                         <outlet property="loggedInStackView" destination="c0r-Ct-P1y" id="hY6-nF-Peg"/>
                         <outlet property="loggedInViaImage" destination="WLN-us-3e2" id="imr-wF-YWq"/>
                         <outlet property="loggedInViaText" destination="pKq-hU-1GJ" id="AUL-i0-F3T"/>
@@ -331,7 +338,6 @@
         <!--Change Password Controller-->
         <scene sceneID="EBn-MD-9Oc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eip-GX-MA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="ZVb-wW-vvW" customClass="ChangePasswordController" customModule="Kwento" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LZK-iX-mKE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
@@ -495,6 +501,7 @@
                         <outlet property="saveButton" destination="n7b-Ow-8ut" id="Jz4-Ff-yrO"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eip-GX-MA8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8.8000000000000007" y="871.92118226600985"/>
         </scene>

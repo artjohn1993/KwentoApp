@@ -141,7 +141,7 @@ class SignUpController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         genderField.text = gender[row]
-        genderField.resignFirstResponder()
+        //genderField.resignFirstResponder()
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -174,11 +174,14 @@ class SignUpController: UIViewController,UIPickerViewDelegate, UIPickerViewDataS
                 if provider == "local" {
                     if password != "" && confirmPassword != "" {
                         if password == confirmPassword {
+                            PublicData.spinnerAlert(controller: self)
                             self.service.signUp(fullname: fullname, birthday: fBirthdate, gender: gender, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, email: email,provider : provider,externalId : externalId,  token : token, completion: { (isSuccess,message) in
                                 if isSuccess {
+                                    PublicData.removeSpinnerAlert(controller: self)
                                     self.performSegue(withIdentifier: "signUpToVerification", sender: nil)
                                 }
                                 else {
+                                    PublicData.removeSpinnerAlert(controller: self)
                                     if message != nil || message != ""{
                                         PublicData.showSnackBar(message: message)
                                     }

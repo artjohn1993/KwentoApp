@@ -17,6 +17,8 @@ class ProfileController: UIViewController {
     let dataServices = CoreDataServices()
     let message = MDCSnackbarMessage()
     var isLocal = false
+    var oldMobileValue = ""
+    var oldEmailValue = ""
     @IBOutlet weak var navButton: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userFullname: UILabel!
@@ -30,6 +32,8 @@ class ProfileController: UIViewController {
     @IBOutlet weak var saveButton: MDCFlatButton!
     @IBOutlet weak var logoutButton: MDCFlatButton!
     @IBOutlet var changePassword: UILabel!
+    @IBOutlet var indicator: UIActivityIndicatorView!
+    
     
     
     var mainNavigationController: MainNavigationController!
@@ -42,9 +46,6 @@ class ProfileController: UIViewController {
     }
     
     @IBAction func saveUpdate(_ sender: Any) {
-        print("password:\(self.passwordField.text ?? "")")
-        print("confirm:\(self.confirmField.text ?? "")")
-        print(self.confirmField.text ?? "")
         service.getCurrentUser(completion: { result in
             print(result)
             PublicData.spinnerAlert(controller: self)
@@ -52,14 +53,15 @@ class ProfileController: UIViewController {
                                birthdate: result?["birthday"] as! String,
                                fullname: result?["full_name"] as! String,
                                email: self.emailField.text ?? "",
-                               pasword: self.passwordField.text ?? "",
-                               confirm: self.confirmField.text ?? "",
                                userId: result?["id"] as! Int,
                                completion: { result in
                                 PublicData.removeSpinnerAlert(controller: self)
                                 if result {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
                                         PublicData.showSnackBar(message: "Information were successfully updated")
+                                        self.isSaveButton(checker: false)
+                                        self.oldMobileValue = self.mobileField.text ?? ""
+                                        self.oldEmailValue = self.emailField.text ?? ""
                                     })
                                 }
                                 else {
@@ -70,12 +72,14 @@ class ProfileController: UIViewController {
             })
         })
     }
+    
     @IBAction func didTapNavButton(_ sender: Any) {
         mainNavigationController.setDrawerState()
     }
     
     @IBAction func closeProfile(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
+        SelectedNav.item = .dashboard
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -86,13 +90,33 @@ class ProfileController: UIViewController {
         })
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if oldMobileValue != mobileField.text || oldEmailValue != emailField.text {
+            if mobileField.text != "" && emailField.text != "" {
+                isSaveButton(checker: true)
+            }
+            else {
+                 isSaveButton(checker: false)
+            }
+        }
+        else {
+            isSaveButton(checker: false)
+        }
+    }
+    
+    func isSaveButton(checker: Bool) {
+        checker ? saveButton.setVisibility(true) : saveButton.setVisibility(false)
+    }
+    
     func getCurrentUser() {
+        indicator.startAnimating()
         dataServices.getUserInfo(completion: { result in
             self.userInfo = result!
         })
         
         service.getCurrentUser(completion: { result in
             print(result)
+            self.indicator.stopAnimating()
             let provider = result?["providers"] as? [String]
             provider?.forEach({ item in
                 if item == "Local" {
@@ -105,6 +129,8 @@ class ProfileController: UIViewController {
                 self.mobileField.text = result?["phone_number"] as! String
                 self.userFullname.text = result?["full_name"] as! String
                 self.emailField.text = result?["email_address"] as! String
+                self.oldEmailValue = result?["email_address"] as! String
+                self.oldMobileValue = result?["phone_number"] as! String
             }
         })
     }
@@ -120,12 +146,17 @@ class ProfileController: UIViewController {
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         changePassword.setVisibility(false)
         
+        saveButton.setVisibility(false)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(changePasswordEvent))
         changePassword.isUserInteractionEnabled = true
         changePassword.addGestureRecognizer(tap)
         
         saveButton.initialize(backgroundColor: UIColor(rgb: 0xC5C5C5), titleColor: .white, cornerRadius: 4)
         logoutButton.initialize(backgroundColor: UIColor(red: 216/255, green: 154/255, blue: 135/255, alpha: 1), titleColor: .white, cornerRadius: 4)
+        
+        mobileField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        emailField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 
 }

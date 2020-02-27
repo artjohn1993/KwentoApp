@@ -49,6 +49,7 @@ class AttractionsController: UIViewController {
     
     @IBAction func didTapSeach(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
+        SelectedNav.item = .dashboard
     }
     
     func initViews() {

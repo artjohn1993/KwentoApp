@@ -49,6 +49,7 @@ class SupportController: UIViewController {
     @objc
     func closeEvent(sender:UITapGestureRecognizer) {
         mainNavigationController.popViewController(animated: true)
+        SelectedNav.item = .dashboard
     }
     
     private func initViews() {

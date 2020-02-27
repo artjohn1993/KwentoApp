@@ -57,17 +57,12 @@ class ProfileServices {
                completion(data)
             }
         })
-        
-        
-        
     }// end of get current user function
     
     func updateInfo(mobile: String,
                     birthdate: String,
                     fullname: String,
                     email: String,
-                    pasword: String,
-                    confirm: String,
                     userId: Int,
                     completion: @escaping (Bool)->()) {
         self.dataServices.getUserInfo(completion: { result in

@@ -12,7 +12,6 @@ class VisitsController: UIViewController {
     
     @IBOutlet weak var navButton: UIImageView!
     let sessionService = SessionServices()
-    
     var visit = [[String:Any]]()
     var index = 0
     
@@ -53,6 +52,7 @@ class VisitsController: UIViewController {
     
     @IBAction func closeProfile(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
+        SelectedNav.item = .dashboard
     }
     
     private func initViews() {

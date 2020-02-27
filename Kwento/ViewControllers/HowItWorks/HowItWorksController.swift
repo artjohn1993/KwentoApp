@@ -11,10 +11,20 @@ import MaterialComponents
 
 class HowItWorksController: UIViewController {
     
+    @IBOutlet var instructionText: UILabel!
     let images = [#imageLiteral(resourceName: "how_1"),#imageLiteral(resourceName: "how_2"),#imageLiteral(resourceName: "how_3"),#imageLiteral(resourceName: "how_4"),#imageLiteral(resourceName: "how_5"),#imageLiteral(resourceName: "how_6"),#imageLiteral(resourceName: "how_7"),#imageLiteral(resourceName: "how_8")]
+    let instructions = ["Instruction 1",
+                        "Instruction 2",
+                        "Instruction 3",
+                        "Instruction 4",
+                        "Instruction 5",
+                        "Instruction 6",
+                        "Instruction 7",
+                        "Instruction 8"]
     var currentViewControllerIndex = 0
     var shownViewControllerIndex = 0
     var howItWorksPageController: HowItWorksPageController!
+    
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var backButton: MDCFlatButton!
@@ -28,7 +38,8 @@ class HowItWorksController: UIViewController {
     }
     
     @IBAction func skip(_ sender: Any) {
-        
+        navigationController?.popViewController(animated: true)
+        SelectedNav.item = .dashboard
     }
     
     @IBAction func back(_ sender: Any) {
@@ -43,6 +54,7 @@ class HowItWorksController: UIViewController {
     
     @IBAction func finish(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        SelectedNav.item = .dashboard
     }
     
     private func initViews() {
@@ -94,7 +106,7 @@ class HowItWorksController: UIViewController {
         
         pageImageController.index = index
         pageImageController.image = images[index]
-        
+        instructionText.text =  instructions[index]
         return pageImageController
     }
     

@@ -32,26 +32,20 @@ class TokenServices {
             "provider" : "local",
             "refresh_token" : userInfo[0].refresh_token!
         ]
-        
-        print(userInfo[0].userName!)
-        print(userInfo[0].password!)
-        print(userInfo[0].refresh_token!)
-        print(PublicData.clientId)
-        print(PublicData.client_secret)
+
         
         //- send login request
         Alamofire.request(url,
                           method: .post,
                           parameters: parameters).responseJSON(completionHandler: { (response) in
                             print(response.response?.statusCode)
-                            print(response.result.value)
                             
                           let data = response.result.value as? [String:Any]
                             if response.response?.statusCode == 200 {
                                 
                                 var user = userInfo.first
                                 
-                                user?.access_token = data?["access_token"] as? String
+                                 user?.access_token = data?["access_token"] as? String
                                  user?.token_type = data?["token_type"] as? String
                                  user?.expires_in = data?["expires_in"] as? String
                                  user?.refresh_token = data?["refresh_token"] as? String

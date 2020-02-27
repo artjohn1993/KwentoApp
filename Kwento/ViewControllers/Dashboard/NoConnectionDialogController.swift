@@ -12,6 +12,7 @@ import MaterialComponents
 class NoConnectionDialogController: UIViewController {
     
     @IBOutlet weak var backButton: MDCFlatButton!
+    @IBOutlet var logo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class NoConnectionDialogController: UIViewController {
     }
     
     private func initViews() {
-        
+        logo.tintColor = .main
     }
 
     @IBAction func back(_ sender: Any) {

@@ -90,6 +90,7 @@ class AttractionServices {
     }// end of getTotalLocationByType
     
     func getAttractions(type :String, id : Int, completion : @escaping ([String:Any]?)->()) {
+        print("getAttractions")
          var url = "\(PublicData.baseUrl)/api/attractions?\(type)=\(id)"
         dataServices.getUserInfo(completion: { result in
             self.userInfo = result!
@@ -100,10 +101,19 @@ class AttractionServices {
         Alamofire.request(url,
                           method: .get,
                           headers: header).responseJSON(completionHandler: { response in
-                          
+                            print(response.response?.statusCode)
+                            print(response.result)
                             if response.response?.statusCode == 200 {
                                 let result = response.result.value as? [String:Any]
+                                print(result)
                                 completion(result)
+                            }
+                            else if response.response?.statusCode == 401 {
+                                self.tokenServices.refreshToken {
+                                    self.getAttractions(type: type, id: id, completion: { result2 in
+                                        completion(result2)
+                                    })
+                                }
                             }
                             else {
                                 completion(nil)
