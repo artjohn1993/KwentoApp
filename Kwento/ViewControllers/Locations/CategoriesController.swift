@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 
+
 class CategoriesController: UIViewController {
 
     @IBOutlet weak var table: UITableView!
@@ -18,13 +19,14 @@ class CategoriesController: UIViewController {
     let dataServices = CoreDataServices()
     var arrayAttractionByType = [AttractionByType]()
     var id = 0
+    let indicator = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         
         checkAttraction(completion: { result in
-            result ? self.loadLocalData(isFirstTime : false) : self.getAttraction()
+            result ? self.loadLocalData(isFirstTime : false) : self.firstCall()
         })
         
     }
@@ -39,12 +41,18 @@ class CategoriesController: UIViewController {
         
     }
     
+    func firstCall() {
+        indicator.startAnimating()
+        self.getAttraction()
+    }
+    
     func getAttraction() {
         print("GET ATTRACTION...")
         self.service.getTotalLocationByType(type : "AttractionTypeId", completion: { result in
             //self.totalLocationType = result
             //print("success call 2 \(self.totalLocationType.count)")
             self.saveAttraction(data: result)
+            self.indicator.stopAnimating()
         })
         
     }
@@ -126,6 +134,11 @@ class CategoriesController: UIViewController {
         self.table.estimatedRowHeight = 150.0
         var edgeInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         self.table.contentInset = edgeInset
+        
+        indicator.center.x = (self.view.frame.width / 2) - 20
+        var edgeInset2 = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        indicator.frame = indicator.frame.inset(by: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
+        view.addSubview(indicator)
     }
 }
 

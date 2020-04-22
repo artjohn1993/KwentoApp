@@ -180,7 +180,6 @@ class SessionServices {
     func getUserSession(completion : @escaping ([String:Any]?)->()) {
         print("getUserSession")
         var url = "\(PublicData.baseUrl)/api/sessions/user?completed_only=true"
-        print(url)
         dataServices.getUserInfo(completion: { result in
             self.userInfo = result!
         })
@@ -195,12 +194,10 @@ class SessionServices {
                             
                             if response.response?.statusCode == 200 {
                                 let result = response.result.value as? [String:Any]
-                                print(result)
                                 completion(result)
                             }
                             else if response.response?.statusCode == 401 {
                                let message = response.result.value as? [String:Any]
-                               print(message?["Message"] as? String)
                                 if message?["Message"] as? String == "Authorization has been denied for this request." {
                                     self.tokenService.refreshToken {
                                         self.getUserSession(completion: { result in

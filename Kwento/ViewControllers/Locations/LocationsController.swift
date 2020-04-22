@@ -18,13 +18,14 @@ class LocationsController: UIViewController {
     var arrayAttractionByCity = [AttractionByCity]()
     var id = 0
     @IBOutlet weak var table: UITableView!
+    let indicator = UIActivityIndicatorView(style: .gray)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         checkAttraction(completion: { result in
-            result ? self.loadLocalData(isFirstTime : false) : self.getAttraction()
+            result ? self.loadLocalData(isFirstTime : false) : self.firstCall()
         })
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,10 +38,16 @@ class LocationsController: UIViewController {
         
     }
     
+    func firstCall() {
+        indicator.startAnimating()
+        self.getAttraction()
+    }
+    
     func getAttraction() {
         print("GET ATTRACTION...")
         service.getTotalLocationByType(type: "CityId", completion: { result in
              self.saveAttraction(data: result)
+             self.indicator.stopAnimating()
         })
     }
     
@@ -123,6 +130,11 @@ class LocationsController: UIViewController {
         var edgeInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
 
         self.table.contentInset = edgeInset
+        
+        indicator.center.x = (self.view.frame.width / 2) - 20
+        var edgeInset2 = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        indicator.frame = indicator.frame.inset(by: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
+        view.addSubview(indicator)
     }
 
 }

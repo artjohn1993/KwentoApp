@@ -16,11 +16,13 @@ class SelectionController: UIViewController {
     @IBOutlet var numberField: UITextField!
     @IBOutlet var container: UIView!
     var id = ""
+    var language = ""
     var sessionId = ""
     var durationVal = ""
     var audioId : [String] = []
+    var attractionName = ""
+    var imageName = ""
     @IBOutlet var duration: UILabel!
-    
     
     @IBOutlet var endButton: UILabel!
     
@@ -30,12 +32,21 @@ class SelectionController: UIViewController {
         print("sessionId:\(sessionId)")
         initView()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectionToPlayer" {
             if let destinationVC = segue.destination as? AudioPlayerController {
                 destinationVC.musicIndex = Int(numberField.text!)!
                 destinationVC.id = self.id
+                destinationVC.language = self.language
+                destinationVC.audioId = self.audioId
+            }
+        }
+        if segue.identifier == "toReview" {
+            if let destinationVC = segue.destination as? RatingController {
+                destinationVC.id = self.id
+                destinationVC.attractionName = self.attractionName
+                destinationVC.imageName = self.imageName
             }
         }
     }
@@ -104,9 +115,7 @@ class SelectionController: UIViewController {
     
     @objc func endTour() {
         print("@objc func endTour()'")
-        self.sessionService.endSession()
-        self.mainNavigationController.popToRootViewController(animated: true)
-
+        self.performSegue(withIdentifier: "toReview", sender: nil)
     }
     
     @IBAction func oneEvent(_ sender: Any) {

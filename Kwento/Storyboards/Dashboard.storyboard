@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9wV-BP-Qas">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9wV-BP-Qas">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -695,6 +695,7 @@
                         <outlet property="closeButton" destination="8YO-Wb-0eU" id="5CM-uT-KPX"/>
                         <outlet property="navigationButton" destination="X8z-vD-C3W" id="G2L-qd-Z2B"/>
                         <outlet property="playButton" destination="TTK-3q-lsD" id="BiZ-g2-Ekt"/>
+                        <segue destination="YfZ-H7-Ugv" kind="show" identifier="toReview" id="Kyc-1t-z2b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acg-c2-jNK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -825,8 +826,10 @@
                         <outlet property="closeButton" destination="Weg-51-2iO" id="w1E-TS-57x"/>
                         <outlet property="duration" destination="yGO-Tr-bn8" id="Mhv-Sr-jPQ"/>
                         <outlet property="navButton" destination="30k-0I-ZHv" id="BYA-2A-TqE"/>
+                        <outlet property="playButton" destination="LzE-yZ-7qy" id="DyL-q7-Sfi"/>
                         <outlet property="startButton" destination="wfa-LM-Sg2" id="H2d-bP-4qO"/>
                         <segue destination="NY7-Tb-Ozn" kind="presentation" identifier="endTour" id="UbF-jH-eCs"/>
+                        <segue destination="YfZ-H7-Ugv" kind="show" identifier="toReview" id="vbU-7C-hqW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g45-ko-Syh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1247,6 +1250,7 @@
                         <outlet property="numberField" destination="xFU-Sp-qdz" id="fgZ-Co-jFX"/>
                         <segue destination="Szb-Dh-zn1" kind="show" identifier="selectionToPlayer" id="1cJ-XP-1zX"/>
                         <segue destination="NY7-Tb-Ozn" kind="presentation" identifier="endTour" id="pZq-Oi-6dp"/>
+                        <segue destination="YfZ-H7-Ugv" kind="show" identifier="toReview" id="dcO-OH-f71"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLX-96-bHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1699,10 +1703,128 @@
             </objects>
             <point key="canvasLocation" x="3137" y="-1633"/>
         </scene>
+        <!--Rating Controller-->
+        <scene sceneID="b95-JV-0VG">
+            <objects>
+                <viewController id="YfZ-H7-Ugv" customClass="RatingController" customModule="Kwento" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1o7-dJ-vtj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Visits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQd-Gt-U5e">
+                                <rect key="frame" x="100" y="64" width="175" height="27.333333333333329"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="20"/>
+                                <color key="textColor" red="0.047058823530000002" green="0.61176470589999998" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us what you think of this location. It's  our  turn to listen!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJ9-Ap-gKq">
+                                <rect key="frame" x="16" y="133" width="343" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="VRx-xf-00m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.76159747950000001" blue="0.81491909900000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="t9z-hK-mFw">
+                                <rect key="frame" x="119" y="197.33333333333337" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="2ww-Lu-eSv"/>
+                                    <constraint firstAttribute="height" constant="128" id="cIg-tm-412"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdW-bt-Scq" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="78" y="333" width="210" height="38"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                        <color key="value" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                        <color key="value" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                        <color key="value" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="38"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SlT-fk-kxp">
+                                <rect key="frame" x="16" y="752" width="343" height="36"/>
+                                <color key="backgroundColor" red="0.76759117840000002" green="0.76760929820000001" blue="0.76759958269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="17"/>
+                                <state key="normal" title="SUBMIT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="submit:" destination="YfZ-H7-Ugv" eventType="touchUpInside" id="QZf-oH-NUz"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="national museum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrk-0I-bzY">
+                                <rect key="frame" x="16" y="391" width="343" height="24.666666666666686"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
+                                <color key="textColor" red="0.089882768690000003" green="0.80625718830000004" blue="0.85213977100000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pzg-1k-eUB">
+                                <rect key="frame" x="16" y="471.66666666666674" width="343" height="245.33333333333326"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95510584119999997" green="0.99909335369999996" blue="0.99696761369999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="BJ9-Ap-gKq" firstAttribute="top" secondItem="pQd-Gt-U5e" secondAttribute="bottom" constant="41.670000000000002" id="32I-xS-wqa"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="SlT-fk-kxp" secondAttribute="trailing" constant="16" id="4H6-cR-7mr"/>
+                            <constraint firstAttribute="bottom" secondItem="SlT-fk-kxp" secondAttribute="bottom" constant="24" id="5LL-Dm-F8C"/>
+                            <constraint firstItem="pQd-Gt-U5e" firstAttribute="top" secondItem="iIT-Wa-PK5" secondAttribute="top" constant="20" id="8rt-97-Dvd"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="t9z-hK-mFw" secondAttribute="trailing" constant="128" id="9xM-0Z-klO"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="pQd-Gt-U5e" secondAttribute="trailing" constant="100" id="C2J-5z-lMM"/>
+                            <constraint firstItem="SlT-fk-kxp" firstAttribute="top" secondItem="pzg-1k-eUB" secondAttribute="bottom" constant="35" id="DjF-x3-tEw"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="hrk-0I-bzY" secondAttribute="trailing" constant="16" id="GfX-de-g7L"/>
+                            <constraint firstItem="pzg-1k-eUB" firstAttribute="leading" secondItem="iIT-Wa-PK5" secondAttribute="leading" constant="16" id="Jho-sy-1ZR"/>
+                            <constraint firstItem="pzg-1k-eUB" firstAttribute="top" secondItem="hrk-0I-bzY" secondAttribute="bottom" constant="56" id="Jz7-t5-kXt"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="hdW-bt-Scq" secondAttribute="trailing" constant="87" id="QeW-j3-SSr"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="BJ9-Ap-gKq" secondAttribute="trailing" constant="16" id="RIa-l4-Xx8"/>
+                            <constraint firstItem="hdW-bt-Scq" firstAttribute="top" secondItem="t9z-hK-mFw" secondAttribute="bottom" constant="7.6699999999999999" id="UuE-6h-f8Y"/>
+                            <constraint firstItem="BJ9-Ap-gKq" firstAttribute="leading" secondItem="iIT-Wa-PK5" secondAttribute="leading" constant="16" id="bQS-70-yZR"/>
+                            <constraint firstItem="hrk-0I-bzY" firstAttribute="leading" secondItem="iIT-Wa-PK5" secondAttribute="leading" constant="16" id="fbZ-gS-IJk"/>
+                            <constraint firstItem="t9z-hK-mFw" firstAttribute="top" secondItem="BJ9-Ap-gKq" secondAttribute="bottom" constant="23.329999999999998" id="kZM-mf-q96"/>
+                            <constraint firstItem="hrk-0I-bzY" firstAttribute="top" secondItem="hdW-bt-Scq" secondAttribute="bottom" constant="20" id="kpD-gq-FvX"/>
+                            <constraint firstItem="SlT-fk-kxp" firstAttribute="leading" secondItem="iIT-Wa-PK5" secondAttribute="leading" constant="16" id="lOr-ua-VOv"/>
+                            <constraint firstItem="pQd-Gt-U5e" firstAttribute="leading" secondItem="iIT-Wa-PK5" secondAttribute="leading" constant="100" id="mGW-r5-a57"/>
+                            <constraint firstItem="iIT-Wa-PK5" firstAttribute="trailing" secondItem="pzg-1k-eUB" secondAttribute="trailing" constant="16" id="mOi-wK-Nzs"/>
+                            <constraint firstItem="hdW-bt-Scq" firstAttribute="leading" secondItem="iIT-Wa-PK5" secondAttribute="leading" constant="78" id="xog-B7-efE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iIT-Wa-PK5"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IAD-5q-PRc"/>
+                    <connections>
+                        <outlet property="imageLocation" destination="t9z-hK-mFw" id="RfS-oI-phq"/>
+                        <outlet property="locationName" destination="hrk-0I-bzY" id="J2v-Bo-ZoC"/>
+                        <outlet property="message" destination="pzg-1k-eUB" id="Onj-TZ-RZf"/>
+                        <outlet property="rating" destination="hdW-bt-Scq" id="uNL-w4-7u2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5xX-Yz-vv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1856.8" y="-1903.4482758620691"/>
+        </scene>
     </scenes>
     <resources>
         <image name="baseline_backspace_black_48pt" width="48" height="48"/>
         <image name="baseline_close_black_36pt" width="36" height="36"/>
+        <image name="default_image" width="720" height="405"/>
         <image name="ic_bookmark" width="26.666666030883789" height="31.333333969116211"/>
         <image name="ic_info" width="26.333333969116211" height="26.333333969116211"/>
         <image name="ic_pin_location" width="26.666666030883789" height="36.666667938232422"/>
@@ -2108,8 +2230,9 @@ AAAAAABY9Q
         <image name="scan_top_right" width="10.666666984558105" height="10.333333015441895"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="soh-oq-2zY"/>
+        <segue reference="vbU-7C-hqW"/>
+        <segue reference="UbF-jH-eCs"/>
         <segue reference="JCY-YF-juL"/>
-        <segue reference="GYW-ep-4aG"/>
+        <segue reference="vG3-ad-blT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,6 +18,7 @@ class DownloadStoriesController: UIViewController {
     
     var service = AttractionServices()
     var id = ""
+    var language = ""
     var attractionName = ""
     var imageName = ""
     var totalItemToDownload = 0
@@ -56,7 +57,7 @@ class DownloadStoriesController: UIViewController {
                 }
             }
         })
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(didTapYes), name: NSNotification.Name("didTapYes"), object: nil)
     }
     
@@ -68,6 +69,7 @@ class DownloadStoriesController: UIViewController {
                 destinationVC.name = self.attractionName
                 destinationVC.imageName = self.imageName
                 destinationVC.durationVal = self.duration
+                destinationVC.language = self.language
             }
         }
     }
@@ -145,7 +147,7 @@ class DownloadStoriesController: UIViewController {
                     self.progressText.text = "\(percent)%"
                     
                     if percentage == 1.0 {
-                        self.downloadAudio(data: subAttraction!, index: 0,constant: constantPercent, currentPercent : constantPercent)
+                        self.downloadAudio(data: subAttraction!, index: 0,constant: constantPercent, currentPercent : constantPercent, language: self.language)
                     }
                 })
             }
@@ -154,17 +156,20 @@ class DownloadStoriesController: UIViewController {
     }
     
     
-    func downloadAudio(data : [[String: Any]],index: Int,constant: Float, currentPercent : Float) {
+    func downloadAudio(data : [[String: Any]],index: Int,constant: Float, currentPercent : Float, language : String) {
         var current = index
-        let audioId = data[current]["audio_filename"] as? String
+        let audioId = language == "English" ? data[current]["audio_filename"] as? String : data[current]["audio_filename_ph"] as? String
+        print("downloadAudio")
+        print(language)
+        print(audioId)
         
         self.service.downloadAudio(idAudio: audioId!, completion: { percentage in
-            
+
             var downloadPercentage = (percentage * constant) + currentPercent
             self.progressView.setProgress(downloadPercentage, animated: true)
             let percent = Int(100 * downloadPercentage)
             self.progressText.text = "\(percent)%"
-            
+
             if percent == 100 {
                 self.progressText.text = "100%"
                 self.progressView.setProgress(1, animated: true)
@@ -172,7 +177,7 @@ class DownloadStoriesController: UIViewController {
             }
             else {
                 if percentage == 1 {
-                    self.downloadAudio(data: data, index: current + 1,constant: constant, currentPercent : currentPercent + constant)
+                    self.downloadAudio(data: data, index: current + 1,constant: constant, currentPercent : currentPercent + constant, language : self.language)
                 }
             }
         })

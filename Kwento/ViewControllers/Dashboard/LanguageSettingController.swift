@@ -20,6 +20,7 @@ class LanguageSettingController: UIViewController {
     @IBOutlet weak var cancelButton: MDCFlatButton!
     
     var id: String?
+    var language: [String: String] = ["language" : "English"]
     //var parentController: QRReaderController!
     
     override func viewDidLoad() {
@@ -38,16 +39,21 @@ class LanguageSettingController: UIViewController {
     @IBAction func didSelectEnglish(_ sender: Any) {
         englishButton.outerCircleLineWidth = 4
         tagalogButton.outerCircleLineWidth = 1
+        language = ["language" : "English"]
     }
     
     @IBAction func didSelectTagalog(_ sender: Any) {
         tagalogButton.outerCircleLineWidth = 4
         englishButton.outerCircleLineWidth = 1
+        language = ["language" : "Tagalog"]
     }
     
     @IBAction func proceed(_ sender: Any) {
         dismiss(animated: true)
-        NotificationCenter.default.post(name: NSNotification.Name("proceed"), object: nil)
+        
+//        NotificationCenter.default.post(name: NSNotification.Name("proceed"), object: nil, lang: language)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "proceed"), object: nil, userInfo: language)
+        
         //performSegue(withIdentifier: "settingToDownload", sender: nil)
     }
     

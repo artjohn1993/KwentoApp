@@ -177,7 +177,6 @@ class AttractionServices {
         self.request = Alamofire.request(url,
                               method: .get,
                               headers: header).responseJSON(completionHandler: { response in
-                                print(response.result.value)
                                 let data = response.result.value as? [String:Any]
                                 if response.response?.statusCode == 200 {
                                     completion(data ?? nil)
@@ -243,7 +242,6 @@ class AttractionServices {
         let header : HTTPHeaders =  ["Authorization" : token]
         
         var url = "\(PublicData.baseUrl)/api/files/Audio/\(idAudio)/download"
-        print(url)
         let fileUrl = getSaveFileUrl(fileName: "\(idAudio).mp3")
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             return (fileUrl, [.removePreviousFile, .createIntermediateDirectories])

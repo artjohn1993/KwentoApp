@@ -19,14 +19,7 @@ class DashboardController: KYDrawerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         drawerWidth = 281
-        
-//        dataService.getAllAttraction(completion: { result in
-//            print(result?.count)
-//            if result?.count ?? 0 == 0 {
-//                self.service.getAllAttraction()
-//            }
-//        })
-        
+    
     }
 
 }

@@ -13,11 +13,10 @@ class VisitCell: UITableViewCell {
     
     @IBOutlet weak var attractionNameLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
-    @IBOutlet weak var reviewButton: MDCFlatButton!
+    @IBOutlet var container: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        reviewButton.initialize(backgroundColor: .main, titleColor: .white, cornerRadius: 4)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

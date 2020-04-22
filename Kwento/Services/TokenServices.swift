@@ -38,7 +38,6 @@ class TokenServices {
         Alamofire.request(url,
                           method: .post,
                           parameters: parameters).responseJSON(completionHandler: { (response) in
-                            print(response.response?.statusCode)
                             
                           let data = response.result.value as? [String:Any]
                             if response.response?.statusCode == 200 {

@@ -28,6 +28,7 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     var mainNavigationController: MainNavigationController!
     var audioPlayer = AVAudioPlayer()
     var id = ""
+    var language = ""
     var sessionId = ""
     var name = ""
     var imageName = ""
@@ -60,6 +61,17 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(endTour), name: NSNotification.Name("endTour"), object: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toReview" {
+            if let destinationVC = segue.destination as? RatingController {
+                destinationVC.id = self.id
+                destinationVC.attractionName = self.name
+                destinationVC.imageName = self.imageName
+            }
+        }
+        
     }
     
     func downloadAudio() {
@@ -165,7 +177,6 @@ class SingleTourController : UIViewController, AVAudioPlayerDelegate {
     
     @objc func endTour() {
         audioPlayer.stop()
-        mainNavigationController.popToRootViewController(animated: true)
-        sessionService.endSession()
+        self.performSegue(withIdentifier: "toReview", sender: nil)
     }
 }

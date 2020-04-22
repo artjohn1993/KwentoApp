@@ -135,14 +135,16 @@ class HomeController: UIViewController {
             print("duration:\(self.duration)")
             
             if result != nil {
- 
-                print(subAttraction?.count)
-                if subAttraction?.count ?? 0 > 0 {
-                    self.performSegue(withIdentifier: "homeToMultiple", sender: nil)
-                }
-                else {
-                    self.performSegue(withIdentifier: "homeToSingle", sender: nil)
-                }
+                    
+                self.sessionService.endSession()
+                self.performSegue(withIdentifier: "homeToQr", sender: nil)
+//                print(subAttraction?.count)
+//                if subAttraction?.count ?? 0 > 0 {
+//                    self.performSegue(withIdentifier: "homeToMultiple", sender: nil)
+//                }
+//                else {
+//                    self.performSegue(withIdentifier: "homeToSingle", sender: nil)
+//                }
             }
             else {
                 self.performSegue(withIdentifier: "homeToQr", sender: nil)

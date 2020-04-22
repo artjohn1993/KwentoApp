@@ -7,8 +7,23 @@
 //
 
 import UIKit
+import FacebookShare
+import FBSDKCoreKit
 
-class VisitsController: UIViewController {
+class VisitsController: UIViewController, SharingDelegate {
+    
+    func sharer(_ sharer: Sharing, didCompleteWithResults results: [String : Any]) {
+        
+    }
+    
+    func sharer(_ sharer: Sharing, didFailWithError error: Error) {
+        
+    }
+    
+    func sharerDidCancel(_ sharer: Sharing) {
+        
+    }
+    
     
     @IBOutlet weak var navButton: UIImageView!
     let sessionService = SessionServices()
@@ -25,25 +40,13 @@ class VisitsController: UIViewController {
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
         sessionService.getUserSession(completion: { result in
-            print("after call")
             if result != nil {
                 self.visit = result?["rows"] as? [[String:Any]] ?? []
                 self.visit.reverse()
-                print(self.visit.count)
-                
                 self.table.reloadData()
                 PublicData.removeSpinnerAlert(controller: self)
             }
         })
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "visitToRate" {
-            if let destinationVC = segue.destination as? RatingController {
-                destinationVC.index = self.index
-                print("passing:\(self.index)")
-            }
-        }
     }
     
     @IBAction func didTapNavButton(_ sender: Any) {
@@ -58,6 +61,7 @@ class VisitsController: UIViewController {
     private func initViews() {
         navButton.image = #imageLiteral(resourceName: "nav_button")
     }
+    
     
     func timeAgo(time:String) -> String {
         var timeAgo = ""
@@ -131,14 +135,27 @@ extension VisitsController: UITableViewDelegate, UITableViewDataSource {
         let attraction = visit[indexPath.row]["attraction"] as? [String:Any]
         cell.attractionNameLabel.text = attraction?["name"] as? String
         cell.timeStampLabel.text = timeAgo(time: visit[indexPath.row]["end_date"] as! String)
-        print(visit[indexPath.row])
-        cell.reviewButton.addAction {
-            print("adasda")
-            self.index = indexPath.row
-            self.performSegue(withIdentifier: "visitToRate", sender: nil)
-            print("click in index :\(indexPath.row)")
-        }
         //print(visit[indexPath.row]["end_date"] as? String)
+        
+        let url = URL(string: "https://install.appcenter.ms/orgs/kwento/apps/kwentoapp/distribution_groups/kwento%20distribution")
+        let content = ShareLinkContent()
+        content.contentURL = url!
+        var attractionName = attraction?["name"]! as? String
+        content.quote = """
+        I just enjoyed a free audio tour in \(attractionName!) using the KwentoApp! Download now!\n\n
+        For IOS: https://install.appcenter.ms/orgs/kwento/apps/kwentoapp/distribution_groups/kwento%20distribution\n
+        For Android: https://appcenter.ms/orgs/Kwento/apps/Kwento/distribute/releases/8
+        """
+        
+        let shareButton = FBShareButton()
+        shareButton.shareContent = content
+        
+        
+        
+        cell.contentView.addSubview(shareButton)
+        shareButton.center = cell.container.center
+    
+        
         return cell
     }
 }

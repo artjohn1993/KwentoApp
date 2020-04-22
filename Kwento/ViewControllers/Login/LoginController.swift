@@ -138,7 +138,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
             let fbLoginManager : LoginManager = LoginManager()
             
             fbLoginManager.logIn(permissions: ["email"], from: self) { (result, error) -> Void in
-              if (error == nil){
+              if (error == nil) {
                 let fbloginresult : LoginManagerLoginResult = result!
                 // if user cancel the login
                 if (result?.isCancelled)!{
@@ -213,53 +213,49 @@ class LoginController: UIViewController, GIDSignInDelegate {
         }
     
         func login(uname: String, pass :String, dataProvider: String) {
-            print("login function")
-            print(uname)
-            print(pass)
-            print(dataProvider)
-            PublicData.spinnerAlert(controller: self)
             self.loginService.login(username: uname, password: pass ,provider : dataProvider, completion: { result in
-                   print(result)
                     if result {
                         self.perform(#selector(self.presentExampleController), with: nil, afterDelay: 0)
                     }
+                        
                     else {
                         print("Login failed")
                     }
+                
                     PublicData.removeSpinnerAlert(controller: self)
                 })
         }
     
         func getFBUserData() {
-            if((AccessToken.current) != nil){
+            PublicData.spinnerAlert(controller: self)
+            if((AccessToken.current) != nil) {
                 GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
-              if (error == nil){
-                //everything works print the user data
-                print(result)
-                let data = result as? [String:Any]
-                print(data)
-                print(data?["email"] as! String)
-                print(data?["id"] as! String)
-                self.fullname = data?["name"] as! String
-                self.email = data?["email"] as! String
-                self.provider = "Facebook"
-                self.externalId = data?["id"] as! String
-                self.token = AccessToken.current!.tokenString
-                
-                self.loginService.checkExternalId(id: self.externalId, completion: { result in
-                    if result == 1 {
-                        self.login(uname: self.externalId, pass: AccessToken.current!.tokenString, dataProvider: "Facebook")
-                    }
-                    else {
-                        self.performSegue(withIdentifier: "loginToSignUp", sender: nil)
-                    }
-                })
-                print(AccessToken.current!.tokenString)
-                
-                //self.login(uname: self.externalId, pass: AccessToken.current!.tokenString, dataProvider: "Facebook")
-              }
+                  if (error == nil) {
+                    //everything works print the user data
+                    let data = result as? [String:Any]
+
+                    self.fullname = data?["name"] as! String
+                    self.email = data?["email"] as! String
+                    self.provider = "Facebook"
+                    self.externalId = data?["id"] as! String
+                    self.token = AccessToken.current!.tokenString
+                    
+                    self.loginService.checkExternalId(id: self.externalId, completion: { result in
+                        if result == 1 {
+                            self.login(uname: self.externalId, pass: AccessToken.current!.tokenString, dataProvider: "Facebook")
+                        }
+                        else {
+                            PublicData.removeSpinnerAlert(controller: self)
+                            self.performSegue(withIdentifier: "loginToSignUp", sender: nil)
+                        }
+                    })
+                  }
+                    
+                  else { PublicData.removeSpinnerAlert(controller: self) }
             })
           }
+        
+            else { PublicData.removeSpinnerAlert(controller: self) }
         }
 }
 

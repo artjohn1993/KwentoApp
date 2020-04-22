@@ -20,7 +20,6 @@ class LoginServices {
         Alamofire.request(url,
                           method: .get).responseJSON(completionHandler: { (response) in
                             
-                            print(response.result.value!)
                             print(response.response?.statusCode)
                             completion(response.result.value as! Int)
                           })
@@ -47,8 +46,6 @@ class LoginServices {
            Alamofire.request(url,
                              method: .post,
                              parameters: parameters).responseJSON(completionHandler: { (response) in
-                                print(response.response?.statusCode)
-                                print(response.result.value)
                                 let data = response.result.value as? [String:Any]
                                 if response.response?.statusCode == 200 {
                                     if ((data?["access_token"]! as? String) != nil){
@@ -68,7 +65,6 @@ class LoginServices {
                                     completion(true)
                                 }
                                 else if response.response?.statusCode == 400 {
-                                    print(response.result.value)
                                     completion(false)
                                     let message = response.result.value as? [String:Any]
                                     if message?["error_description"] as? String != nil {
@@ -78,7 +74,7 @@ class LoginServices {
                                     }
                                 }
                                 else {
-                                    print(response.result.value)
+     
                                     completion(false)
                                 }
                                
@@ -97,7 +93,6 @@ class LoginServices {
                 token : String,
                 completion : @escaping (Bool, String)->()
                 ) {
-        print(gender)
         let userGender = gender == "Male" ? true : false
         
         let url = "\(PublicData.baseUrl)/api/accounts/register"
@@ -134,7 +129,6 @@ class LoginServices {
                             }
                             else {
                                 print("failed signup service")
-                                print(response.result)
                                 let data = response.result.value as? [String:Any]
                                 let message = data?["Message"] as? String
                                 print(message)

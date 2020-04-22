@@ -22,6 +22,7 @@ class QRReaderController: UIViewController {
     var mainNavigationController: MainNavigationController!
     var connectionService = ConnectionService()
     var isConnected = false
+    var language = ""
     //var context : QRReaderController
     
     
@@ -33,7 +34,8 @@ class QRReaderController: UIViewController {
         super.viewDidLoad()
         //context = self
         print("something in qr viewcontroller")
-        NotificationCenter.default.addObserver(self, selector: #selector(proceed), name: NSNotification.Name("proceed"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(proceed(_:)), name: NSNotification.Name("proceed"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.proceed(_:)), name: NSNotification.Name(rawValue: "proceed"), object: nil)
         initViews()
         mainNavigationController = navigationController as? MainNavigationController
         
@@ -42,15 +44,22 @@ class QRReaderController: UIViewController {
         }) 
     }
     
-    @objc private func proceed() {
-        performSegue(withIdentifier: "qrToDownload", sender: nil)
+    @objc private func proceed(_ notification: NSNotification) {
+        if let dict = notification.userInfo as NSDictionary? {
+            if let lang = dict["language"] as? String{
+                print(lang)
+                self.language = lang
+                performSegue(withIdentifier: "qrToDownload", sender: nil)
+            }
+        }
+        
     }
     @IBAction func closeEvent(_ sender: Any) {
         mainNavigationController.popViewController(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.afterScan(str: "12")
+        //self.afterScan(str: "12")
         //performSegue(withIdentifier: "qrToStart", sender: nil)
 //        performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
     }
@@ -59,6 +68,7 @@ class QRReaderController: UIViewController {
         if segue.identifier == "qrToDownload" {
             if let destinationVC = segue.destination as? DownloadStoriesController {
                 destinationVC.id = self.id
+                destinationVC.language = self.language
             }
         }
         if segue.identifier == "qrToStart" {
@@ -67,6 +77,7 @@ class QRReaderController: UIViewController {
                 destinationVC.name = self.attractionName
                 destinationVC.imageName = self.imageName
                 destinationVC.audioName = self.audioName
+                destinationVC.language = self.language
             }
         }
     }
@@ -90,11 +101,12 @@ class QRReaderController: UIViewController {
             print("request getAttractionById is done")
             self.attractionName = result?["name"] as? String ?? ""
             self.imageName = result?["image_filename"] as? String ?? ""
-            self.audioName = result?["audio_filename"] as? String ?? ""
+            self.audioName = self.language == "English" ? result?["audio_filename"] as? String ?? "" : result?["audio_filename_ph"] as? String ?? ""
             var subAttraction = result?["sub_attractions"] as? [[String:Any]]
             
             if subAttraction?.count ?? 0 > 0 {
-                self.performSegue(withIdentifier: "qrToDownload", sender: nil)
+                //self.performSegue(withIdentifier: "qrToDownload", sender: nil)
+                self.performSegue(withIdentifier: "readerToLanguageSetting", sender: nil)
             }
             else {
                 self.service.downloadImage(idImage: self.imageName, completion: { percentage in

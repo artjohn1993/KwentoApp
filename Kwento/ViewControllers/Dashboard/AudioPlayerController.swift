@@ -23,6 +23,7 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     
     var audioPlayer = AVAudioPlayer()
     var id = ""
+    var language = ""
     var service = AttractionServices()
     var currentTime: TimeInterval!
     var downloadedAttraction = [DownloadedAttractionDetails]()
@@ -35,19 +36,21 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
         super.viewDidLoad()
         print("audio player:\(id)")
          print("musicIndex:\(musicIndex)")
-        service.getAttractionById(id: id, completion: { result in
-            var subAttraction = result?["sub_attractions"] as? [[String:Any]]
-            
-            subAttraction?.forEach({ item in
-                var currentItem = item as? [String:Any]
-                var filename = currentItem?["audio_filename"] as? String
-                print("filename:\(filename)")
-                self.audioId.append("\(filename!).mp3")
-            })
-            
-            self.playMusic(audioFilename: self.audioId[self.musicIndex])
-            self.setInit()
-        })
+//        service.getAttractionById(id: id, completion: { result in
+//            var subAttraction = result?["sub_attractions"] as? [[String:Any]]
+//
+//            subAttraction?.forEach({ item in
+//                var currentItem = item as? [String:Any]
+//                var filename = self.language == "English" ? currentItem?["audio_filename"] as? String : currentItem?["audio_filename_ph"] as? String
+//                print("filename:\(filename)")
+//                self.audioId.append("\(filename!).mp3")
+//            })
+//
+//            self.playMusic(audioFilename: self.audioId[self.musicIndex])
+//            self.setInit()
+//        })
+        self.playMusic(audioFilename: self.audioId[self.musicIndex])
+        self.setInit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +74,8 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
 //            audioPlayer.prepareToPlay()
 //            audioPlayer.play()
 //        }
+        indicator.stop()
+        playButton.setImage(#imageLiteral(resourceName: "round_play_circle_outline_white_48pt"), for: .normal)
     }
     
     func setInit() {
@@ -79,8 +84,6 @@ class AudioPlayerController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func playMusic(audioFilename : String) {
-        print("playMusic")
-        print(audioFilename)
             var stringURL = getSavedMp3(named: String(audioFilename))
             print(stringURL)
             let url = URL(string: stringURL!)

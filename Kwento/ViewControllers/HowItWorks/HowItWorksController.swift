@@ -13,14 +13,14 @@ class HowItWorksController: UIViewController {
     
     @IBOutlet var instructionText: UILabel!
     let images = [#imageLiteral(resourceName: "how_1"),#imageLiteral(resourceName: "how_2"),#imageLiteral(resourceName: "how_3"),#imageLiteral(resourceName: "how_4"),#imageLiteral(resourceName: "how_5"),#imageLiteral(resourceName: "how_6"),#imageLiteral(resourceName: "how_7"),#imageLiteral(resourceName: "how_8")]
-    let instructions = ["Instruction 1",
-                        "Instruction 2",
-                        "Instruction 3",
-                        "Instruction 4",
-                        "Instruction 5",
-                        "Instruction 6",
-                        "Instruction 7",
-                        "Instruction 8"]
+    let instructions = ["Tap the kwento logo in the main menu to start the QR reader",
+                        "Scan code to access audio tour",
+                        "Choose your preferred language",
+                        "Wait for offline content to be downloaded",
+                        "Listen to introduction and click \"Let's start to begin tour\"",
+                        "Type exhibit number and press Play",
+                        "Tour will end when timer finishers. Otherwise, click End Tour to do so",
+                        "kwento is best experienced with a headset"]
     var currentViewControllerIndex = 0
     var shownViewControllerIndex = 0
     var howItWorksPageController: HowItWorksPageController!
@@ -35,6 +35,7 @@ class HowItWorksController: UIViewController {
         super.viewDidLoad()
         initViews()
         configurePageViewController()
+        instructionText.text =  instructions[0]
     }
     
     @IBAction func skip(_ sender: Any) {
@@ -106,7 +107,7 @@ class HowItWorksController: UIViewController {
         
         pageImageController.index = index
         pageImageController.image = images[index]
-        instructionText.text =  instructions[index]
+        
         return pageImageController
     }
     
@@ -136,6 +137,7 @@ extension HowItWorksController: UIPageViewControllerDelegate, UIPageViewControll
             backButton.setVisibility(true)
             finishButton.setVisibility(false)
         }
+        instructionText.text =  instructions[shownViewControllerIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
